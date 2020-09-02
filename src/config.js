@@ -1,6 +1,8 @@
 const path = require('path');
 require('tiny-env')();
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config = {
   name: 'Hanabi',
   owners: ['517599684961894400', '554152090411466754'],
@@ -13,14 +15,14 @@ const config = {
   dbggtoken: false,
   saucetoken: false,
   apiport: process.env.PORT,
-  debug: true,// process.env.NODE_ENV,
-  root: path.resolve('./src'),
+  debug: isProduction,
+  root: path.resolve(__dirname),
   // Default per-server settings. New guilds have these settings.
 
   // DO NOT LEAVE ANY OF THESE BLANK, AS YOU WILL NOT BE ABLE TO UPDATE THEM
   // VIA COMMANDS IN THE GUILD.
   defaultSettings: {
-    prefix: '~',//hmmmmmmmmmmmmmmmmmmm does tilde work for prefix? ~yes hhhhhhhhhhh ~ ~ ~ ~ nut
+    prefix: isProduction ? '~' : '!',
     modRole: 'Moderator',
     adminRole: 'Administrator',
   },
@@ -37,7 +39,7 @@ const config = {
   // PERMISSION LEVEL DEFINITIONS.
 
   permLevels: [
-    // This is the lowest permisison level, this is for non-roled users.
+    // This is the lowest permission level, this is for users with no assigned role / lowest assigned role.
     {
       level: 0,
       name: 'User',
