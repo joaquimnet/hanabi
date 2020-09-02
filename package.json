@@ -1,0 +1,35 @@
+{
+  "name": "hanabi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquimnet/hanabi.git"
+  },
+  "keywords": [],
+  "author": "Joaquim Neto <joaquimmy@yahoo.com>",
+  "contributors": [
+    "xlilblu (https://github.com/xbabyblu)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joaquimnet/hanabi/issues"
+  },
+  "homepage": "https://github.com/joaquimnet/hanabi#readme",
+  "dependencies": {
+    "@ponatech/bot": "github:ponatech/bot",
+    "chalk": "^4.1.0",
+    "lodash.merge": "^4.6.2",
+    "moment": "^2.27.0",
+    "mongoose": "^5.10.2",
+    "tiny-env": "github:joaquimnet/tiny-env"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1"
+  }
+}
