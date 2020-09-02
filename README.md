@@ -1,1 +1,1 @@
-# hanabi
+# Hanabi Bot
