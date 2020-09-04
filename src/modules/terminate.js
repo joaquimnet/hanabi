@@ -32,7 +32,7 @@ const terminate = (type, bot) => {
       };
     default:
       return () => {
-        logger.error('Received signal to terminate. Exiting...');
+        logger.info('Received signal to terminate. Exiting...');
         exit(0);
       };
   }

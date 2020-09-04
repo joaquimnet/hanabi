@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <a class="navbar-brand" href="/">
+    <img src="/discord-logo.svg" alt="discord icon" />
+    Hanabi-sama
+  </a>
+  <ul class="navbar-nav">
+    <li class="navbar-item">
+      <a href="#">Link 1</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#">Link 2</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#">Link 3</a>
+    </li>
+  </ul>
+</nav>

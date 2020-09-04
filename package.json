@@ -24,10 +24,20 @@
   "dependencies": {
     "@ponatech/bot": "github:ponatech/bot",
     "chalk": "^4.1.0",
+    "chop-prompter": "github:Chop-Bot/chop-prompter",
+    "connect-mongodb-session": "^2.4.1",
+    "discord.js": "^12.3.1",
+    "eta": "^1.2.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "got": "^11.6.0",
+    "helmet": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "moment": "^2.27.0",
     "mongoose": "^5.10.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
     "tiny-env": "github:joaquimnet/tiny-env"
   },
   "devDependencies": {

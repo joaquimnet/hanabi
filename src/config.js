@@ -15,16 +15,12 @@ const config = {
   dbggtoken: false,
   saucetoken: false,
   apiport: process.env.PORT,
-  debug: isProduction,
+  debug: true,
   root: path.resolve(__dirname),
   // Default per-server settings. New guilds have these settings.
 
-  // DO NOT LEAVE ANY OF THESE BLANK, AS YOU WILL NOT BE ABLE TO UPDATE THEM
-  // VIA COMMANDS IN THE GUILD.
   defaultSettings: {
     prefix: isProduction ? '~' : '!',
-    modRole: 'Moderator',
-    adminRole: 'Administrator',
   },
   defaultProfile: {
     preferDM: false,
