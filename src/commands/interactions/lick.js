@@ -1,6 +1,6 @@
 const { Command } = require("@ponatech/bot");
 
-const createInteractionCommand = require("../../util/_createInteractionCommand");
+const createInteractionCommand = require("../../util/createInteractionCommand");
 
 module.exports = new Command({
   name: "lick",
@@ -13,7 +13,7 @@ module.exports = new Command({
   async run(bot, message, meta) {
     // const {args} = meta
     const lick = createInteractionCommand(
-      `Well.. How do I say this..\n \n${meta.callerTag} has licked you. And now, I will proceed to walk away... :zany_face: `,
+      `Well.. How do I say this..\n \n${meta.tag} has licked you. And now, I will proceed to walk away... :zany_face: `,
       "lick",
       message
     );

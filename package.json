@@ -34,7 +34,7 @@
     "helmet": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "moment": "^2.27.0",
-    "mongoose": "^5.10.2",
+    "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
     "node": "^14.8.0",
     "nodemon": "^2.0.4",

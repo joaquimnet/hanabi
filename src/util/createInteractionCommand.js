@@ -3,7 +3,7 @@
 const findPerson = require('./findPerson');
 // i'll get this VVVVVVVVVVV
 const makeEmbed = require('./makeEmbed');
-const Gifs = require('../services/gifs');
+// const Gifs = require('../services/gifs');
 
 module.exports = (text, tags, message) => async () => {
   const deleteAfterDelay = (msg, delay) => {
@@ -20,11 +20,14 @@ module.exports = (text, tags, message) => async () => {
     return;
   }
 
-  const image = await Gifs.random(tags);
+  // const image = await Gifs.random(tags);
+  const image = undefined;
 
   const embed = makeEmbed(text, image, message);
 
-  target.send({ embed }).catch(() => {
+  try {
+    await target.send({ embed })
+  } catch {
     message.channel.send('I can\'t DM that person. ;-;').catch(() => {});
-  });
+  }
 };

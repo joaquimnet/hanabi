@@ -1,6 +1,6 @@
 const { Command } = require("@ponatech/bot");
 
-const createInteractionCommand = require("../../util/_createInteractionCommand");
+const createInteractionCommand = require("../../util/createInteractionCommand");
 
 module.exports = new Command({
   name: "highfive",
@@ -13,7 +13,7 @@ module.exports = new Command({
   async run(bot, message, meta) {
     // const {args} = meta;
     const highfive = createInteractionCommand(
-      `\n${meta.callerTag} has high-fived you :raised_hand: :pray: good job, on whatever you did to deserve a high-five :grin:`,
+      `\n${meta.tag} has high-fived you :raised_hand: :pray: good job, on whatever you did to deserve a high-five :grin:`,
       "highfive",
       message
     );

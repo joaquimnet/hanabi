@@ -1,7 +1,7 @@
 const { Command } = require("@ponatech/bot");
 
-const createInteractionCommand = require("../../util/_createInteractionCommand");
-
+const createInteractionCommand = require("../../util/createInteractionCommand");
+// no u
 // cute stuff c;
 module.exports = new Command({
   name: "cute",
@@ -14,7 +14,7 @@ module.exports = new Command({
   examples: ["@Kaffe#9547", "@blu#0111"],
   async run(bot, message, meta) {
     const cute = createInteractionCommand(
-      `Hey there! \n${meta.metaTag} said you're cute. ;)`,
+      `Hey there! \n${meta.tag} said you're cute. ;)`,
       "cute",
       message
     );

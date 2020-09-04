@@ -1,6 +1,6 @@
 const { Command } = require("@ponatech/bot");
 
-const createInteractionCommand = require("../../util/_createInteractionCommand");
+const createInteractionCommand = require("../../util/createInteractionCommand");
 
 module.exports = new Command({
   name: "hug",
@@ -14,7 +14,7 @@ module.exports = new Command({
   run(bot, message, meta) {
     //const { args } = meta;
     const hug = createInteractionCommand(
-      `\n${meta.Tag} has given you a big ole hug, you oughta send them one back! :heart: `,
+      `\n${meta.tag} has given you a big ole hug, you oughta send them one back! :heart: `,
       "hug",
       message
     );

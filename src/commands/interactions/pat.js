@@ -1,9 +1,9 @@
 const { Command } = require("@ponatech/bot");
 
-const createInteractionCommand = require("../../util/_createInteractionCommand");
+const createInteractionCommand = require("../../util/createInteractionCommand");
 
 module.exports = new Command({
-  name: "PatPat",
+  name: "pat",
   description: "a gentle way of saying.. there-there.",
   aliases: ["pat"],
   args: ["target"],
@@ -14,7 +14,7 @@ module.exports = new Command({
   async run(bot, message, meta) {
     // const{args} = meta;
     const pat = createInteractionCommand(
-      `*pat-pat* \n${meta.callerTag} has pat you c:`,
+      `*pat-pat* \n${meta.tag} has pat you c:`,
       "pat",
       message
     );
