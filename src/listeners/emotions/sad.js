@@ -1,16 +1,16 @@
-const { Listener } = require('@ponatech/bot');
-const Prompter = require('chop-prompter');
+const { Listener } = require("@ponatech/bot");
+const Prompter = require("chop-prompter");
 
 module.exports = new Listener({
-  words: ['{me}', 'sad'],
-  category: 'emotions',
+  words: ["{me}", "sad"],
+  category: "emotions",
   cooldown: 10,
   priority: 0,
   run(bot, message, meta) {
     Prompter.message({
       channel: message.channel,
       question:
-        'What is going on? Maybe a nice cup of hot tea or coffee could help stabilize your mood.',
+        "What is going on? Maybe a nice cup of hot tea or coffee could help stabilize your mood.",
       userId: message.author.id,
       max: 1,
       timeout: 10000,
@@ -35,7 +35,7 @@ module.exports = new Listener({
 
       // Respond
       meta.respond(
-        `You are sad because ${response}, right? I am sorry you are going through this. But without the bad things in life, we would not know how to enjoy the good things. That's the beauty in life.`,
+        `You are sad because ${response}, right? I am sorry you are going through this. But without the bad things in life, we would not know how to enjoy the good things. That's the beauty in life.`
       );
     });
     return true;

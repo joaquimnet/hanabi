@@ -1,10 +1,10 @@
-const { Listener, COMMON_EXPRESSIONS, stringMatch } = require('@ponatech/bot');
-const Prompter = require('chop-prompter');
+const { Listener, COMMON_EXPRESSIONS, stringMatch } = require("@ponatech/bot");
+const Prompter = require("chop-prompter");
 //(:
 // oh
 module.exports = new Listener({
-  words: ['{me}', 'depressed'],
-  category: 'depression',
+  words: ["{me}", "depressed"],
+  category: "depression",
   cooldown: 15,
   priority: 0,
   async run(bot, message, meta) {
@@ -22,21 +22,22 @@ module.exports = new Listener({
     }
 
     // if yesn't yesn't
-    if(!stringMatch(userResponse.first(), [COMMON_EXPRESSIONS.yes])) {
-      meta.respond('Well, I am glad to hear you aren\'t feeling depressed!');
+    if (!stringMatch(userResponse.first(), [COMMON_EXPRESSIONS.yes])) {
+      meta.respond("Well, I am glad to hear you aren't feeling depressed!");
       return true;
     }
-    
+
     // respond
     message.channel.startTyping().catch(() => {});
     await bot.wait(2000);
 
-    meta.respond(
-      "I'm sorry that you're feeling depressed, and it's completely normal to feel this way.",
-      "You're human and you're valid. Small tasks may seem overwhelming and daunting.",
-      'Good days are coming your way.',
-      // 👌                   👌                   👌                    👌
-    )
+    meta
+      .respond(
+        "I'm sorry that you're feeling depressed, and it's completely normal to feel this way.",
+        "You're human and you're valid. Small tasks may seem overwhelming and daunting.",
+        "Good days are coming your way."
+        // 👌                   👌                   👌                    👌
+      )
       .then(() => message.channel.stopTyping())
       .catch(() => {});
     return true;
