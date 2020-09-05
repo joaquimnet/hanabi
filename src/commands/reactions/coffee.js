@@ -3,6 +3,22 @@ const { Command } = require('@ponatech/bot');
 const makeEmbed = require('../../util/makeEmbed');
 const findPerson = require('../../util/findPerson');
 //const Gifs = require('../../services/gifs');
+const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+const images = [
+  'https://i.imgur.com/3bQ5hqy.gif',
+  'https://i.imgur.com/MN9si0m.gif',
+  'https://i.imgur.com/DEtN7dV.gif',
+  'https://i.imgur.com/Rot43Y4.gif',
+  'https://i.imgur.com/KSTgbZW.gif',
+  'https://i.imgur.com/AVv17al.gif',
+  'https://i.imgur.com/CfkDtJM.gif',
+  'https://i.imgur.com/oSSKB8C.gif',
+  'https://i.imgur.com/0Hq3LDr.gif',
+  'https://i.imgur.com/3NrZwpK.gif',
+  'https://i.imgur.com/8WZwOQC.gif',
+  'https://i.imgur.com/LocQCNI.gif',
+];
 
 module.exports = new Command({
   name: 'coffee',
@@ -22,8 +38,8 @@ module.exports = new Command({
 
     const embed = makeEmbed(
       msg,
-     // await Gifs.random(['coffee']),
-      undefined,
+      // await Gifs.random(['coffee']),
+      random(images),
       message,
     );
 

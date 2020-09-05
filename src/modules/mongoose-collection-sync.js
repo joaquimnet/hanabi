@@ -15,7 +15,10 @@ module.exports = class MongooseCollectionSync extends EventEmitter {
       .find({})
       .exec()
       .then((documents) => {
-        this.emit('debug', `Mongo Sync: [${model.name}] -> Loaded ${documents.length}`);
+        this.emit(
+          'debug',
+          `Mongo Sync: [${model.name}] -> Loaded ${documents.length}`,
+        );
         documents.forEach((doc) => this.cache.set(doc._id, doc));
       });
   }

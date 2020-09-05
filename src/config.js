@@ -32,6 +32,19 @@ const config = {
     USAGE: "You're missing the **{0}** argument! \nUsage: {1}",
   },
 
+  // Help Category Emotes
+  helpCategoryEmotes: {
+    admin: ':gear:',
+    currency: ':moneybag:',
+    funny: ':rofl:',
+    info: ':newspaper:',
+    interactions: ':people_holding_hands:',
+    maintenance: ':gear:',
+    other: ':8ball:',
+    reactions: ':grimacing:',
+    social: ':game_die:',
+  },
+
   // PERMISSION LEVEL DEFINITIONS.
 
   permLevels: [
@@ -49,7 +62,9 @@ const config = {
       name: 'Manage Messages',
       check: (message) => {
         try {
-          return message.guild?.member(message.author)?.hasPermission('MANAGE_MESSAGES');
+          return message.guild
+            ?.member(message.author)
+            ?.hasPermission('MANAGE_MESSAGES');
         } catch (ex) {
           return false;
         }
@@ -61,7 +76,9 @@ const config = {
       name: 'Manage Roles',
       check: (message) => {
         try {
-          return message.guild?.member(message.author)?.hasPermission('MANAGE_ROLES');
+          return message.guild
+            ?.member(message.author)
+            ?.hasPermission('MANAGE_ROLES');
         } catch (ex) {
           return false;
         }
@@ -73,7 +90,9 @@ const config = {
       name: 'Manage Guild',
       check: (message) => {
         try {
-          return message.guild?.member(message.author)?.hasPermission('MANAGE_GUILD');
+          return message.guild
+            ?.member(message.author)
+            ?.hasPermission('MANAGE_GUILD');
         } catch (ex) {
           return false;
         }
@@ -112,7 +131,8 @@ const config = {
       level: 9,
       name: 'Bot Admin',
       check: (message) =>
-        config.owners.includes(message.author.id) || config.admins.includes(message.author.id),
+        config.owners.includes(message.author.id) ||
+        config.admins.includes(message.author.id),
     },
 
     // This is the bot owner, this should be the highest permission level available.

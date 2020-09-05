@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const Hanabi = require("./hanabi");
+const Hanabi = require('./hanabi');
 
 const { Schema } = mongoose;
 
@@ -35,14 +35,14 @@ const ideaSchema = new Schema({
   },
 });
 
-ideaSchema.pre("save", async function preSave(next) {
-  if (this.isModified("createdAt")) {
-    throw new Error("Creation field is read only!");
+ideaSchema.pre('save', async function preSave(next) {
+  if (this.isModified('createdAt')) {
+    throw new Error('Creation field is read only!');
   }
   this.updatedAt = Date.now();
   // get next id
   const hanabiConfig = await Hanabi.findOne({})
-    .select("stats.currentIdeaId")
+    .select('stats.currentIdeaId')
     .exec();
   // @_@
   const nextId = hanabiConfig.stats.currentIdeaId + 1;
@@ -57,4 +57,4 @@ ideaSchema.methods.display = function display() {
 };
 
 // TODO: Add mongoose-unique-validator
-module.exports = mongoose.model("Idea", ideaSchema);
+module.exports = mongoose.model('Idea', ideaSchema);

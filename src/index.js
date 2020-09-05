@@ -1,7 +1,12 @@
 const { BotClient, defaultCommands } = require('@ponatech/bot');
 const merge = require('lodash.merge');
 const config = require('./config');
-const { logger, terminate, connect, MongooseCollectionSync } = require('./modules');
+const {
+  logger,
+  terminate,
+  connect,
+  MongooseCollectionSync,
+} = require('./modules');
 const { Profile, Settings } = require('./models');
 const web = require('./web');
 
@@ -88,7 +93,11 @@ const init = async () => {
     const prefixMention = new RegExp(`^<@!?${bot.user?.id}>( |)$`);
     if (message.content.match(prefixMention)) {
       message
-        .reply(`My prefix in here is \`${settings?.prefix || bot.config.defaultSettings.prefix}\``)
+        .reply(
+          `My prefix in here is \`${
+            settings?.prefix || bot.config.defaultSettings.prefix
+          }\``,
+        )
         .catch(() => {});
       return false;
     }
@@ -97,7 +106,11 @@ const init = async () => {
       guildPrefixes.set(message.guild?.id, settings.prefix);
     }
 
-    const content = message.content.trim().toLowerCase().replace(/\s\s+/g, ' ').trim();
+    const content = message.content
+      .trim()
+      .toLowerCase()
+      .replace(/\s\s+/g, ' ')
+      .trim();
 
     // return truthy with default prefix if in DMs
     if (!guildId) {
@@ -106,7 +119,9 @@ const init = async () => {
 
     // If guild prefix equals default prefix that should not be treated as a custom prefix.
     const customPrefix =
-      guildPrefixes.get(guildId) === defaultPrefix ? false : guildPrefixes.get(guildId);
+      guildPrefixes.get(guildId) === defaultPrefix
+        ? false
+        : guildPrefixes.get(guildId);
 
     // do not run command with normal prefix if a custom prefix is set
     if (customPrefix && content.startsWith(defaultPrefix)) {

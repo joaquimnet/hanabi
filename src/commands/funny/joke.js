@@ -44,7 +44,8 @@ module.exports = new Command({
               logger.error('Request failed, sending backup joke.', err);
               this.send({
                 embed: {
-                  title: 'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
+                  title:
+                    'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
                   description: ':rofl:',
                   thumbnail: {
                     url: bot.user.avatarURL(),

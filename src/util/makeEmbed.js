@@ -1,10 +1,10 @@
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = function makeEmbed(text, image, message) {
   const embedData = {
     author: {
       name: message.author.username,
-      iconURL: message.author.avatarURL()
+      iconURL: message.author.avatarURL(),
     },
     footer: {
       text: '<3',
@@ -17,4 +17,4 @@ module.exports = function makeEmbed(text, image, message) {
   embed.setImage(image);
 
   return embed;
-}
+};

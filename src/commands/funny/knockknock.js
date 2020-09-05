@@ -26,31 +26,30 @@ module.exports = new Command({
               accept: 'application/json',
               'User-Agent': 'Hanabi (https://github.com/joaquimnet/hanabi)',
             },
-          })
-            .then((jokeResponse) => {
-              const { joke } = JSON.parse(jokeResponse);
-              this.send({
-                embed: {
-                  title: joke,
-                  description: ':rofl:',
-                  thumbnail: {
-                    url: bot.user.avatarURL(),
-                  },
+          }).then((jokeResponse) => {
+            const { joke } = JSON.parse(jokeResponse);
+            this.send({
+              embed: {
+                title: joke,
+                description: ':rofl:',
+                thumbnail: {
+                  url: bot.user.avatarURL(),
                 },
-              }).catch(() => {});
-            })
-  
-              logger.error('Reques')          .catch(() => {
-              this.send({
-                embed: {
-                  title: 'Knock Knock. Who is there? Oh its me! Bloo, duh! ~ ',
-                  description: ':rofl:',
-                  thumbnail: {
-                    url: bot.user.avatarURL(),
-                  },
+              },
+            }).catch(() => {});
+          });
+
+          logger.error('Reques').catch(() => {
+            this.send({
+              embed: {
+                title: 'Knock Knock. Who is there? Oh its me! Bloo, duh! ~ ',
+                description: ':rofl:',
+                thumbnail: {
+                  url: bot.user.avatarURL(),
                 },
-              }).catch(() => {});
-            });
+              },
+            }).catch(() => {});
+          });
         } else {
           this.send('Okay then.');
         }

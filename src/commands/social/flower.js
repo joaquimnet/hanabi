@@ -37,7 +37,7 @@ module.exports = new Command({
       return;
     }
 
-    // give flowers  
+    // give flowers
     if (next <= 0) {
       this.send(
         `:sunflower: **| ${mention.user.username}**! You got a flower from **${message.author.username}**!:smiling_face_with_3_hearts:`,
@@ -45,10 +45,15 @@ module.exports = new Command({
       profile.flower.time = new Date();
       await profile.save();
       await Profile.getOrCreate(mention.user.id);
-      await Profile.findOneAndUpdate({ _id: mention.user.id }, { $inc: { 'flower.count': 1 } });
+      await Profile.findOneAndUpdate(
+        { _id: mention.user.id },
+        { $inc: { 'flower.count': 1 } },
+      );
     } else {
       this.send(
-        `:timer: **|** Oh no **${message.author.username}** you have to wait **${format(next)}**`,
+        `:timer: **|** Oh no **${
+          message.author.username
+        }** you have to wait **${format(next)}**`,
       );
     }
   },

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "format": "prettier ./src/**/**",
+    "lint": "eslint ./src/**/**.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,9 +42,11 @@
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
-    "tiny-env": "github:joaquimnet/tiny-env"
+    "tiny-env": "github:joaquimnet/tiny-env",
+    "wordpos": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.8.1"
+    "eslint": "^7.8.1",
+    "prettier": "^2.1.1"
   }
 }

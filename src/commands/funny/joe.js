@@ -7,7 +7,7 @@ module.exports = new Command({
   category: 'funny',
   run() {
     this.send('Joe Mamma! 😂😂😂😂😂😂😂😂😂😂😂'); // LMAO 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂 unknown word "LMAO" unknown word
-  }
+  },
 });
 //joe mamma
 // do it

@@ -1,4 +1,3 @@
-
 // go get this VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 const findPerson = require('./findPerson');
 // i'll get this VVVVVVVVVVV
@@ -15,7 +14,9 @@ module.exports = (text, tags, message) => async () => {
   const target = await findPerson(message.mentions.members.first());
 
   if (!target) {
-    const msg = await message.channel.send("I couldn't find that person.").catch(() => {});
+    const msg = await message.channel
+      .send("I couldn't find that person.")
+      .catch(() => {});
     deleteAfterDelay(msg, 3000);
     return;
   }
@@ -25,6 +26,6 @@ module.exports = (text, tags, message) => async () => {
   const embed = makeEmbed(text, image, message);
 
   target.send({ embed }).catch(() => {
-    message.channel.send('I can\'t DM that person. ;-;').catch(() => {});
+    message.channel.send("I can't DM that person. ;-;").catch(() => {});
   });
 };

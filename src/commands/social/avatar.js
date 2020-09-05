@@ -3,7 +3,10 @@ const { MessageEmbed } = require('discord.js');
 
 function makeEmbed(text, image, message) {
   const embedData = {
-    author: { name: message.author.username, iconURL: message.author.avatarURL() },
+    author: {
+      name: message.author.username,
+      iconURL: message.author.avatarURL(),
+    },
     footer: {
       text: '<3',
       icon_url: message.client.user.avatarURL(),
@@ -23,7 +26,7 @@ module.exports = new Command({
   category: 'social',
   args: ['target'],
   usage: '{@Name}',
-  examples: ['@Xlilblu'],
+  examples: ['@blu'],
   run(bot, message) {
     const target = message.mentions.members.first();
     if (!target) {

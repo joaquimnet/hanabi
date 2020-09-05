@@ -1,7 +1,7 @@
 const { Listener } = require('@ponatech/bot');
 
 module.exports = new Listener({
-  words: ['thank', 'you', 'hanabi'],
+  words: ['(thank|thanks)( (you|u))*', 'hanabi'],
   category: 'hanabi',
   cooldown: 1,
   priority: 0,

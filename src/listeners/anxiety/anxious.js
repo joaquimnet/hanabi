@@ -1,8 +1,8 @@
-const { Listener } = require("@ponatech/bot");
+const { Listener } = require('@ponatech/bot');
 
 module.exports = new Listener({
-  words: ["{me}", "anxious"],
-  category: "anxiety",
+  words: ['{me}', 'anxious'],
+  category: 'anxiety',
   cooldown: 15,
   priority: 0,
   async run(bot, message, meta) {
@@ -12,12 +12,12 @@ module.exports = new Listener({
     // ^^^^^^^^^^^^^^^^
     meta
       .respond(
-        "I am sorry that you are feeling anxious, what kind of things do you like to do to help put yourself at ease?",
-        "Sometimes, taking a nap or drinking a hot beverage does it for me.",
-        "Video games are also a great de-stressor.",
+        'I am sorry that you are feeling anxious, what kind of things do you like to do to help put yourself at ease?',
+        'Sometimes, taking a nap or drinking a hot beverage does it for me.',
+        'Video games are also a great de-stressor.',
         "If you're feeling up to it, may I suggest possibly going for a walk?",
-        "It is completely valid and okay if you cannot.",
-        "Anything that helps you feel better, is what matters. :orange_heart:"
+        'It is completely valid and okay if you cannot.',
+        'Anything that helps you feel better, is what matters. :orange_heart:',
       )
       .then(() => message.channel.stopTyping())
       .catch(() => {});

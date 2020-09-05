@@ -1,10 +1,10 @@
-const { Listener, COMMON_EXPRESSIONS, stringMatch } = require("@ponatech/bot");
-const Prompter = require("chop-prompter");
+const { Listener, COMMON_EXPRESSIONS, stringMatch } = require('@ponatech/bot');
+const Prompter = require('chop-prompter');
 //(:
 // oh
 module.exports = new Listener({
-  words: ["{me}", "depressed"],
-  category: "depression",
+  words: ['{me}', 'depressed'],
+  category: 'depression',
   cooldown: 15,
   priority: 0,
   async run(bot, message, meta) {
@@ -35,7 +35,7 @@ module.exports = new Listener({
       .respond(
         "I'm sorry that you're feeling depressed, and it's completely normal to feel this way.",
         "You're human and you're valid. Small tasks may seem overwhelming and daunting.",
-        "Good days are coming your way."
+        'Good days are coming your way.',
         // 👌                   👌                   👌                    👌
       )
       .then(() => message.channel.stopTyping())

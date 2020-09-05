@@ -8,7 +8,7 @@ module.exports = new Command({
   category: 'funny',
   run() {
     // Yeeeeeeeeeeeeeeeeeeeehaw! 🐄
-    this.send('Yeehaw!').then(msg => {
+    this.send('Yeehaw!').then((msg) => {
       msg.react('🤠').catch(() => {});
     });
   },

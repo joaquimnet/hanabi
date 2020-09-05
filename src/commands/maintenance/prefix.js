@@ -18,7 +18,9 @@ module.exports = new Command({
       if (customPrefix) {
         this.send(`My prefix on this server is **${customPrefix}**`);
       } else {
-        this.send(`My prefix on this server is the default one **${defaultPrefix}**.`);
+        this.send(
+          `My prefix on this server is the default one **${defaultPrefix}**.`,
+        );
       }
       return;
     }
@@ -34,7 +36,9 @@ module.exports = new Command({
 
     if ([defaultPrefix, 'remove', 'delete'].includes(newPrefix)) {
       await bot.settings.update(settings._id, { prefix: null });
-      this.send(`Removed! My prefix on this server is back to the default **${defaultPrefix}**`);
+      this.send(
+        `Removed! My prefix on this server is back to the default **${defaultPrefix}**`,
+      );
       return;
     }
 

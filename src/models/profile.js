@@ -34,14 +34,18 @@ const profileSchema = new Schema(
 
 profileSchema.methods.setMoney = async function (bot, amount) {
   const newAmount = Math.floor(Math.abs(amount));
-  await mongoose.model('profile').updateOne({ _id: this._id }, { money: newAmount });
+  await mongoose
+    .model('profile')
+    .updateOne({ _id: this._id }, { money: newAmount });
   await bot.profiles.refresh(this._id);
   return true;
 };
 
 profileSchema.methods.giveMoney = async function (bot, amount) {
   const newAmount = this.money + Math.floor(Math.abs(amount));
-  await mongoose.model('profile').updateOne({ _id: this._id }, { money: newAmount });
+  await mongoose
+    .model('profile')
+    .updateOne({ _id: this._id }, { money: newAmount });
   await bot.profiles.refresh(this._id);
   return newAmount;
 };
@@ -71,7 +75,10 @@ profileSchema.methods.transferMoney = async function (bot, targetId, amount) {
   const target = await bot.getProfile(targetId);
   await mongoose
     .model('profile')
-    .updateOne({ _id: target._id }, { money: target.money + transferredAmount });
+    .updateOne(
+      { _id: target._id },
+      { money: target.money + transferredAmount },
+    );
   await bot.profiles.refresh(target._id);
 
   return [this.money - transferredAmount, target.money + transferredAmount];
@@ -91,7 +98,9 @@ profileSchema.statics.getOrCreate = async function getOrCreate(userId) {
     await profile.save();
     return profile;
   } catch (err) {
-    err.stack = `[Profile/getProfile] Could not get profile for id: ${userId}\n` + err.stack;
+    err.stack =
+      `[Profile/getProfile] Could not get profile for id: ${userId}\n` +
+      err.stack;
     throw err;
   }
 };

@@ -24,7 +24,7 @@ module.exports = new Command({
     logger.log('Settings avatar to:', res.body);
     await bot.user.setAvatar(res.body);
     this.send('Am I cute? owo~');
-    this.send(bot.user.avatarURL())
+    this.send(bot.user.avatarURL());
   },
 });
 // potato 🍟potato

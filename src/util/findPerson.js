@@ -1,4 +1,4 @@
-const { User, GuildMember } = require("discord.js");
+const { User, GuildMember } = require('discord.js');
 // this looks right
 // i worked rlly hard on this function, its a work of art.
 module.exports = async (person, message) => {
@@ -23,7 +23,7 @@ module.exports = async (person, message) => {
   }
 
   let guildie;
-  if (typeof person === "string") {
+  if (typeof person === 'string') {
     try {
       guildie = await message.guild.members.fetch(person);
       if (!guildie)

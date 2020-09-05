@@ -4,9 +4,10 @@ const getRandomPoem = (format) => {
   const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
   const poems = [
     format(
-        ':white_flower:You are filled with doubt', 
-        'of the magic inside you,', 
-        'but its all I see.:white_flower:'),
+      ':white_flower:You are filled with doubt',
+      'of the magic inside you,',
+      'but its all I see.:white_flower:',
+    ),
     format(
       ':white_flower:Ah, ah cries the crow arching toward the heavy sky over the marina.',
       'Lands on the crown of the palm tree.',
@@ -108,9 +109,10 @@ const getRandomPoem = (format) => {
       'Open up your hearts and let the sunshine in.:white_flower:',
     ),
     format(
-        ':white_flower:Your smile is a million suns', 
-        'The galaxy never knows night', 
-        "When you're happy.:white_flower:"),
+      ':white_flower:Your smile is a million suns',
+      'The galaxy never knows night',
+      "When you're happy.:white_flower:",
+    ),
     format(
       ':white_flower:Happiness,:white_flower:',
       '\n:white_flower::white_flower::white_flower:',
@@ -191,9 +193,10 @@ const getRandomPoem = (format) => {
       'If that’s okay.:white_flower:',
     ),
     format(
-        ':white_flower:What a joy it is', 
-        'to know that for once in some time', 
-        'life will really be okay.:white_flower:'),
+      ':white_flower:What a joy it is',
+      'to know that for once in some time',
+      'life will really be okay.:white_flower:',
+    ),
     format(
       ':white_flower:My home is where I can find my heart',
       "It's where I can express my art",
@@ -212,7 +215,7 @@ const getRandomPoem = (format) => {
 module.exports = new Command({
   name: 'poem',
   description: 'One of the many things that make me happy!',
-  category: 'happy',
+  category: 'other',
   usage: '[fast]',
   async run(bot, message, meta) {
     const { args } = meta;
