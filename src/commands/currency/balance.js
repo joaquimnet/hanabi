@@ -8,7 +8,7 @@ module.exports = new Command({
   run(bot, message, meta) {
     this.send(
       `Hello ${message.author.username}!`,
-      `You currently have **${meta.profile.money}¥**!`,
+      `:yen:You currently have **${meta.profile.money}¥**!`,
     );
   },
 });

@@ -9,9 +9,9 @@ module.exports = new Command({
   examples: [' ', '>', '!', '++'],
   runIn: ['guild'],
   async run(bot, message, meta) {
-    const { args, settings } = meta;
+    const { args } = meta;
 
-    const customPrefix = settings.prefix;
+    const customPrefix = meta.settings.prefix;
     const defaultPrefix = bot.config.defaultSettings.prefix;
 
     if (!args[0]) {
@@ -35,7 +35,8 @@ module.exports = new Command({
     }
 
     if ([defaultPrefix, 'remove', 'delete'].includes(newPrefix)) {
-      await bot.settings.update(settings._id, { prefix: null });
+      meta.settings.prefix = null;
+      await meta.settings.save();
       this.send(
         `Removed! My prefix on this server is back to the default **${defaultPrefix}**`,
       );
@@ -56,7 +57,8 @@ module.exports = new Command({
       newPrefix += ' ';
     }
 
-    await bot.settings.update(settings._id, { prefix: newPrefix });
+    meta.settings.prefix = newPrefix;
+    await meta.settings.save();
     this.send(`Done! My prefix on this server is now **${newPrefix}**`);
   },
 });

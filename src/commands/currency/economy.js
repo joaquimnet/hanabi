@@ -18,11 +18,11 @@ module.exports = new Command({
       .sort({ money: -1 })
       .exec();
 
-    // const hanabiProfile = await Profile.findOne({
-    //   _id: "643338599281983501"
-    // }).exec();
+    const hanabiProfile = await Profile.findOne({
+      _id: '750693579109695638',
+    }).exec();
 
-    // const hanabiMoney = hanabiProfile.money;
+    const hanabiMoney = hanabiProfile.money;
 
     const top5 = top5Profiles.map((p, i) => {
       const medals = {
@@ -44,7 +44,9 @@ module.exports = new Command({
 
     msg.push(`__There is currently **${money}¥** in the economy.__`);
     top5.forEach((top5Person) => msg.push(top5Person));
-    // msg.push(`:blue_heart: And I have **${hanabiMoney}¥** :smiling_face_with_3_hearts:`);
+    msg.push(
+      `:blue_heart: And I have **${hanabiMoney}¥** :smiling_face_with_3_hearts:`,
+    );
 
     this.send(...msg, { split: true });
   },

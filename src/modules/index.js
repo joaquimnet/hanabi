@@ -3,4 +3,5 @@ module.exports = {
   terminate: require('./terminate'),
   connect: require('./db').connect,
   MongooseCollectionSync: require('./mongoose-collection-sync'),
+  ...require('./task'),
 };

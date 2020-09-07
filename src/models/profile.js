@@ -11,6 +11,10 @@ const profileSchema = new Schema(
       count: { type: Number, default: 0 },
       time: { type: Date, default: new Date('1970-01-01') },
     },
+    daily: {
+      count: { type: Number, default: 0 },
+      time: { type: Date, default: new Date('1970-01-01') },
+    },
     votes: {
       count: { type: Number, default: 0 },
       countPerMonth: {

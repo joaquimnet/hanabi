@@ -32,7 +32,7 @@ const images = [
 module.exports = new Command({
   name: 'cry',
   description: 'sometimes.. you just gotta cry it out',
-  aliases: ['sob', 'tear'],
+  aliases: ['sob', 'tear', 'sad'],
   category: 'reactions',
   examples: [' ', '@Kaffe#9547', 'blu#0111'],
   async run(bot, message, meta) {

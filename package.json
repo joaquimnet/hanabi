@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "format": "prettier ./src/**/**",
+    "format": "prettier ./src/**/**.js",
     "lint": "eslint ./src/**/**.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +17,7 @@
   "keywords": [],
   "author": "Joaquim Neto <joaquimmy@yahoo.com>",
   "contributors": [
-    "xlilblu (https://github.com/xbabyblu)"
+    "blu (https://github.com/xbabyblu)"
   ],
   "license": "MIT",
   "bugs": {
@@ -34,11 +35,13 @@
     "express-session": "^1.17.1",
     "got": "^11.6.0",
     "helmet": "^4.1.0",
+    "humanize-duration": "^3.23.1",
     "lodash.merge": "^4.6.2",
     "moment": "^2.27.0",
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
     "node": "^14.8.0",
+    "node-schedule": "^1.3.2",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",

@@ -4,7 +4,7 @@ const findPerson = require('./findPerson');
 const makeEmbed = require('./makeEmbed');
 // const Gifs = require('../services/gifs');
 
-module.exports = (text, tags, message) => async () => {
+module.exports = (text, image, message) => async () => {
   const deleteAfterDelay = (msg, delay) => {
     message.client.setTimeout(() => {
       msg.delete().catch(() => {});
@@ -22,7 +22,6 @@ module.exports = (text, tags, message) => async () => {
   }
 
   // const image = await Gifs.random(tags);
-  const image = undefined;
 
   const embed = makeEmbed(text, image, message);
 

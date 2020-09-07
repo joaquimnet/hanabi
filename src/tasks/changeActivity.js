@@ -1,31 +1,34 @@
-const { Task } = require('@ponatech/bot');
+const { Task } = require('../modules');
 
 const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-module.exports = class extends Task {
-  constructor() {
-    // Every 20 secs
-    super('Change Activity', 'repeat', '*/20 * * * * *');
-  }
-
-  async run() {
+module.exports = new Task({
+  name: 'Change Activity',
+  // runs every 40 seconds
+  time: '*/40 * * * * *',
+  async run(bot) {
     // Possible types: PLAYING STREAMING LISTENING WATCHING
     const options = [
       'WATCHING the sunset',
+      'WATCHING fireworks', // i...
+      'WATCHING flowers grow',
       'PLAYING in a field of flowers',
-      `LISTENING ${this.client.options.prefix}help`,
+      'PLAYING with sparklers', //i.......
+      'PLAYING with your heart',
+      `LISTENING ${bot.config.defaultSettings.prefix}help`,
+      `LISTENING birds singing`,
     ];
+
     const pick = () => {
       const chosen = random(options);
-      return [
-        chosen.split(' ').unshift(),
-        chosen.split(' ').slice(1).join(' '),
-      ];
+      return [chosen.split(' ')[0], chosen.split(' ').slice(1).join(' ')];
     };
+
     try {
-      this.client.user.setActivity(...pick());
+      const activity = pick();
+      bot.user.setActivity(activity[1], { type: activity[0] });
     } catch {
       /* First time this runs it'll throw because bot isn't up yet */
     }
-  }
-};
+  },
+});

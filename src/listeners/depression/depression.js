@@ -11,7 +11,7 @@ module.exports = new Listener({
     const name = meta.nickname ?? meta.username;
     const userResponse = await Prompter.message({
       channel: message.channel,
-      question: `I'm getting that you are have depression __${name}__, is this a correct statement to make?`,
+      question: `I'm getting that you have depression __${name}__, is this a correct statement to make?`,
       deleteMessage: false,
       userId: message.author.id,
     });
