@@ -28,6 +28,10 @@ const profileSchema = new Schema(
       required: true,
       default: 0,
     },
+    anilistId: {
+      type: Number,
+      required: false,
+    }
   },
   { timestamps: true },
 );

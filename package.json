@@ -26,6 +26,8 @@
   "homepage": "https://github.com/joaquimnet/hanabi#readme",
   "dependencies": {
     "@ponatech/bot": "github:ponatech/bot",
+    "anilist-node": "^1.5.0",
+    "booru": "^2.3.2",
     "chalk": "^4.1.0",
     "chop-prompter": "github:Chop-Bot/chop-prompter",
     "connect-mongodb-session": "^2.4.1",
