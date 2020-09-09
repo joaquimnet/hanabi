@@ -9,6 +9,9 @@ function extendClient(bot) {
   // attaches the logger to the bot
   bot.logger = logger;
 
+  // Hanabi version
+  bot.version = require('../package.json').version;
+
   /*
   Profile function
   This functions return a profile for the id provided or
