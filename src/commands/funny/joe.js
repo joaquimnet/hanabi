@@ -5,8 +5,8 @@ module.exports = new Command({
   description: 'Who is Joe?',
   permission: Permission.USER,
   category: 'funny',
-  run() {
-    this.send('Joe Mamma! 😂😂😂😂😂😂😂😂😂😂😂'); // LMAO 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂 unknown word "LMAO" unknown word
+  run(bot, message, meta) {
+    meta.respond('Joe Mamma! 😂😂😂😂😂😂😂😂😂😂😂'); // LMAO 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂 unknown word "LMAO" unknown word
   },
 });
 //joe mamma
