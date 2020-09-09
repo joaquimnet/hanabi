@@ -10,7 +10,7 @@ module.exports = new Listener({
     const cId = message.channel.id;
     // 5 min
     const duration = 5 * 60 * 1000;
-    bot.listeners.ignored.ignoreChannel(cId, duration);
+    bot.botListeners.ignored.ignoreChannel(cId, duration);
     meta.respond(
       `:c I'm sorry.... I wont look here ${
         duration ? 'for ' + time(duration) : 'anymore'
