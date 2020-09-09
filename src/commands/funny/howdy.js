@@ -2,14 +2,13 @@ const { Command } = require('@ponatech/bot');
 
 module.exports = new Command({
   name: 'howdy',
-  description: 'greetings!',
+  description: 'Greetings!',
   aliases: ['yeehaw'],
   delete: true,
   category: 'funny',
-  run() {
+  async run(_, __, meta) {
     // Yeeeeeeeeeeeeeeeeeeeehaw! 🐄
-    this.send('Yeehaw!').then((msg) => {
-      msg.react('🤠').catch(() => {});
-    });
+    const msg = await meta.respond('Yeehaw!');
+    msg.react('🤠').catch(() => {});
   },
 });
