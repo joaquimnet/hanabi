@@ -14,7 +14,10 @@ module.exports = new Listener({
   run(bot, message, meta) {
     const analysis = sentiment(message.content);
     // if "suicide" is negated. ex: "I'm not suicidal."
-    if (analysis.positive.includes('suicide') || analysis.positive.includes('suicidal')) {
+    if (
+      analysis.positive.includes('suicide') ||
+      analysis.positive.includes('suicidal')
+    ) {
       return false;
     }
     this.send(message)(MSG);

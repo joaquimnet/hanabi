@@ -17,7 +17,10 @@ async function getRecommendationsForAnimeList(animeList) {
   // TODO: Promise.all()
   for (const anime of animeList) {
     const animeInfo = await ani.media.anime(anime.id);
-    recommendations = [...recommendations, ...animeInfo.recommendations.slice(0, 2)];
+    recommendations = [
+      ...recommendations,
+      ...animeInfo.recommendations.slice(0, 2),
+    ];
   }
 
   recommendations.sort((a, b) => {
@@ -35,7 +38,6 @@ async function getRecommendationsForAnimeList(animeList) {
 
 async function filterAlreadyWatchedStuff(list, userId) {
   const userLists = await ani.lists.anime(userId);
-  
 }
 
 module.exports = {

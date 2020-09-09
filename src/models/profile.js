@@ -31,7 +31,7 @@ const profileSchema = new Schema(
     anilistId: {
       type: Number,
       required: false,
-    }
+    },
   },
   { timestamps: true },
 );

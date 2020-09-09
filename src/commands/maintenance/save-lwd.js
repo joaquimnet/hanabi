@@ -6,7 +6,7 @@ const fs = require('fs/promises');
 
 module.exports = new Command({
   name: 'save-lewd',
-  description: 'Save a lewd to kaffe\'s computer',
+  description: "Save a lewd to kaffe's computer",
   cooldown: 5,
   category: 'maintenance',
   requiredArgs: ['url'],
@@ -24,7 +24,7 @@ module.exports = new Command({
         meta.respond("Looks like that's not an image...");
         return;
       }
-    
+
       await fs.mkdir('./downloaded-images').catch(() => {});
       fs.writeFile(`./downloaded-images/${Date.now()}.png`, res.body);
     }

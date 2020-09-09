@@ -19,6 +19,6 @@ module.exports = new Command({
       message,
     );
 
-    hold().catch(err => this.client.emit('error', err));
+    hold().catch((err) => this.client.emit('error', err));
   },
 });
