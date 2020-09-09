@@ -64,6 +64,7 @@ module.exports = new Command({
         `Failed to transfer ${amount} currency from ${meta.tag} to ${userMention.tag}. Reason:`,
         err,
       );
+      this.send('Oh no! It seems something went wrong. But you could try again later... sorry :(');
     }
   },
 });
