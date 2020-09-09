@@ -12,6 +12,9 @@ logger.info(`Running on Node ${process.version}`);
 const bot = new BotClient(config);
 extensions.extendClient(bot);
 
+// Load default commands
+defaultCommands.forEach((cmd) => bot.loadCommand(cmd));
+
 const init = async () => {
   await connect();
   web.listen(bot.config.apiport, () => {
@@ -33,9 +36,6 @@ const init = async () => {
   bot.schedule = new Schedule(bot, tasks);
 
   bot.login(config.token).then(() => {
-    // Load default commands
-    defaultCommands.forEach((cmd) => bot.loadCommand(cmd));
-
     logger.info('Logged into discord as', bot.user.tag);
     logger.info(`Loaded ${bot.commands.size} commands.`);
     logger.info(`Loaded ${bot.botListeners.size} listeners.`);
@@ -49,11 +49,11 @@ const init = async () => {
   });
 };
 
-init();
-
 process.on('SIGINT', terminate());
 process.on('SIGTERM', terminate());
 process.on('uncaughtException', terminate('exception', bot));
 process.on('unhandledRejection', terminate('rejection', bot));
+
+init();
 
 module.exports = bot;
