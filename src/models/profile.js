@@ -43,27 +43,24 @@ const profileSchema = new Schema(
 profileSchema.methods.setMoney = async function (bot, amount) {
   const newAmount = Math.floor(Math.abs(amount));
   await mongoose
-    .model('profile')
+    .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: newAmount });
-  await bot.profiles.refresh(this._id);
   return true;
 };
 
 profileSchema.methods.giveMoney = async function (bot, amount) {
   const newAmount = this.money + Math.floor(Math.abs(amount));
   await mongoose
-    .model('profile')
+    .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: newAmount });
-  await bot.profiles.refresh(this._id);
   return newAmount;
 };
 
 profileSchema.methods.takeMoney = async function (bot, amount) {
   const newAmount = this.money - Math.floor(Math.abs(amount));
   await mongoose
-    .model('profile')
+    .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: newAmount < 0 ? 0 : newAmount });
-  await bot.profiles.refresh(this._id);
   return newAmount < 0 ? 0 : newAmount;
 };
 
@@ -76,18 +73,16 @@ profileSchema.methods.transferMoney = async function (bot, targetId, amount) {
   }
 
   await mongoose
-    .model('profile')
+    .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: this.money - transferredAmount });
-  await bot.profiles.refresh(this._id);
 
   const target = await bot.getProfile(targetId);
   await mongoose
-    .model('profile')
+    .model('profile', profileSchema)
     .updateOne(
       { _id: target._id },
       { money: target.money + transferredAmount },
     );
-  await bot.profiles.refresh(target._id);
 
   return [this.money - transferredAmount, target.money + transferredAmount];
 };
@@ -102,7 +97,7 @@ profileSchema.statics.getOrCreate = async function getOrCreate(userId) {
       return profile;
     }
     // eslint-disable-next-line new-cap
-    profile = new mongoose.model('profile')({ _id: userId });
+    profile = new mongoose.model('profile', profileSchema)({ _id: userId });
     await profile.save();
     return profile;
   } catch (err) {
