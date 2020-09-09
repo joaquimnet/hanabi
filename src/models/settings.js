@@ -41,4 +41,26 @@ settingsSchema.statics.getOrCreate = async function getOrCreate(guildId) {
   }
 };
 
+settingsSchema.statics.loadIgnoreList = async function loadIgnoreList(bot) {
+  const documents = await model('settings', settingsSchema).find({}).exec();
+
+  let channelCount = 0;
+  let guildCount = 0;
+  documents.forEach((document) => {
+    document.listenerSettings.ignored.forEach((c) => {
+      channelCount += 1;
+      bot.botListeners.ignored.ignoreChannel(c, 0);
+    });
+    if (!document.listenerSettings.allow) {
+      guildCount += 1;
+      bot.botListeners.ignored.ignoreGuild(document._id);
+    }
+  });
+
+  // top.gg guild
+  bot.botListeners.ignored.ignoreGuild('264445053596991498', 0);
+
+  return [channelCount, guildCount + 1];
+};
+
 module.exports = model('settings', settingsSchema);
