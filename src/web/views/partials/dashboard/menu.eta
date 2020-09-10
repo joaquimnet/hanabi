@@ -1,0 +1,10 @@
+<ul class="dashboard-menu">
+  <li class="dashboard-menu-item"><a href="/dashboard/status" class="flex-center">Status</a></li>
+  <li class="dashboard-menu-item"><a href="/dashboard/users" class="flex-center">Users</a></li>
+  <li class="dashboard-menu-item"><a href="/dashboard/guilds" class="flex-center">Guilds</a></li>
+  <hr class="divider" />
+  <li class="dashboard-menu-item"><a href="/dashboard/messages" class="flex-center">Messages</a></li>
+  <li class="dashboard-menu-item"><a href="/dashboard/commands" class="flex-center">Commands</a></li>
+  <li class="dashboard-menu-item"><a href="/dashboard/listeners" class="flex-center">Listeners</a></li>
+  <li class="dashboard-menu-item"><a href="/dashboard/tasks" class="flex-center">Tasks</a></li>
+</ul>

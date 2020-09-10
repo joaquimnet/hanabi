@@ -1,8 +1,6 @@
 const { Router } = require('express');
 const passport = require('passport');
 
-const { logger } = require('../../modules');
-
 const authRoutes = Router();
 
 authRoutes.get('/', passport.authenticate('discord'));
@@ -10,12 +8,15 @@ authRoutes.get('/', passport.authenticate('discord'));
 authRoutes.get(
   '/redirect',
   passport.authenticate('discord', {
-    failureRedirect: '/forbidden',
+    failureRedirect: '/',
   }),
   (req, res) => {
-    // logger.info(req.user);
     res.redirect('/');
   },
 );
+
+authRoutes.get('/logout', (req, res) => {
+  req.session.destroy(() => res.redirect('/'));
+});
 
 module.exports = authRoutes;

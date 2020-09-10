@@ -22,17 +22,15 @@ const images = [
 // thank you
 module.exports = new Command({
   name: 'cuddle',
-  description: "well... it's what it says",
+  description: "Well... it's what it says. :3",
   args: ['target'],
   delete: true,
   category: 'interactions',
   usage: '{target}',
   examples: ['@Kaffe#9547', '@blu#0111'],
-  async run(bot, message, meta) {
+  run(bot, message, meta) {
     const cuddle = createInteractionCommand(
       `\n${meta.tag} has decided that they want to cuddle you. Hope I didn't make it weird o3o :hugging:`,
-      // this thing here used to be a gif "tag" but now it has to be a gif url. do random(images)
-      // thought so, but the embed, random images, how do i do such?
       random(images),
       message,
     );

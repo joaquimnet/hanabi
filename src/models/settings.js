@@ -25,7 +25,7 @@ const settingsSchema = new Schema(
 settingsSchema.statics.getOrCreate = async function getOrCreate(guildId) {
   let settings;
   try {
-    settings = await this.findById(guildId);
+    settings = await model('settings', settingsSchema).findById(guildId);
     if (settings) {
       return settings;
     }

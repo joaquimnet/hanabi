@@ -113,8 +113,8 @@ function attachUtilityToMeta(meta) {
 
 async function prefixChecker(bot, message) {
   const guildId = message.guild?.id;
-  const settings = await bot.getSettings(guildId);
-  const prefixInDb = settings.prefix;
+  const settings = guildId ? await bot.getSettings(guildId) : undefined;
+  const prefixInDb = settings?.prefix;
   const defaultPrefix = bot.config.defaultSettings.prefix;
 
   // Checks if the bot was mentioned, with no message after it, reply with prefix.

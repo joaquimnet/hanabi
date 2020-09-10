@@ -5,9 +5,12 @@ const { logger } = require('../../modules');
 module.exports = new Command({
   name: 'set-avatar',
   description: "Changes Hanabi-sama's avatar.",
+  help: 'Url must be a valid image.',
+  aliases: ['set-pfp'],
   permission: Permission.BOT_ADMIN,
   category: 'maintenance',
   requiredArgs: ['image url'],
+  usage: '{image url}',
   async run(bot, message, meta) {
     const imageUrl = meta.args[0];
     let res;

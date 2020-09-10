@@ -1,8 +1,3 @@
 <%~ E.includeFile("./partials/head") %>
-<div class="container" id="main-container">
-  <div class="container"><%~ E.includeFile("./partials/navbar") %></div>
-  <main class="container">
-    <h1>Hanabi!</h1>
-  </main>
-</div>
+  <h1>Hanabi!</h1>
 <%~ E.includeFile("./partials/bottom") %>

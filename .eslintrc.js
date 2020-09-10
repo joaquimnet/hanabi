@@ -16,4 +16,5 @@ module.exports = {
     'no-shadow': ['error', { allow: ['_'] }],
     'no-use-before-define': ['error', { functions: false }],
   },
+  ignorePatterns: ['**/static/js/*.js']
 };

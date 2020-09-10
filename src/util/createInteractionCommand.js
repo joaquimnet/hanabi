@@ -21,6 +21,14 @@ module.exports = (text, image, message) => async () => {
     return;
   }
 
+  if (target.id === message.author.id) {
+    const msg = await message.channel
+      .send("You can't do that to yourself, silly. :)")
+      .catch(() => {});
+    deleteAfterDelay(msg, 3000);
+    return;
+  }
+
   // const image = await Gifs.random(tags);
 
   const embed = makeEmbed(text, image, message);

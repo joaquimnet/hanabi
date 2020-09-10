@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 
 const { logger } = require('../modules');
+const { Alert: AlertModel } = require('../models');
 
 const { Hanabi } = require('../models');
 
@@ -51,8 +52,26 @@ class Alert {
         url: thumbnail,
       },
     });
-    channel.send({
-      embed,
+    channel
+      .send({
+        embed,
+      })
+      .catch((err) => {
+        logger.error('Failed to send alert to development server.', err);
+      });
+
+    this.logToDb(
+      Alert.typesNames[Number(type)],
+      messages[Number(type)],
+      message,
+      thumbnail,
+    );
+  }
+
+  static logToDb(type, title, message, thumbnail) {
+    const alert = new AlertModel({ type, title, message, thumbnail });
+    alert.save().catch((err) => {
+      logger.error('Failed to log alert to database.', err);
     });
   }
 }
@@ -64,6 +83,15 @@ Alert.types = {
   invited: 3,
   error: 4,
   vote: 5,
+};
+
+Alert.typesNames = {
+  0: 'suicide',
+  1: 'catastrophic_error',
+  2: 'feedback',
+  3: 'invited',
+  4: 'error',
+  5: 'vote',
 };
 
 module.exports = Alert;

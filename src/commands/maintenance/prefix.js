@@ -6,8 +6,9 @@ module.exports = new Command({
   description: "Changes Hanabi-sama's prefix on your server.",
   category: 'maintenance',
   permission: Permission.MANAGE_GUILD,
+  usage: '[new prefix]',
   examples: [' ', '>', '!', '++'],
-  runIn: ['guild'],
+  runIn: ['text'],
   async run(bot, message, meta) {
     const { args } = meta;
 
@@ -16,11 +17,9 @@ module.exports = new Command({
 
     if (!args[0]) {
       if (customPrefix) {
-        this.send(`My prefix on this server is **${customPrefix}**`);
+        this.send(`My prefix in here is **${customPrefix}**`);
       } else {
-        this.send(
-          `My prefix on this server is the default one **${defaultPrefix}**.`,
-        );
+        this.send(`My prefix in here is the default one **${defaultPrefix}**.`);
       }
       return;
     }

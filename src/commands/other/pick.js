@@ -10,6 +10,7 @@ module.exports = new Command({
   args: ['choice'],
   usage: '[what to pick from]',
   aliases: ['choice'],
+  examples: ['cookie cupcake milk', 'stay home, go outside'],
   async run(bot, message, { args }) {
     let result;
     if (message.content.includes(',')) {

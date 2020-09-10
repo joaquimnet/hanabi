@@ -1,0 +1,6 @@
+<%~ E.includeFile("../partials/head") %>
+<%~ E.includeFile("../partials/dashboard/menu") %>
+<div class="container">
+  <h1>Le Dashboard -> Status</h1>
+</div>
+<%~ E.includeFile("../partials/bottom") %>
