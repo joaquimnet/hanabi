@@ -6,7 +6,9 @@ module.exports = new Listener({
   category: 'emotions',
   cooldown: 10,
   priority: 0,
-  run(bot, message, meta) {
+  delete: false,
+  async run(bot, message, meta) {
+    await bot.wait(3000)
     Prompter.message({
       channel: message.channel,
       question:
@@ -14,11 +16,13 @@ module.exports = new Listener({
       userId: message.author.id,
       max: 1,
       timeout: 10000,
+      delete: false,
     }).then((responses) => {
       // If no responses, the time ran out
       if (!responses) {
         meta.respond('No time for questions? I see.');
-        return;
+        return false;
+
       }
 
       // Gets the first message in the collection
@@ -29,6 +33,6 @@ module.exports = new Listener({
         `**${response}**? I like that too! Not my favorite tho... :P`,
       );
     });
-    return true;
+    return false;
   },
 });
