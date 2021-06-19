@@ -1,19 +1,14 @@
 const path = require('path');
-require('tiny-env')();
+require('tinv')();
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
   name: 'Hanabi',
-  owners: ['517599684961894400', '554152090411466754'],
+  owners: ['554152090411466754'],
   admins: [],
   support: [],
   token: process.env.TOKEN,
-  dbltoken: false,
-  dblcomtoken: false,
-  bodtoken: false,
-  dbggtoken: false,
-  saucetoken: false,
   apiport: process.env.PORT,
   debug: true,
   root: path.resolve(__dirname),

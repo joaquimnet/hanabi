@@ -14,14 +14,11 @@ async function getFavoriteMangaList(userId) {
 
 async function getRecommendationsForAnimeList(animeList) {
   let recommendations = [];
-  // TODO: Promise.all()
-  for (const anime of animeList) {
-    const animeInfo = await ani.media.anime(anime.id);
-    recommendations = [
-      ...recommendations,
-      ...animeInfo.recommendations.slice(0, 2),
-    ];
-  }
+  await Promise.all(animeList.map(anime => {
+    return ani.media.anime(anime.id).then(animeInfo => {
+      recommendations.push(...animeInfo.recommendations.slice(0, getRecommendationAmount(animeList.length)))
+    }).catch(() => {})
+  }))
 
   recommendations.sort((a, b) => {
     return a.title - b.title;
@@ -37,7 +34,21 @@ async function getRecommendationsForAnimeList(animeList) {
 }
 
 async function filterAlreadyWatchedStuff(list, userId) {
+  // TODO: finish this
   const userLists = await ani.lists.anime(userId);
+}
+
+function getRecommendationAmount(favoriteAmount) {
+  if (favoriteAmount <= 5) {
+    return 5;
+  }
+  if (favoriteAmount <= 9) {
+    return 3;
+  }
+  if (favoriteAmount <= 15) {
+    return 2;
+  }
+  return 1;
 }
 
 module.exports = {

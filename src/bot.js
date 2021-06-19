@@ -1,4 +1,4 @@
-const { BotClient, defaultCommands } = require('@ponatech/bot');
+const { BotClient, defaultCommands } = require('sensum');
 
 const config = require('./config');
 const { Schedule } = require('./modules');
@@ -20,7 +20,7 @@ bot.extend.prefixChecking(extensions.prefixChecker);
 
 // TASK STUFF
 // TODO: load these automatically from the tasks directory
-const tasks = [require('./tasks/changeActivity')];
+const tasks = [require('./tasks/changeActivity.task')];
 bot.schedule = new Schedule(bot, tasks);
 
 module.exports = bot;

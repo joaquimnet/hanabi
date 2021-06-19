@@ -15,6 +15,7 @@ module.exports = {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-shadow': ['error', { allow: ['_'] }],
     'no-use-before-define': ['error', { functions: false }],
+    'no-unused-vars': ['warn'],
   },
   ignorePatterns: ['**/static/js/*.js']
 };
