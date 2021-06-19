@@ -1,12 +1,12 @@
 const { Listener } = require('sensum');
 
 module.exports = new Listener({
-  words: ['((haha|lmao|lmfao|lol|rofl|teehee|lel|kek|lul)|kkkkkk+)'],
-  category: 'haha',
+  words: ['hanani'],
+  category: 'misc',
   cooldown: 180000,
   priority: 0,
   run(bot, message, meta) {
-    meta.respond("The only thing funny here is your face (': ");
+    meta.respond("My name is **Hanabi**, not Hanani.... :sweat: And it's __**Hanabi-sama**__ to *you*.");
     return true;
   },
 });

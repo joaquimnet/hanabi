@@ -9,13 +9,16 @@ module.exports = new Command({
   usage: '[new prefix]',
   examples: [' ', '>', '!', '++'],
   runIn: ['text'],
+  args: {
+    prefix: 'string',
+  },
   async run(bot, message, meta) {
     const { args } = meta;
 
     const customPrefix = meta.settings.prefix;
     const defaultPrefix = bot.config.defaultSettings.prefix;
 
-    if (!args[0]) {
+    if (!args.prefix) {
       if (customPrefix) {
         this.send(`My prefix in here is **${customPrefix}**`);
       } else {
@@ -24,7 +27,7 @@ module.exports = new Command({
       return;
     }
 
-    let newPrefix = args[0].trim().toLowerCase().replace(/\s\s+/g, '');
+    let newPrefix = args.prefix.trim().toLowerCase().replace(/\s\s+/g, '');
 
     const isValidPrefix = newPrefix.length > 0;
 

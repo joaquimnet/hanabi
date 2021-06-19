@@ -11,8 +11,12 @@ module.exports = new Command({
   category: 'maintenance',
   requiredArgs: ['image url'],
   usage: '{image url}',
+  args: {
+    imageUrl: 'url',
+  },
+  hidden: true,
   async run(bot, message, meta) {
-    const imageUrl = meta.args[0];
+    const {imageUrl} = meta.args;
     let res;
     try {
       res = await got(imageUrl, { responseType: 'buffer' });

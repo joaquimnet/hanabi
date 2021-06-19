@@ -3,7 +3,7 @@ const { Listener } = require('sensum');
 // const sentiment = require('../../services/language/sentiment');
 
 module.exports = new Listener({
-  words: ['{me}', 'kill(ing)*', 'you'],
+  words: ['{me}', 'kill(ing)*', '(you|u)'],
   category: 'misc',
   cooldown: 10,
   priority: 0,

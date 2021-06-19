@@ -17,7 +17,7 @@ module.exports = new Listener({
       }... :pensive:`,
     );
     bot.logger.info(
-      `Ignoring channel ${message.channel.name} (${cId}) for ${time(duration)}`,
+      `Ignoring channel #${message.channel.name} (${cId}) for ${time(duration)}`,
     );
     return true;
   },

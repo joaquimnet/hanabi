@@ -6,7 +6,7 @@ module.exports = new Listener({
   cooldown: 10,
   priority: 0,
   async run(bot, message, meta) {
-    const prefix = meta.settings.prefix;
+    const prefix = meta.settings.prefix ?? bot.config.defaultSettings.prefix;
     message.channel.startTyping().catch(() => {});
     await bot.wait(3000);
     meta

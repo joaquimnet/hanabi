@@ -10,11 +10,15 @@ module.exports = new Command({
   description: 'Shows information about a word.',
   category: 'other',
   aliases: ['word', 'dictionary'],
-  requiredArgs: ['word'],
+  args: {
+    word: 'string',
+  },
   async run(bot, message, meta) {
     // 👍
     const { args } = meta; // i thought it would be too simple to be just meta................
-    const lookup = args[0] ? args[0].replace(/[^a-zA-Z ]/g, '').trim() : null;
+    const lookup = args.word
+      ? args.word.replace(/[^a-zA-Z ]/g, '').trim()
+      : null;
     if (!lookup) {
       meta.respond(`Hey! You have to pass a valid word for me to look up.`);
       return;
@@ -31,7 +35,7 @@ module.exports = new Command({
     const msg = [
       `**${lookup.toUpperCase()}**`,
       `**Definition: **${def}.`,
-      def === gloss ? undefined : `**Gloss: **${gloss}.`,
+      def === gloss ? undefined : `**Gloss: **${gloss}`,
       `**Synonyms: **${synonyms.join(', ')}.`,
     ].filter((v) => !!v); // hey kaffe it was working just fine a second ago : thonk :
 

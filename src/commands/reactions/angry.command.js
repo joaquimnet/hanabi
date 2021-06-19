@@ -31,6 +31,8 @@ module.exports = new Command({
   category: 'reactions',
   usage: '[target]',
   examples: [' ', '@Kaffe#9547', '@blu#0111'],
+  delete: true,
+
   async run(bot, message, meta) {
     const target = await findPerson(message.mentions.members.first());
 

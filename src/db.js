@@ -11,12 +11,11 @@ connect(MONGODB_URI, {
 })
   .then((conn) => {
     db = conn;
-    // console.log('conn: ', conn);
-    console.log('Db... okay! :)');
   })
   .catch((err) => {
     console.log(err);
     console.log('Db... not okay! :(');
+    console.log('Did you copy the correct connection string?');
     process.exit(1);
   });
 // database func

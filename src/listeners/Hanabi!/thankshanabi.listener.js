@@ -1,7 +1,7 @@
 const { Listener } = require('sensum');
 
 module.exports = new Listener({
-  words: ['(thank|thanks)( (you|u))*', 'hanabi'],
+  words: ['(thank|thanks|ty)( (you|u))*', 'hanabi'],
   category: 'hanabi',
   cooldown: 1,
   priority: 0,

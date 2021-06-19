@@ -17,6 +17,8 @@ module.exports = new Command({
       optional: true,
     },
   },
+  // HOW TO SEND REMIND IN DMS
+  runIn: ['dm', 'text'],
   delete: false,
   hidden: false,
   usage: '{time} [your reminder]',
@@ -40,8 +42,8 @@ module.exports = new Command({
     const userId = message.author.id;
     const userTag = message.author.tag;
     const channelId = message.channel.id;
-    const guildId = message.guild.id;
-
+    // conditional chaining (?)
+    const guildId = message.guild?.id ?? 'none';
     const fireDate = moment()
       .utc()
       .add(duration / 1000, 'seconds');

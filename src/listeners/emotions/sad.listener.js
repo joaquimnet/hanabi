@@ -14,6 +14,7 @@ module.exports = new Listener({
       userId: message.author.id,
       max: 1,
       timeout: 10000,
+
     }).then((responses) => {
       // If no responses, the time ran out
       if (!responses) {

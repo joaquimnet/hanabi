@@ -23,6 +23,10 @@ module.exports = new Listener({
 
     bot.botListeners.ignored.ignoreChannel(message.channel.id, 0);
     meta.respond(`:c I'm sorry.... I wont look here anymore... :pensive:`);
+
+    bot.logger.info(
+      `Ignoring channel #${message.channel.name} (${message.channel.id}).`,
+    );
     return true;
   },
 });

@@ -9,8 +9,11 @@ module.exports = new Command({
   description: "Save a lewd to kaffe's computer",
   cooldown: 5,
   category: 'maintenance',
-  requiredArgs: ['url'],
+  args: {
+    url: 'url',
+  },
   usage: '{url}',
+  hidden: true,
   async run(bot, message, meta) {
     async function saveImage(url) {
       let res;
@@ -30,7 +33,7 @@ module.exports = new Command({
     }
 
     try {
-      await saveImage(meta.args[0]);
+      await saveImage(meta.args.url);
     } catch (err) {
       meta.respond('Oh no... something went wrong. >n<');
       bot.logger.error(err);

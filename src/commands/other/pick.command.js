@@ -7,16 +7,19 @@ module.exports = new Command({
   description:
     'Pick something from a set. Separate your options with a comma or every word will be a choice.',
   category: 'other',
-  args: ['choice'],
+  args: {
+    choices: 'string',
+  },
   usage: '[what to pick from]',
   aliases: ['choice'],
   examples: ['cookie cupcake milk', 'stay home, go outside'],
-  async run(bot, message, { args }) {
+  async run(bot, message, ctx) {
+    const { args } = ctx;
     let result;
-    if (message.content.includes(',')) {
-      result = random(args.join(' ').split(','));
+    if (ctx.contentFull.includes(',')) {
+      result = random(ctx.cliArgs._.join(' ').split(','));
     } else {
-      result = random(args);
+      result = random(ctx.cliArgs._);
     }
 
     // msg is indeed being used. 🤦

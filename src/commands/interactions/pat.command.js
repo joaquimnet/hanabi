@@ -5,7 +5,7 @@ const createInteractionCommand = require('../../util/createInteractionCommand');
 module.exports = new Command({
   name: 'pat',
   description: 'a gentle way of saying.. there-there.',
-  aliases: ['pat'],
+  aliases: ['pet'],
   args: {
     target: 'string',
   },
