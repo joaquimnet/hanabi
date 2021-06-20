@@ -33,7 +33,7 @@ module.exports = new Command({
             name: 'Sensum',
             value: `v${require('sensum/package.json').version}`,
           },
-          { name: 'Hanabi', value: `${process.version}` },
+          { name: 'Node', value: `${process.version}` },
         ],
         thumbnail: {
           url: bot.user.avatarURL(),
