@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const textSchema = new Schema(
   {
-    identifier: {
+    label: {
       type: String,
       required: true,
       minLength: 1,
@@ -13,11 +13,9 @@ const textSchema = new Schema(
       minLength: 1,
     },
     content: {
-      en: {
-        type: String,
-        required: true,
-        minLength: 1,
-      },
+      type: String,
+      required: true,
+      minLength: 1,
     },
   },
   { timestamps: true },
