@@ -13,7 +13,7 @@ const ani = new Anilist();
 module.exports = new Command({
   name: 'anilist',
   description: "Checks someone's Anilist profile",
-  category: 'funny',
+  category: 'other',
   aliases: ['ani', 'anime'],
   args: {
     command: 'string',

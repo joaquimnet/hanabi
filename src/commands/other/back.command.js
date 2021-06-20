@@ -12,7 +12,7 @@ module.exports = new Command({
   hidden: true,
   run(bot, message, meta) {
     // bruh 🌸
-    if (meta.caller === '517599684961894400') {
+    if (meta.userId === '517599684961894400') {
       meta.respond('Lar has returned and the kitty is OKAY :cat2:');
       return;
     }

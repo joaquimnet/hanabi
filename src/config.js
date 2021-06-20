@@ -35,6 +35,7 @@ const config = {
     info: ':newspaper:',
     interactions: ':people_holding_hands:',
     maintenance: ':gear:',
+    moderation: ':hammer:',
     other: ':8ball:',
     reactions: ':grimacing:',
     social: ':game_die:',

@@ -24,7 +24,7 @@ module.exports = new Command({
     const mention = message.mentions.members.first();
     const profile = await Profile.getOrCreate(meta.userId);
     const next = timeToNextDelivery(profile.flower.time);
-    if (!mention || (mention && mention.user.id === meta.caller)) {
+    if (!mention || (mention && mention.user.id === meta.userId)) {
       this.send(
         // Look at profile.js for the schema
         `:sunflower: **| ${message.author.username}**! You have received **${profile.flower.count}** flowers so far! What a lovely bunch you have :orange_heart::smiling_face_with_3_hearts:`,

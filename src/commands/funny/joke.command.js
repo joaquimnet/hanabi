@@ -3,8 +3,6 @@ const Prompter = require('chop-prompter');
 const request = require('got');
 
 const { logger } = require('../../modules');
-// this doesn't exist yet
-// const listen = require('../../util/listen');
 
 module.exports = new Command({
   name: 'joke',
@@ -26,33 +24,28 @@ module.exports = new Command({
               Accept: 'application/json',
               'User-Agent': 'Hanabi (https://github.com/joaquimnet/hanabi)',
             },
-            responseType: 'json',
-          })
-            .then((res) => {
-              const { joke } = res.body;
-              this.send({
-                embed: {
-                  title: joke,
-                  description: ':rofl:',
-                  thumbnail: {
-                    url: bot.user.avatarURL(),
-                  },
+          }).then((jokeResponse) => {
+            const { joke } = JSON.parse(jokeResponse.body);
+            this.send({
+              embed: {
+                title: joke,
+                description: ':rofl:',
+                thumbnail: {
+                  url: bot.user.avatarURL(),
                 },
-              }).catch(() => {});
-            })
-            .catch((err) => {
-              logger.error('Request failed, sending backup joke.', err);
-              this.send({
-                embed: {
-                  title:
-                    'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
-                  description: ':rofl:',
-                  thumbnail: {
-                    url: bot.user.avatarURL(),
-                  },
+              },
+            }).catch(() => {});
+          }).catch(() => {
+            this.send({
+              embed: {
+                title: 'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
+                description: ':rofl:',
+                thumbnail: {
+                  url: bot.user.avatarURL(),
                 },
-              }).catch(() => {});
-            });
+              },
+            }).catch(() => {});
+          });
         } else {
           this.send('Okay then.');
         }

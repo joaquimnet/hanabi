@@ -1,4 +1,5 @@
-const { Command, Text } = require('sensum');
+const { Command, TextHelpers: Text } = require('sensum');
+
 const Prompter = require('chop-prompter');
 
 const Idea = require('../../models/idea');
@@ -11,6 +12,30 @@ module.exports = new Command({
   // args: ['action'],
   // delete: false,
   hidden: true,
+  cooldown: 0,
+  args: {
+    command: {
+      type: 'enum',
+      values: [
+        'add',
+        'new',
+        '+',
+        'mine',
+        'list',
+        'me',
+        'my',
+        'edit',
+        'change',
+        'upgrade',
+        'remove',
+        'delete',
+        'del',
+        'rem',
+        'erase',
+      ],
+    },
+  },
+  // kaffe roasted me :(
   usage: '{your action} [your idea]',
   examples: ['add Eat candy.', 'edit 5', 'delete 5', 'mine'],
   async run(bot, message, meta) {
@@ -19,14 +44,14 @@ module.exports = new Command({
     const theCommandIs = (cmd) => {
       if (Array.isArray(cmd)) {
         return cmd.some(
-          (c) => args[0] && args[0].toLowerCase() === c.toLowerCase(),
+          (c) => args.command && args.command.toLowerCase() === c.toLowerCase(),
         );
       }
-      return args[0] && cmd.toLowerCase() === args[0].toLowerCase();
+      return args.command && cmd.toLowerCase() === args.command.toLowerCase();
     };
 
     // will list all ideas
-    if (!args[0]) {
+    if (!args.command) {
       const ideas = await Idea.find({});
 
       if (!ideas.length) {
@@ -46,19 +71,19 @@ module.exports = new Command({
 
     // Add new idea
     if (theCommandIs(['add', 'new', '+'])) {
-      if (!args[1]) {
+      if (!meta.content) {
         this.send('What is your idea tho? :c');
         return;
       }
-      // const i = message.content.indexOf(args[1]);
-      const yourIdea = meta.content.substr(args[0].length).trim();
+      const yourIdea = meta.content;
       if (yourIdea.length > 500) {
         this.send('Are you serious? :neutral_face:\nThat idea is too long!!');
+        // ya know what else is too long? 😏
         return;
       }
       const newIdea = new Idea({
         title: yourIdea,
-        creator: meta.caller,
+        creator: meta.userId,
       });
       await newIdea.save();
       this.send(bot.lines('**DONE** Idea added! :)', newIdea.display()));
@@ -72,11 +97,13 @@ module.exports = new Command({
         this.send("You don't have any ideas yet. :c");
         return;
       }
+      const customPrefix = meta.settings.prefix;
+      const defaultPrefix = bot.config.defaultSettings.prefix;
       this.send(
         bot.lines(
           `Commands: __add__ __list__ __delete__ | You have: ${myIdeas.length} ideas!`,
           ...myIdeas.map((i) => i.display()),
-          `__For help use ${this.client.options.prefix}help idea__`,
+          `__For help use ${customPrefix ?? defaultPrefix}help idea__`,
         ),
         { split: true },
       );
@@ -96,7 +123,7 @@ module.exports = new Command({
       }
       let res = await Prompter.confirm({
         channel: message.channel,
-        userId: meta.caller,
+        userId: meta.userId,
         question: bot.lines(
           'Would you like to edit this idea?',
           ideaToEdit.display(),
@@ -105,7 +132,7 @@ module.exports = new Command({
       if (res === true) {
         res = await Prompter.message({
           channel: message.channel,
-          userId: meta.caller,
+          userId: meta.userId,
           question: 'What would you like the idea to say?',
           deleteMessage: false,
           timeout: 60000,
@@ -117,6 +144,7 @@ module.exports = new Command({
         const ideaContent = res.first();
         if (ideaContent.length > 500) {
           this.send('Are you serious? :neutral_face:\nThat idea is too long!!');
+          // ya know what else is too long? 😏
           return;
         }
         ideaToEdit.title = ideaContent;

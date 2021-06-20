@@ -1,7 +1,7 @@
 const { Command } = require('sensum');
-
+// we need to get her a website entry on top.gg sir 🔫
 module.exports = new Command({
-  name: 'vote',
+  name: 'Vote',
   description: 'Vote for Hanabi and get stuff!',
   category: 'currency',
   run(bot, message, meta) {

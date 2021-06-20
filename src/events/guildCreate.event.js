@@ -23,7 +23,7 @@ module.exports = new EventHandler({
       message: `Hanabi joined a new server!\n**${guild.name}** (${guild.id})`,
       thumbnail: guild.iconURL(),
     });
-
+// nothing? 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
     try {
       const channel = guild.systemChannel;
       await channel.send(message);
