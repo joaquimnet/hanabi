@@ -8,7 +8,7 @@ module.exports = new EventHandler({
   async run(bot, guild) {
     const prefix = bot.config.defaultSettings.prefix;
     const message = [
-      "Hi! I'm Hanabi-sama!",
+      "Hi! I'm Hanabi!",
       'I am currently a work in progress :orange_heart:',
       `My prefix automatically is "${prefix}", but you can change my prefix for this server using the "${prefix}prefix" command!`,
       'Thank you for choosing to support me running :orange_heart:',
@@ -23,7 +23,7 @@ module.exports = new EventHandler({
       message: `Hanabi joined a new server!\n**${guild.name}** (${guild.id})`,
       thumbnail: guild.iconURL(),
     });
-// nothing? 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
+    // nothing? 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
     try {
       const channel = guild.systemChannel;
       await channel.send(message);
