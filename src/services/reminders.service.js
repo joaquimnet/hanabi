@@ -35,7 +35,12 @@ module.exports = class Reminders {
       // await dm();
     } else {
       await channel.send(
-        formatReminderMessage(bot, reminder.content, reminder.userId, moment(reminder.createdAt).calendar())
+        formatReminderMessage(
+          bot,
+          reminder.content,
+          reminder.userId,
+          moment(reminder.createdAt).calendar(),
+        ),
       );
     }
     await reminder.delete().catch(() => {});
@@ -47,5 +52,5 @@ function formatReminderMessage(bot, content, userId, date) {
     `📆 **I have set your reminder!**`,
     content,
     `- <@${userId}>, ${date}`,
-  )
+  );
 }

@@ -69,7 +69,12 @@ class Alert {
   }
 
   static logToDb(type, title, message, thumbnail) {
-    const alert = new AlertModel({ type, title, message: message || '[empty]', thumbnail });
+    const alert = new AlertModel({
+      type,
+      title,
+      message: message || '[empty]',
+      thumbnail,
+    });
     alert.save().catch((err) => {
       logger.error('Failed to log alert to database.', err);
     });

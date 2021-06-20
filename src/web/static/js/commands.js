@@ -1,6 +1,6 @@
 new Vue({
   el: '#app',
   data: {
-    commands: [{name:'ping'}],
+    commands: [{ name: 'ping' }],
   },
 });

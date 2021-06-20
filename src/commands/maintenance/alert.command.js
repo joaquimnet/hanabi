@@ -8,7 +8,7 @@ module.exports = new Command({
   permission: Permission.BOT_SUPPORT,
   category: 'maintenance',
   args: {
-    type: {type: 'number', convert: true}
+    type: { type: 'number', convert: true },
   },
   async run(bot, message, meta) {
     await Alert.send({

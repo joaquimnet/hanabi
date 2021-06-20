@@ -8,7 +8,7 @@ module.exports = new Listener({
   priority: 0,
   delete: false,
   async run(bot, message, meta) {
-    await bot.wait(3000)
+    await bot.wait(3000);
     Prompter.message({
       channel: message.channel,
       question:
@@ -22,7 +22,6 @@ module.exports = new Listener({
       if (!responses) {
         meta.respond('No time for questions? I see.');
         return false;
-
       }
 
       // Gets the first message in the collection

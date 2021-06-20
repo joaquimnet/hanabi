@@ -16,17 +16,21 @@ module.exports = new Command({
   usage: '{tags}',
   examples: ['neko', 'blonde'],
   async run(bot, message, meta) {
-    if ((meta.cliArgs._[0]??'').match(/hanabi/gi)) {
+    if ((meta.cliArgs._[0] ?? '').match(/hanabi/gi)) {
       meta.respond(`:knife:Once again... I am not legal. :gun:`);
       return;
     }
     await meta.respond(`Searching for: ${meta.cliArgs._[0] ?? 'swimsuit'}...`);
     try {
-      const posts = await Booru.search('danbooru', meta.cliArgs._[0] ?? 'swimsuit', {
-        limit: 1,
-        random: true,
-        nsfw: true,
-      });
+      const posts = await Booru.search(
+        'danbooru',
+        meta.cliArgs._[0] ?? 'swimsuit',
+        {
+          limit: 1,
+          random: true,
+          nsfw: true,
+        },
+      );
       for (let post of posts) {
         meta.respond(post.fileUrl);
         const response = await Prompter.confirm({

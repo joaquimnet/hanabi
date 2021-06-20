@@ -9,7 +9,7 @@ module.exports = new Command({
       `Hello ${message.author.username}!`,
       `:yen:You currently have **${meta.profile.money}¥**!`,
       'But if you voted for me you could get ***EVEN MORE***!!!',
-      'https://fakelink.fakesite/vote/hanabi'
+      'https://fakelink.fakesite/vote/hanabi',
     );
   },
 });

@@ -1,5 +1,5 @@
 const { Command } = require('sensum');
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
   name: 'listeners',
@@ -31,9 +31,11 @@ module.exports = new Command({
           '',
           ...listenerList,
         ),
-        image: {url: 'https://i.imgur.com/T4mB9rW.gif'},
-        thumbnail: {url: 'https://preview.redd.it/yn5i5uy7zv601.gif?format=png8&s=649b796a8e50268c19ca548a02acc65e5a2af505'},
-        color: bot.colorInt('#f0b7d3')
+        image: { url: 'https://i.imgur.com/T4mB9rW.gif' },
+        thumbnail: {
+          url: 'https://preview.redd.it/yn5i5uy7zv601.gif?format=png8&s=649b796a8e50268c19ca548a02acc65e5a2af505',
+        },
+        color: bot.colorInt('#f0b7d3'),
       }),
     });
   },

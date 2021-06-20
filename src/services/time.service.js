@@ -54,7 +54,7 @@ class Time {
   static calendarFromNow(seconds) {
     return moment().add(seconds, 'second').calendar();
   }
-};
+}
 
 var moment = Time.moment;
 

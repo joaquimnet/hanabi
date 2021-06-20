@@ -6,7 +6,9 @@ module.exports = new Listener({
   cooldown: 6000,
   priority: 0,
   run(bot, message, meta) {
-    meta.respond("Maybe you should find some food? A light snack? An actual meal? Please don't forget to eat!! :orange_heart:");
+    meta.respond(
+      "Maybe you should find some food? A light snack? An actual meal? Please don't forget to eat!! :orange_heart:",
+    );
     return false;
   },
 });

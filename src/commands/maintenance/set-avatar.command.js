@@ -16,7 +16,7 @@ module.exports = new Command({
   },
   hidden: true,
   async run(bot, message, meta) {
-    const {imageUrl} = meta.args;
+    const { imageUrl } = meta.args;
     let res;
     try {
       res = await got(imageUrl, { responseType: 'buffer' });

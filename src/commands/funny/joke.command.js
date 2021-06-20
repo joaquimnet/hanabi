@@ -24,28 +24,31 @@ module.exports = new Command({
               Accept: 'application/json',
               'User-Agent': 'Hanabi (https://github.com/joaquimnet/hanabi)',
             },
-          }).then((jokeResponse) => {
-            const { joke } = JSON.parse(jokeResponse.body);
-            this.send({
-              embed: {
-                title: joke,
-                description: ':rofl:',
-                thumbnail: {
-                  url: bot.user.avatarURL(),
+          })
+            .then((jokeResponse) => {
+              const { joke } = JSON.parse(jokeResponse.body);
+              this.send({
+                embed: {
+                  title: joke,
+                  description: ':rofl:',
+                  thumbnail: {
+                    url: bot.user.avatarURL(),
+                  },
                 },
-              },
-            }).catch(() => {});
-          }).catch(() => {
-            this.send({
-              embed: {
-                title: 'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
-                description: ':rofl:',
-                thumbnail: {
-                  url: bot.user.avatarURL(),
+              }).catch(() => {});
+            })
+            .catch(() => {
+              this.send({
+                embed: {
+                  title:
+                    'Knock Knock. Who is there? Oh its me! Hanabi, duh! ~ ',
+                  description: ':rofl:',
+                  thumbnail: {
+                    url: bot.user.avatarURL(),
+                  },
                 },
-              },
-            }).catch(() => {});
-          });
+              }).catch(() => {});
+            });
         } else {
           this.send('Okay then.');
         }

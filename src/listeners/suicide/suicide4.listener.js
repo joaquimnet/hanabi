@@ -7,7 +7,7 @@ const MSG =
 //(['{me}', '(suicide|suicidal)'], ['{me}', '(suicide|suicidal)'], ['{me}', 'kms'], ['{me}', 'feel', 'dying'], ['{me}','commit', 'suicide'], ['(take|taking|end|ending)', '(own|my)', 'life'], ['{me}', '(think|thinking|thought)', '(about|of)', 'death'], ['{me}', '(want|wanna|gonna|going to)', '(off|kill)', 'myself'], ['{me}', '(off|offing|kill|killing)', 'myself'], ['jeg', 'vil', 'do'], ['{me}', '(want|wanted|wanna)', 'die']),
 
 module.exports = new Listener({
-  words: ['{me}','commit', 'suicide'],
+  words: ['{me}', 'commit', 'suicide'],
   category: 'suicide',
   cooldown: 10,
   priority: 0,

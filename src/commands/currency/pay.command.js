@@ -7,7 +7,7 @@ module.exports = new Command({
   usage: '{@mention} {amount}',
   args: {
     mention: 'string',
-    amount: {type: 'number', convert: true}
+    amount: { type: 'number', convert: true },
   },
   examples: ['@Kaffe#9547 200'],
   async run(bot, message, meta) {
@@ -18,7 +18,7 @@ module.exports = new Command({
     };
 
     const userMention = message.mentions.users.first();
-    const amount = Math.floor((meta.args.amount));
+    const amount = Math.floor(meta.args.amount);
 
     if (!userMention) {
       const msg = await this.send(
@@ -67,7 +67,9 @@ module.exports = new Command({
         `Failed to transfer ${amount} currency from ${meta.tag} to ${userMention.tag}. Reason:`,
         err,
       );
-      this.send('Oh no! It seems something went wrong. But you could try again later... sorry :(');
+      this.send(
+        'Oh no! It seems something went wrong. But you could try again later... sorry :(',
+      );
     }
   },
 });

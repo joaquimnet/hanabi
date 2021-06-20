@@ -14,11 +14,21 @@ async function getFavoriteMangaList(userId) {
 
 async function getRecommendationsForAnimeList(animeList) {
   let recommendations = [];
-  await Promise.all(animeList.map(anime => {
-    return ani.media.anime(anime.id).then(animeInfo => {
-      recommendations.push(...animeInfo.recommendations.slice(0, getRecommendationAmount(animeList.length)))
-    }).catch(() => {})
-  }))
+  await Promise.all(
+    animeList.map((anime) => {
+      return ani.media
+        .anime(anime.id)
+        .then((animeInfo) => {
+          recommendations.push(
+            ...animeInfo.recommendations.slice(
+              0,
+              getRecommendationAmount(animeList.length),
+            ),
+          );
+        })
+        .catch(() => {});
+    }),
+  );
 
   recommendations.sort((a, b) => {
     return a.title - b.title;

@@ -14,9 +14,8 @@ module.exports = new Command({
     if (!channel) channel = message.channel;
 
     const allowed = meta.settings.listenerSettings.allow;
-    meta.settings.listenerSettings.ignored = meta.settings.listenerSettings.ignored.filter(
-      (c) => c !== channel.id,
-    );
+    meta.settings.listenerSettings.ignored =
+      meta.settings.listenerSettings.ignored.filter((c) => c !== channel.id);
 
     await meta.settings.save();
 

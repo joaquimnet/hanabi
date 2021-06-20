@@ -4,7 +4,11 @@ const bot = require('../../bot');
 exports.botStaff = (redirectUrl) => (req, res, next) => {
   if (!req.user) {
     // User is unauthenticated
-    return passport.authenticate('discord', { successRedirect: redirectUrl })(req, res, next);
+    return passport.authenticate('discord', { successRedirect: redirectUrl })(
+      req,
+      res,
+      next,
+    );
   }
 
   const userId = req.user._id;

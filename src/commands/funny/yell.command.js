@@ -6,7 +6,7 @@ module.exports = new Command({
   category: 'funny',
   aliases: ['scream', 'shout'],
   args: {
-    yourMessage: 'string'
+    yourMessage: 'string',
   },
   delete: true,
   run(bot, message, meta) {
@@ -14,7 +14,7 @@ module.exports = new Command({
     if (content.length < 1) {
       meta.respond('That message is too short or invalid...');
       return;
-    };
+    }
 
     const theYELL = replaceLettersWithEmotes(content);
 

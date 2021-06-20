@@ -11,7 +11,7 @@ module.exports = new Command({
       convert: true,
       min: 1,
       max: Number.MAX_SAFE_INTEGER,
-      default: 6
+      default: 6,
     },
   },
   run(_, __, ctx) {
