@@ -1,12 +1,15 @@
 const bot = require('./bot');
 const config = require('./config');
-const { logger, terminate, connect } = require('./modules');
+const { logger, terminate } = require('./modules');
+const { waitingForDb } = require('./db');
 const web = require('./web');
 
 logger.info(`${config.name} v${require('../package.json').version}`);
 logger.info(`Running on Node ${process.version}`);
 
 async function init() {
+  await waitingForDb();
+
   web.listen(config.apiport, () => {
     logger.info(`Web server listening on PORT ${bot.config.apiport}`);
   });
