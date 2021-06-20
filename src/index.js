@@ -7,9 +7,6 @@ logger.info(`${config.name} v${require('../package.json').version}`);
 logger.info(`Running on Node ${process.version}`);
 
 async function init() {
-  await connect();
-  logger.info('Database connected');
-
   web.listen(config.apiport, () => {
     logger.info(`Web server listening on PORT ${bot.config.apiport}`);
   });
