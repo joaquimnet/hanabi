@@ -21,6 +21,15 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 RUN npm install
 
+# Add user so we don't need --no-sandbox.
+RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
+    && mkdir -p /home/pptruser/Downloads /usr/src/app \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /usr/src/app
+
+# Run everything after as non-privileged user.
+USER pptruser
+
 RUN node scripts/version.js hanabi > version.txt
 
 CMD ["npm", "start"]
