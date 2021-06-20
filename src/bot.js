@@ -1,7 +1,6 @@
 const { BotClient, defaultCommands } = require('sensum');
 
 const config = require('./config');
-const { Schedule } = require('./modules');
 const extensions = require('./client-extensions');
 
 const bot = new BotClient(config);
@@ -17,10 +16,5 @@ bot.extend.metaParsing(extensions.attachUtilityToMeta);
 
 // Prefix validation
 bot.extend.prefixChecking(extensions.prefixChecker);
-
-// TASK STUFF
-// TODO: load these automatically from the tasks directory
-const tasks = [require('./tasks/changeActivity.task')];
-bot.schedule = new Schedule(bot, tasks);
 
 module.exports = bot;

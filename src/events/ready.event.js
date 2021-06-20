@@ -12,6 +12,7 @@ module.exports = new EventHandler({
     bot.logger.info('Logged into discord as', bot.user.tag);
     bot.logger.info(`Loaded ${bot.commands.size} commands.`);
     bot.logger.info(`Loaded ${bot.botListeners.size} listeners.`);
+    bot.logger.info(`Loaded ${bot.schedule.tasks.length} tasks.`);
 
     // add ignored channels saved in db to the ignore list
     Settings.loadIgnoreList(bot).then(([cCount, gCount]) => {

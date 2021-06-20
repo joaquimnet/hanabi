@@ -1,4 +1,4 @@
-const { Task } = require('../modules');
+const { Task } = require('sensum');
 
 const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
