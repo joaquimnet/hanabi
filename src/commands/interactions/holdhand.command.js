@@ -14,6 +14,7 @@ module.exports = new Command({
   category: 'interactions',
   usage: '{target}',
   examples: ['@Kaffe#9547', '@blu#0111'],
+  hidden: true,
   async run(bot, message, meta) {
     const hold = createInteractionCommand(
       `I was sent by \n${meta.tag} to ask if you'd like to hold their hand :smiling_face_with_3_hearts:`,

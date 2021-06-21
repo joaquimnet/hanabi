@@ -34,8 +34,10 @@ module.exports = (text, image, message) => async () => {
   const embed = makeEmbed(text, image, message);
 
   try {
+    console.log('target: ', target);
     await target.send({ embed });
-  } catch {
+  } catch (err) {
+    message.client.logger.error(err);
     message.channel.send("I can't DM that person. ;-;").catch(() => {});
   }
 };

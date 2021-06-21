@@ -13,6 +13,7 @@ module.exports = new Command({
   category: 'interactions',
   usage: '{target}',
   examples: ['@Kaffe#9547', '@blu#0111'],
+  hidden: true,
   async run(bot, message, meta) {
     // const{args} = meta;
     const pat = createInteractionCommand(
