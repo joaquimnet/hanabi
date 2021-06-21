@@ -16,11 +16,17 @@ module.exports = new Command({
   usage: '{tags}',
   examples: ['neko', 'blonde'],
   async run(bot, message, meta) {
-    if ((meta.cliArgs._[0] ?? '').match(/hanabi/gi)) {
-      meta.respond(`:knife:Once again... I am not legal. :gun:`);
+    if (!message.channel.nsfw) {
+      this.send(
+        `:knife:You're treading on thin ice... This is NOT that kind of channel >:c :gun:`,
+      );
       return;
     }
-    await meta.respond(`Searching for: ${meta.cliArgs._[0] ?? 'swimsuit'}...`);
+    if ((meta.cliArgs._[0] ?? '').match(/hanabi/gi)) {
+      this.send(`:knife:Once again... I am not legal. :gun:`);
+      return;
+    }
+    await this.send(`Searching for: ${meta.cliArgs._[0] ?? 'swimsuit'}...`);
     try {
       const posts = await Booru.search(
         'danbooru',
@@ -32,7 +38,7 @@ module.exports = new Command({
         },
       );
       for (let post of posts) {
-        meta.respond(post.fileUrl);
+        this.send(post.fileUrl);
         const response = await Prompter.confirm({
           channel: message.channel,
           question: "Save this image to Kaffe's compooter?",
@@ -42,7 +48,7 @@ module.exports = new Command({
         }
       }
     } catch (err) {
-      meta.respond('Oh no... something went wrong. >n<');
+      this.send('Oh no... something went wrong. >n<');
       bot.logger.error(err);
     }
   },
@@ -53,11 +59,11 @@ async function saveImage(url, meta) {
   try {
     res = await got(url, { responseType: 'buffer' });
   } catch {
-    meta.respond("That's not a valid image...");
+    this.send("That's not a valid image...");
     return;
   }
   if (!res.headers['content-type']?.startsWith('image')) {
-    meta.respond("Looks like that's not an image...");
+    this.send("Looks like that's not an image...");
     return;
   }
 
