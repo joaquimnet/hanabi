@@ -52,7 +52,7 @@
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
     "puppeteer": "^10.0.0",
-    "sensum": "^0.8.0",
+    "sensum": "^0.8.1",
     "tinv": "^1.0.1",
     "wordpos": "^2.1.0"
   },

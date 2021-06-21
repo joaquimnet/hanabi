@@ -13,6 +13,7 @@ defaultCommands.forEach((cmd) => bot.loadCommand(cmd));
 bot.extend.metaParsing(extensions.attachProfileToMeta);
 bot.extend.metaParsing(extensions.attachSettingsToMeta);
 bot.extend.metaParsing(extensions.attachUtilityToMeta);
+bot.extend.metaParsing(extensions.logCommandUsage);
 
 // Prefix validation
 bot.extend.prefixChecking(extensions.prefixChecker);

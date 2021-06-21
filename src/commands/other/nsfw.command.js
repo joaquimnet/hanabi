@@ -9,12 +9,13 @@ module.exports = new Command({
   description: 'Searches for lewd pictures... >///<',
   aliases: ['lewd', 'lewds'],
   cooldown: 5,
-  category: 'funny',
+  category: 'other',
   args: {
     tags: 'string',
   },
   usage: '{tags}',
-  examples: ['neko', 'blonde'],
+  examples: ['neko', 'blonde', 'swimsuit'],
+  
   async run(bot, message, meta) {
     if (!message.channel.nsfw) {
       this.send(
@@ -24,6 +25,10 @@ module.exports = new Command({
     }
     if ((meta.cliArgs._[0] ?? '').match(/hanabi/gi)) {
       this.send(`:knife:Once again... I am not legal. :gun:`);
+      return;
+    }
+    if ((meta.cliArgs._[0] ?? '').match(/(loli|lolis)/gi)) {
+      this.send(`Not in my server, mister/miss. That is a reportable offense.`);
       return;
     }
     await this.send(`Searching for: ${meta.cliArgs._[0] ?? 'swimsuit'}...`);

@@ -88,7 +88,6 @@ profileSchema.methods.transferMoney = async function (bot, targetId, amount) {
 };
 
 // Statics
-
 profileSchema.statics.getOrCreate = async function getOrCreate(userId) {
   let profile;
   try {

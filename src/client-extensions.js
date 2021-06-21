@@ -111,6 +111,12 @@ function attachUtilityToMeta(meta) {
   }
 }
 
+function logCommandUsage(meta) {
+  if (meta.commandName) {
+    meta.message.client.logger.info(meta.tag, `(${meta.guild.name}) ->`, meta.commandName);
+  }
+}
+
 async function prefixChecker(bot, message) {
   const guildId = message.guild?.id;
   const settings = guildId ? await bot.getSettings(guildId) : undefined;
@@ -167,5 +173,6 @@ module.exports = {
   attachProfileToMeta,
   attachSettingsToMeta,
   attachUtilityToMeta,
+  logCommandUsage,
   prefixChecker,
 };
