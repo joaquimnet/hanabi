@@ -32,6 +32,18 @@ const profileSchema = new Schema(
       type: Number,
       required: false,
     },
+    flags: {
+      hasReceivedFirstDM: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      canReceiveDMs: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+    },
   },
   { timestamps: true },
 );

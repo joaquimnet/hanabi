@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
@@ -6,6 +6,7 @@ module.exports = new Command({
   description: 'displays list of listeners currently active',
   category: 'admin',
   aliases: ['listener'],
+  permission: Permission.BOT_ADMIN,
   // args: [''],
   delete: false,
   hidden: true,

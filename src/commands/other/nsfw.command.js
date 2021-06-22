@@ -15,7 +15,7 @@ module.exports = new Command({
   },
   usage: '{tags}',
   examples: ['neko', 'blonde', 'swimsuit'],
-  
+
   async run(bot, message, meta) {
     if (!message.channel.nsfw) {
       this.send(

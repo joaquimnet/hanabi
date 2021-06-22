@@ -32,9 +32,25 @@ module.exports = (text, image, message) => async () => {
   // const image = await Gifs.random(tags);
 
   const embed = makeEmbed(text, image, message);
+  const bot = message.client;
+  const prefix = message.client.config.defaultSettings.prefix;
 
   try {
-    console.log('target: ', target);
+    const targetProfile = await bot.getProfile(target.id);
+    console.log('target profile', targetProfile);
+    if (!targetProfile) return;
+    if (!targetProfile.flags.canReceiveDMs) {
+      message.channel.send(bot.lines(
+        "I can't DM that person due to them having dm perms off!",
+        `If they would like to receive messages via dm, they can use the ${prefix}donotdm command to opt into dm messages!`
+      )).catch(() => {});
+      return;
+    }
+    if (!targetProfile.flags.hasReceivedFirstDM) {
+      await target.send(`This is an interaction, if you would like to opt out of future interactions, please use the command ${prefix}donotdm`); 
+      targetProfile.flags.hasReceivedFirstDM = true;
+      await targetProfile.save();
+    }
     await target.send({ embed });
   } catch (err) {
     message.client.logger.error(err);

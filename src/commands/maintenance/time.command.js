@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 const { MessageEmbed } = require('discord.js');
 
 const Time = require('../../services/time.service');
@@ -10,6 +10,7 @@ module.exports = new Command({
   args: {
     time: { type: 'any', default: new Date() },
   },
+  permission: Permission.BOT_ADMIN,
   hidden: true,
   run(bot, message, ctx) {
     const { cron, human, original, relative, duration } = Time.parse(

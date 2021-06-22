@@ -3,7 +3,8 @@ const moment = require('moment');
 
 const m = (t) => new moment(t || undefined).utc();
 
-const timeUntilTomorrow = () => m().utc().add(1, 'day').startOf('day').diff(m());
+const timeUntilTomorrow = () =>
+  m().utc().add(1, 'day').startOf('day').diff(m());
 
 const timeToNextDaily = (lastDaily) => {
   const lastUsed = m(lastDaily);

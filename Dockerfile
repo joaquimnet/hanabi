@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:14.17-alpine
 
 # Installs latest Chromium (89) package.
 RUN apk add --no-cache \
@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-RUN npm install
+RUN npm install --production
 
 RUN node scripts/version.js hanabi > version.txt
 

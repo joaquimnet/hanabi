@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 const Booru = require('booru');
 const Prompter = require('chop-prompter');
 const got = require('got');
@@ -9,6 +9,7 @@ module.exports = new Command({
   description: "Save a lewd to kaffe's computer",
   cooldown: 5,
   category: 'maintenance',
+  permission: Permission.BOT_ADMIN,
   args: {
     url: 'url',
   },

@@ -1,10 +1,11 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 
 module.exports = new Command({
   name: 'memory',
   description: '',
   category: 'admin',
   aliases: ['mem'],
+  permission: Permission.BOT_ADMIN,
   // args: [''],
   // delete: ,
   hidden: true,

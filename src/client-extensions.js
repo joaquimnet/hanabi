@@ -113,14 +113,18 @@ function attachUtilityToMeta(meta) {
 
 function logCommandUsage(meta) {
   if (meta.commandName) {
-    meta.message.client.logger.info(meta.tag, `(${meta.guild.name}) ->`, meta.commandName);
+    meta.message.client.logger.info(
+      meta.tag,
+      `(${meta.guild.name}) ->`,
+      meta.commandName,
+    );
   }
 }
 
 async function prefixChecker(bot, message) {
   const guildId = message.guild?.id;
   const settings = guildId ? await bot.getSettings(guildId) : undefined;
-  const prefixInDb = settings?.prefix;
+  const prefixInDb = settings?.prefixvin;
   const defaultPrefix = bot.config.defaultSettings.prefix;
 
   // Checks if the bot was mentioned, with no message after it, reply with prefix.

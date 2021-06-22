@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 
 module.exports = new Command({
   name: 'text',
@@ -9,6 +9,7 @@ module.exports = new Command({
     label: { type: 'string', min: 1 },
     category: { type: 'string', min: 1 },
   },
+  permission: Permission.BOT_ADMIN,
   delete: false,
   hidden: true,
   run(bot, message, ctx) {
