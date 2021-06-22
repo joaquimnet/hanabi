@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-RUN npm install --production
+RUN npm ci
 
 RUN node scripts/version.js hanabi > version.txt
 
