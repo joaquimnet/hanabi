@@ -32,6 +32,7 @@
     "chrono-node": "^2.3.0",
     "connect-mongodb-session": "^2.4.1",
     "cronstrue": "^1.114.0",
+    "discord-buttons": "^3.2.1",
     "discord.js": "^12.5.3",
     "eta": "^1.12.2",
     "express": "^4.17.1",
@@ -52,7 +53,7 @@
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
     "puppeteer": "^10.0.0",
-    "sensum": "^0.8.1",
+    "sensum": "^0.9.1",
     "tinv": "^1.0.1",
     "wordpos": "^2.1.0"
   },
