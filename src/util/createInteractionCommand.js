@@ -40,14 +40,20 @@ module.exports = (text, image, message) => async () => {
     console.log('target profile', targetProfile);
     if (!targetProfile) return;
     if (!targetProfile.flags.canReceiveDMs) {
-      message.channel.send(bot.lines(
-        "I can't DM that person due to them having dm perms off!",
-        `If they would like to receive messages via dm, they can use the ${prefix}donotdm command to opt into dm messages!`
-      )).catch(() => {});
+      message.channel
+        .send(
+          bot.lines(
+            "I can't DM that person due to them having dm perms off!",
+            `If they would like to receive messages via dm, they can use the ${prefix}donotdm command to opt into dm messages!`,
+          ),
+        )
+        .catch(() => {});
       return;
     }
     if (!targetProfile.flags.hasReceivedFirstDM) {
-      await target.send(`This is an interaction, if you would like to opt out of future interactions, please use the command ${prefix}donotdm`); 
+      await target.send(
+        `This is an interaction, if you would like to opt out of future interactions, please use the command ${prefix}donotdm`,
+      );
       targetProfile.flags.hasReceivedFirstDM = true;
       await targetProfile.save();
     }
