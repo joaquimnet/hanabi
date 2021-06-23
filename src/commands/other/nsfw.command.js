@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 const Booru = require('booru');
 const Prompter = require('chop-prompter');
 const got = require('got');
@@ -15,7 +15,8 @@ module.exports = new Command({
   },
   usage: '{tags}',
   examples: ['neko', 'blonde', 'swimsuit'],
-
+  hidden: true,
+  permission: Permission.BOT_ADMIN,
   async run(bot, message, meta) {
     if (!message.channel.nsfw) {
       this.send(

@@ -1,4 +1,4 @@
-const { Command } = require('sensum');
+const { Command, Permission } = require('sensum');
 const { MessageEmbed } = require('discord.js');
 // const puppeteer = require('puppeteer');
 
@@ -12,6 +12,8 @@ module.exports = new Command({
   },
   usage: '[images] {your search}',
   examples: ['comedy anime', 'image red hair anime girl'],
+  hidden: true,
+  permission: Permission.BOT_ADMIN,
   async run(bot, message, meta) {
     if ((meta.contentFull ?? '').match(/(loli|lolis)/gi)) {
       this.send(`Not in my server, mister/miss. That is a reportable offense.`);
