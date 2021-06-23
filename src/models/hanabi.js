@@ -33,7 +33,7 @@ const hanabiSchema = new Schema(
       default: 'info',
     },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 module.exports = mongoose.model('Hanabi', hanabiSchema);

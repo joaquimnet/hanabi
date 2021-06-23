@@ -19,7 +19,7 @@ const settingsSchema = new Schema(
       ignored: { type: [String], default: [] },
     },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 settingsSchema.statics.getOrCreate = async function getOrCreate(guildId) {

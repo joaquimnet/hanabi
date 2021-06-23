@@ -4,42 +4,31 @@ const Hanabi = require('./hanabi');
 
 const { Schema } = mongoose;
 
-const ideaSchema = new Schema({
-  ideaId: {
-    type: Number,
-    // required: true,
-    unique: true,
+const ideaSchema = new Schema(
+  {
+    ideaId: {
+      type: Number,
+      // required: true,
+      unique: true,
+    },
+    title: {
+      type: String,
+      minlength: 3,
+      required: true,
+    },
+    creator: {
+      type: String,
+      required: true,
+    },
+    isDone: {
+      type: Boolean,
+      default: false,
+    },
   },
-  title: {
-    type: String,
-    minlength: 3,
-    required: true,
-  },
-  creator: {
-    type: String,
-    required: true,
-  },
-  isDone: {
-    type: Boolean,
-    default: false,
-  },
-  createdAt: {
-    type: Date,
-    required: true,
-    default: Date.now(),
-  },
-  updatedAt: {
-    type: Date,
-    required: true,
-    default: Date.now(),
-  },
-});
+  { timestamps: true, optimisticConcurrency: true },
+);
 
 ideaSchema.pre('save', async function preSave(next) {
-  if (this.isModified('createdAt')) {
-    throw new Error('Creation field is read only!');
-  }
-  this.updatedAt = Date.now();
   // get next id
   const hanabiConfig = await Hanabi.findOne({})
     .select('stats.currentIdeaId')

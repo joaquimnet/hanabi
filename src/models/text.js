@@ -18,7 +18,7 @@ const textSchema = new Schema(
       minLength: 1,
     },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 module.exports = model('text', textSchema);
