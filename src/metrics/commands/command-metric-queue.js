@@ -1,4 +1,4 @@
-const CommandUsageMetric = require('./command-usage-metric.model');
+const CommandUsageMetric = require('./command-usage-metric.v1.model');
 const QueueProcessor = require('../QueueProcessor');
 
 class CommandUsageMetricQueue extends QueueProcessor {

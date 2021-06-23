@@ -1,4 +1,4 @@
-const ListenerUsageMetric = require('./listener-usage-metric.model');
+const ListenerUsageMetric = require('./listener-usage-metric.v1.model');
 const QueueProcessor = require('../QueueProcessor');
 
 class ListenerUsageMetricQueue extends QueueProcessor {
