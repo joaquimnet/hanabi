@@ -93,7 +93,7 @@ function attachUtilityToMeta(meta) {
     return meta.message.channel
       .send(msg, isObject(lastArg) ? lastArg : undefined)
       .catch((err) => {
-        const channelName = meta.message.channel.name;
+        const channelName = meta.message.channel?.name;
         const channelId = meta.message.channel.id;
         const guildName = meta.guild?.name;
         const guildId = meta.guild?.id;
@@ -108,16 +108,6 @@ function attachUtilityToMeta(meta) {
           ),
         );
       });
-  }
-}
-
-function logCommandUsage(meta) {
-  if (meta.commandName) {
-    meta.message.client.logger.info(
-      meta.tag,
-      `(${meta.guild.name}) ->`,
-      meta.commandName,
-    );
   }
 }
 
@@ -177,6 +167,5 @@ module.exports = {
   attachProfileToMeta,
   attachSettingsToMeta,
   attachUtilityToMeta,
-  logCommandUsage,
   prefixChecker,
 };
