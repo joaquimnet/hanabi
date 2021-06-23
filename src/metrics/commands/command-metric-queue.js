@@ -33,12 +33,12 @@ class CommandUsageMetricQueue extends QueueProcessor {
         'dating.year': payload.year,
         'dating.month': payload.month,
         'dating.day': payload.day,
+        userId: payload.userId,
         eventCount: { $lt: 1000 },
       },
       {
         $push: {
           events: {
-            userId: payload.userId,
             guildId: payload.guildId,
             channelId: payload.channelId,
             command: payload.command,
