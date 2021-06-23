@@ -5,6 +5,7 @@ Habambi -> Mongoose -> MongoDB
 const { model, Schema } = require('mongoose');
 
 const schema = new Schema({
+  schema: { type: Number, default: 1 },
   content: {
     type: String,
     required: true,

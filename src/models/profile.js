@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const profileSchema = new Schema(
   {
+    schema: { type: Number, default: 1 },
     _id: {
       required: true,
       type: String,

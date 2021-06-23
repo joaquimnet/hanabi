@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const hanabiSchema = new Schema(
   {
+    schema: { type: Number, default: 1 },
     logs: {
       channel: {
         type: String,
