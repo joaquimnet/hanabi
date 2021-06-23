@@ -14,7 +14,7 @@ module.exports = new Command({
   hidden: true,
   run(bot, message, ctx) {
     const { cron, human, original, relative, duration } = Time.parse(
-      ctx.content || ctx.args.time,
+      ctx.contentFull || ctx.args.time,
     );
 
     const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
