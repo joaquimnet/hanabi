@@ -11,7 +11,7 @@ module.exports = new EventHandler({
     await Alert.send({
       type: Alert.types.vote,
       bot,
-      message: `${user.tag} just voted for us in top.gg!!`,
+      message: `${user.tag} just voted for Hanabi in top.gg!!`,
       thumbnail: user.avatarURL(),
     });
   },
