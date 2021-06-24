@@ -1,4 +1,0 @@
-<%~ E.includeFile("../partials/head") %>
-<%~ E.includeFile("../partials/dashboard/menu") %>
-<h1>Le Dashboard~</h1>
-<%~ E.includeFile("../partials/bottom") %>

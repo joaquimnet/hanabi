@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const textSchema = new Schema(
   {
-    schema: { type: Number, default: 1 },
+    schemaVersion: { type: Number, default: 1 },
     label: {
       type: String,
       required: true,

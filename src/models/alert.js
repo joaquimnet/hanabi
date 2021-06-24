@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const alertSchema = new Schema(
   {
-    schema: { type: Number, default: 1 },
+    schemaVersion: { type: Number, default: 1 },
     type: {
       type: String,
       required: true,

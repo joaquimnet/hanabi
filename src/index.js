@@ -9,11 +9,7 @@ logger.info(`Running on Node ${process.version}`);
 
 async function init() {
   await waitingForDb();
-
-  web.listen(config.apiport, () => {
-    logger.info(`Web server listening on PORT ${bot.config.apiport}`);
-  });
-
+  web(bot);
   bot.login(config.token);
 }
 

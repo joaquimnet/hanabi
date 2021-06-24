@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 
 const ideaSchema = new Schema(
   {
-    schema: { type: Number, default: 1 },
+    schemaVersion: { type: Number, default: 1 },
     ideaId: {
       type: Number,
       // required: true,

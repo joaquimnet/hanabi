@@ -1,3 +1,0 @@
-<%~ E.includeFile("./partials/head") %>
-  <h1>Hanabi!</h1>
-<%~ E.includeFile("./partials/bottom") %>

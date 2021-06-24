@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const profileSchema = new Schema(
   {
-    schema: { type: Number, default: 1 },
+    schemaVersion: { type: Number, default: 1 },
     _id: {
       required: true,
       type: String,
@@ -14,14 +14,6 @@ const profileSchema = new Schema(
     },
     daily: {
       count: { type: Number, default: 0 },
-      time: { type: Date, default: new Date('1970-01-01') },
-    },
-    votes: {
-      count: { type: Number, default: 0 },
-      countPerMonth: {
-        type: Object,
-        default: {},
-      },
       time: { type: Date, default: new Date('1970-01-01') },
     },
     money: {
@@ -45,6 +37,28 @@ const profileSchema = new Schema(
         default: true,
       },
     },
+    ideas: [
+      {
+        ideaId: {
+          type: Number,
+          // required: true,
+          unique: true,
+        },
+        title: {
+          type: String,
+          minlength: 3,
+          required: true,
+        },
+        creator: {
+          type: String,
+          required: true,
+        },
+        isDone: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
   },
   { timestamps: true, optimisticConcurrency: true },
 );

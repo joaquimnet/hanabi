@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const settingsSchema = new Schema(
   {
-    schema: { type: Number, default: 1 },
+    schemaVersion: { type: Number, default: 1 },
     _id: {
       type: String,
       required: true,
