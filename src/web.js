@@ -11,10 +11,27 @@ fastify.get('/', function (request, reply) {
 });
 
 fastify.post('/vote', (req, res) => {
+  // TODO: Move this secret to the environment, ofc.
   if (req.headers.authorization !== 'super secret') {
     return res.status(401).send({ error: 'unauthorized' });
   }
   bot.emit('vote', req.body);
+});
+
+fastify.get('/bot/counts', (req, res) => {
+  // TODO: Move this secret to the environment, ofc.
+  if (req.headers.authorization !== 'super secret') {
+    return res.status(401).send({ error: 'unauthorized' });
+  }
+  res.send({
+    commands: bot.commands.size,
+    listeners: bot.botListeners.size,
+    tasks: bot.schedule.tasks.length,
+    guilds: bot.guilds.cache.size,
+    users: bot.guilds.cache
+      .filter((u) => !u.bot)
+      .reduce((acc, guild) => acc + guild.memberCount, 0),
+  });
 });
 
 const run = (client) => {
