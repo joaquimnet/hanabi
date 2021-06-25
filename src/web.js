@@ -23,15 +23,22 @@ fastify.get('/bot/counts', (req, res) => {
   if (req.headers.authorization !== 'super secret') {
     return res.status(401).send({ error: 'unauthorized' });
   }
-  res.send({
-    commands: bot.commands.size,
+  const counts = {
     listeners: bot.botListeners.size,
     tasks: bot.schedule.tasks.length,
     guilds: bot.guilds.cache.size,
     users: bot.guilds.cache
       .filter((u) => !u.bot)
       .reduce((acc, guild) => acc + guild.memberCount, 0),
-  });
+  };
+
+  if (req.query.omitHidden) {
+    counts.commands = bot.commands.filter((c) => !c.hidden).size;
+  } else {
+    counts.commands = bot.commands.size;
+  }
+
+  res.send(counts);
 });
 
 const run = (client) => {

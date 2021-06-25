@@ -3,8 +3,8 @@ const { Permission, Command } = require('sensum');
 
 module.exports = new Command({
   name: 'prefix',
-  description: "Changes Hanabi-sama's prefix on your server.",
-  category: 'maintenance',
+  description: "Changes Hanabi's prefix on your server.",
+  category: 'admin',
   permission: Permission.MANAGE_GUILD,
   usage: '[new prefix]',
   examples: [' ', '>', '!', '++'],
