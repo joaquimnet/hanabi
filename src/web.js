@@ -43,7 +43,7 @@ fastify.get('/bot/counts', (req, res) => {
 
 const run = (client) => {
   bot = client;
-  fastify.listen(process.env.PORT, function (err, address) {
+  fastify.listen(process.env.PORT, '::', function (err, address) {
     if (err) {
       logger.error(err);
       process.exit(1);
