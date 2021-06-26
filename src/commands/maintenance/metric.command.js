@@ -22,12 +22,12 @@ module.exports = new Command({
   async run(bot, message, ctx) {
     const button = new MessageButton()
       .setID(`metric_yes`)
-      .setLabel('✔')
-      .setStyle('green');
+      .setEmoji('◀️')
+      .setStyle('blurple');
     const button2 = new MessageButton()
       .setID('metric_delete')
-      .setEmoji('🗑️')
-      .setStyle('red');
+      .setEmoji('▶️')
+      .setStyle('blurple');
     const row = new MessageActionRow().addComponents(button, button2);
 
     this.send({

@@ -6,8 +6,7 @@ const randomNum = () => Math.floor(Math.random() * 71);
 
 module.exports = new Command({
   name: 'kiss',
-  description:
-    'Chu~ :3 :kissing_heart:',
+  description: 'Chu~ :3 :kissing_heart:',
   args: {
     target: 'string',
   },

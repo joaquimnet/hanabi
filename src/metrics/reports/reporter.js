@@ -5,13 +5,16 @@ class Reporter {
     this._models = models;
   }
 
-  async _getStatistics(index, timeRange) {
-    const rangeLookup = Time.moment()
-      .startOf(timeRange)
-      .startOf('day')
-      .toDate();
+  async _getStatistics(index, timeRange, id) {
+    let rangeLookup;
 
-    const [commandAggregation, listenerAggregation] = await Promise.all(
+    if (timeRange instanceof Date) {
+      rangeLookup = timeRange;
+    } else {
+      rangeLookup = Time.moment().startOf(timeRange).startOf('day').toDate();
+    }
+
+    const result = await Promise.all(
       this._models.map((model) =>
         model
           .aggregate([
@@ -20,13 +23,15 @@ class Reporter {
             // Filter out events older than the specified time range.
             { $match: { 'events.time': { $gte: rangeLookup } } },
             // Group events by guild id and count them.
-            { $group: { _id: `$events.${this.index}`, count: { $sum: 1 } } },
+            { $group: { _id: `$events.${index}`, count: { $sum: 1 } } },
             // Sort by most counts in descending order.
             { $sort: { count: -1 } },
           ])
           .exec(),
       ),
     );
+
+    return result;
   }
 }
 

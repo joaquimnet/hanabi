@@ -26,7 +26,8 @@ const images = [
 // thank you
 module.exports = new Command({
   name: 'gay',
-  description: "Tell someone they're gay. That's it. That's the whole command. >u<",
+  description:
+    "Tell someone they're gay. That's it. That's the whole command. >u<",
   args: {
     target: 'string',
   },
