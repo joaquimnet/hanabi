@@ -34,10 +34,9 @@ module.exports = (text, image, message) => async () => {
   const embed = makeEmbed(text, image, message);
   const bot = message.client;
   const prefix = message.client.config.defaultSettings.prefix;
-
+  // 😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒😒
   try {
     const targetProfile = await bot.getProfile(target.id);
-    console.log('target profile', targetProfile);
     if (!targetProfile) return;
     if (!targetProfile.flags.canReceiveDMs) {
       message.channel

@@ -27,7 +27,7 @@ module.exports = new Command({
     if (!mention || (mention && mention.user.id === meta.userId)) {
       this.send(
         // Look at profile.js for the schema
-        `:sunflower: **| ${message.author.username}**! You have received **${profile.flower.count}** flowers so far! What a lovely bunch you have :orange_heart::smiling_face_with_3_hearts:`,
+        `:sunflower: **| ${ message.member.nickname ?? message.author.username}**! You have received **${profile.flower.count}** flowers so far! What a lovely bunch you have :orange_heart::smiling_face_with_3_hearts:`,
       );
       if (next <= 0) {
         this.send(':timer: **|** You have **1** flower to send!');
