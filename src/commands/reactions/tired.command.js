@@ -28,7 +28,7 @@ const images = [
 
 module.exports = new Command({
   name: 'tired',
-  description: 'For when you\'re sleepy, yanno? We all get sleepy.',
+  description: "For when you're sleepy, yanno? We all get sleepy.",
   aliases: ['sleepy', 'yawn'],
   delete: true,
   category: 'reactions',

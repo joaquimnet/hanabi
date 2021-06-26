@@ -39,7 +39,6 @@ const deleteAfterDelay = (bot, msg, delay) => {
 module.exports = new Command({
   name: 'stare',
   description: 'o-o',
-  args: ['target'],
   aliases: ['glare'],
   //  ¯\_(ツ)_/¯
   category: 'reactions',
