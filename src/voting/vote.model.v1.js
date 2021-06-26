@@ -14,7 +14,7 @@ const schema = new Schema(
       required: true,
       index: true,
     },
-    voteCount: { type: Number, default: 0 },
+    eventCount: { type: Number, default: 0 },
     votes: [
       {
         type: { type: String, required: true },
@@ -52,7 +52,7 @@ schema.statics.addVote = async function (userId, type, isWeekend) {
         },
       },
       $inc: {
-        voteCount: 1,
+        eventCount: 1,
       },
     },
     { upsert: true },
