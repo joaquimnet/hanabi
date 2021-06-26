@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
   name: 'Hanabi',
-  owners: ['517599684961894400-', '554152090411466754'],
+  owners: ['517599684961894400', '554152090411466754'],
   admins: [],
   support: [],
   token: process.env.TOKEN,
