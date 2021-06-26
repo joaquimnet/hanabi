@@ -99,7 +99,7 @@ module.exports = new Command({
           color: bot.colorInt('#f0b7d3'),
           thumbnail: {
             url: 'https://i.imgur.com/3y7lKq8.png',
-          }
+          },
         },
       });
     } catch (err) {
