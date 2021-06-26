@@ -1,5 +1,4 @@
-const { Listener, COMMON_EXPRESSIONS } = require('sensum');
-console.log(COMMON_EXPRESSIONS.me);
+const { Listener } = require('sensum');
 
 module.exports = new Listener({
   words: [

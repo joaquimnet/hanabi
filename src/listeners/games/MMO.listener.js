@@ -1,6 +1,5 @@
-const { Listener, COMMON_EXPRESSIONS } = require('sensum');
+const { Listener } = require('sensum');
 
-console.log(COMMON_EXPRESSIONS.me);
 const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const msg = [`I'm sorry for you :(`];
 module.exports = new Listener({
