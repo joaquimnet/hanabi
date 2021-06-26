@@ -1,4 +1,7 @@
 const logger = require('./modules/logger');
+const CommandUsageMetricV1Model = require('./metrics/commands/command-usage-metric.v1.model');
+const ListenerUsageMetricV1Model = require('./metrics/listeners/listener-usage-metric.v1.model');
+const Reporter = require('./metrics/reports/reporter');
 
 let bot;
 
@@ -39,6 +42,25 @@ fastify.get('/bot/counts', (req, res) => {
   }
 
   res.send(counts);
+});
+
+fastify.get('/bot/usage', async (req, res) => {
+  // TODO: Move this secret to the environment, ofc.
+  if (req.headers.authorization !== 'super secret') {
+    return res.status(401).send({ error: 'unauthorized' });
+  }
+
+  const reporter = new Reporter([
+    CommandUsageMetricV1Model,
+    ListenerUsageMetricV1Model,
+  ]);
+  const [commandAggregation, listenerAggregation] =
+    await reporter.countTotalEvents();
+
+  res.send({
+    commands: commandAggregation.count,
+    listeners: listenerAggregation.count,
+  });
 });
 
 const run = (client) => {
