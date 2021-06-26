@@ -29,7 +29,7 @@ const images = [
 module.exports = new Command({
   name: 'tired',
   description: 'For when you\'re sleepy, yanno? We all get sleepy.',
-  args: ['sleepy', 'yawn'],
+  aliases: ['sleepy', 'yawn'],
   delete: true,
   category: 'reactions',
   examples: ['@Kaffe#9547', 'blu#0111'],
