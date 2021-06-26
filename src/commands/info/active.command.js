@@ -3,6 +3,9 @@ const { Command, Permission } = require('sensum');
 const Time = require('../../services/time.service');
 const guildReporter = require('../../metrics/reports/guild-reports');
 const userReporter = require('../../metrics/reports/user-reports');
+const ListenerUsageMetricV1 = require('../../metrics/listeners/listener-usage-metric.v1.model');
+const CommandUsageMetricV1Model = require('../../metrics/commands/command-usage-metric.v1.model');
+const Reporter = require('../../metrics/reports/reporter');
 
 module.exports = new Command({
   name: 'active',
@@ -34,11 +37,41 @@ module.exports = new Command({
         .startOf('day')
         .toDate();
 
+      if (type === 'global') {
+        const reporter = new Reporter([
+          CommandUsageMetricV1Model,
+          ListenerUsageMetricV1,
+        ]);
+        const [commandAggregation, listenerAggregation] =
+          await reporter.countTotalEvents(timeRange);
+
+        await this.send({
+          embed: {
+            title: `Here are some stats for ${
+              ctx.args.timeRange === 'day'
+                ? 'today'
+                : 'this ' + ctx.args.timeRange
+            }.`,
+            fields: [
+              { name: 'Command Usages', ...commandAggregation },
+              { name: 'Listener Usages', ...listenerAggregation },
+            ].map(({ name, count }) => ({
+              name,
+              value: count,
+            })),
+            color: bot.colorInt('#f0b7d3'),
+            thumbnail: {
+              url: 'https://i.imgur.com/3y7lKq8.png',
+            },
+          },
+        });
+        return;
+      }
+
       const reporters = {
         user: userReporter,
         guild: guildReporter,
         server: guildReporter,
-        global: guildReporter,
       };
 
       const [commandAggregation, listenerAggregation] = await reporters[

@@ -33,6 +33,31 @@ class Reporter {
 
     return result;
   }
+
+  async countTotalEvents(timeRange) {
+    let rangeLookup;
+    if (timeRange instanceof Date) {
+      rangeLookup = timeRange;
+    } else {
+      rangeLookup = Time.moment().startOf(timeRange).startOf('day').toDate();
+    }
+    const result = await Promise.all(
+      this._models.map((model) =>
+        model
+          .aggregate([
+            // Spread the individual events in the events array.
+            { $unwind: '$events' },
+            // Filter out events older than the specified time range.
+            { $match: { 'events.time': { $gte: rangeLookup } } },
+            { $group: { _id: '', count: { $sum: 1 } } },
+            { $project: { _id: 0, count: '$count' } },
+          ])
+          .exec(),
+      ),
+    );
+
+    return result.map(row => row[0]);
+  }
 }
 
 module.exports = Reporter;
