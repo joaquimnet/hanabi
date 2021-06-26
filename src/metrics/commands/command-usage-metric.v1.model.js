@@ -29,6 +29,11 @@ const schema = new Schema(
           type: String,
           reference: 'settings',
         },
+        userId: {
+          type: String,
+          reference: 'profile',
+          required: true,
+        },
         channelId: {
           type: String,
           required: true,

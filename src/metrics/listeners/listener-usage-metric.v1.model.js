@@ -25,6 +25,11 @@ const schema = new Schema(
     eventCount: { type: Number, default: 0 },
     events: [
       {
+        userId: {
+          type: String,
+          reference: 'profile',
+          required: true,
+        },
         guildId: {
           type: String,
           reference: 'settings',

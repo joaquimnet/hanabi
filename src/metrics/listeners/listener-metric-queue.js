@@ -48,6 +48,7 @@ class ListenerUsageMetricQueue extends QueueProcessor {
       {
         $push: {
           events: {
+            userId: payload.userId,
             guildId: payload.guildId,
             channelId: payload.channelId,
             listener: payload.listener,
