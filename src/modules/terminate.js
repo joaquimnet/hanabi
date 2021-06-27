@@ -6,6 +6,8 @@ const terminate = (type, bot) => {
     process.exit(code);
   };
 
+  // TODO: Send alert!
+
   switch (type) {
     case 'exception':
       return (err) => {
