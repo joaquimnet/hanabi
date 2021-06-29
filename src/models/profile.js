@@ -37,6 +37,16 @@ const profileSchema = new Schema(
         default: true,
       },
     },
+    achievements: [
+      {
+        _id: { type: String, required: true },
+        achievement: { type: String, ref: 'achievement' },
+        achievementGroup: { type: String, required: true },
+        progress: { type: Number, required: true, default: 0 },
+        completedAt: { type: Date, default: null },
+        claimedReward: { type: Boolean, required: true, default: false },
+      },
+    ],
     ideas: [
       {
         ideaId: {
@@ -112,6 +122,12 @@ profileSchema.methods.transferMoney = async function (bot, targetId, amount) {
     );
 
   return [this.money - transferredAmount, target.money + transferredAmount];
+};
+
+profileSchema.methods.getAchievementProgress = function getAchievementProgress(
+  flag,
+) {
+  return this.achievements.find((doc) => doc.achievement === flag);
 };
 
 // Statics

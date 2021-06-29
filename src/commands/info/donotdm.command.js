@@ -18,6 +18,5 @@ module.exports = new Command({
       ctx.profile.flags.canReceiveDMs = true;
       await ctx.profile.save();
     }
-    console.log('Profile:', await bot.getProfile(ctx.userId));
   },
 });

@@ -13,6 +13,7 @@ module.exports = new EventHandler({
     bot.logger.info(`Loaded ${bot.commands.size} commands.`);
     bot.logger.info(`Loaded ${bot.botListeners.size} listeners.`);
     bot.logger.info(`Loaded ${bot.schedule.tasks.length} tasks.`);
+    bot.logger.info(`Loaded ${bot.achievements.cache.size} achievements.`);
 
     // add ignored channels saved in db to the ignore list
     Settings.loadIgnoreList(bot).then(([cCount, gCount]) => {

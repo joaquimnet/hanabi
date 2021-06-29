@@ -6,12 +6,14 @@ const { Collection } = require('discord.js');
 const config = require('./config');
 const extensions = require('./client-extensions');
 const Alert = require('./logging/alert.service');
+const AchievementManager = require('./achievements/system/achievement-manager');
 
 const bot = new BotClient(config);
 extensions.extendClient(bot);
 initButtons(bot);
 bot.buttons = new Collection();
 bot.alerts = new Alert(bot);
+bot.achievements = new AchievementManager(bot);
 
 // Load default commands
 defaultCommands.forEach((cmd) => bot.loadCommand(cmd));

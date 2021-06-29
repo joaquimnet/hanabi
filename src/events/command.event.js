@@ -8,5 +8,14 @@ module.exports = new EventHandler({
       `(${ctx.guild?.name ?? 'DM'}) ->`,
       ctx.commandName,
     );
+
+    if (ctx.commandName === 'help') {
+      bot.achievements.progress({
+        achievementGroup: require('../achievements/help-command/group'),
+        progressAmount: 1,
+        profile: ctx.profile,
+        channel: ctx.message.channel,
+      });
+    }
   },
 });
