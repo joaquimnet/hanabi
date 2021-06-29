@@ -3,7 +3,8 @@ const { Listener } = require('sensum');
 module.exports = new Listener({
   words: ['{me}', 'anxious'],
   category: 'anxiety',
-  cooldown: 15,
+  cooldown: 1800,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

@@ -12,6 +12,7 @@ module.exports = new Listener({
   words: ['{me}', '(like|love|enjoy)', '(forknife|fortnite|fortnight)'],
   category: 'games',
   cooldown: 5400,
+  globalCooldown: 1800,
   priority: 0,
 
   async run(bot, message, meta) {

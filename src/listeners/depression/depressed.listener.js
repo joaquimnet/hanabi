@@ -5,7 +5,8 @@ const Prompter = require('chop-prompter');
 module.exports = new Listener({
   words: ['{me}', 'depressed'],
   category: 'depression',
-  cooldown: 15,
+  cooldown: 5400,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     const name = meta.nickname ?? meta.username;

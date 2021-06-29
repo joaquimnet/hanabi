@@ -8,6 +8,7 @@ module.exports = new Listener({
   words: ['{me}', 'angry'],
   category: 'emotions',
   cooldown: 60,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

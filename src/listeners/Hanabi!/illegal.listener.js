@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['illegal'],
   category: 'hanabi',
   cooldown: 30,
+  globalCooldown: 1800,
   priority: 0,
   run(bot, message, meta) {
     meta.respond('No illegal things happening in this server, please. :gun:');

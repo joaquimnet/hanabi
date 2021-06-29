@@ -1,9 +1,10 @@
 const { Listener } = require('sensum');
 
 module.exports = new Listener({
-  words: ['habambi'],
+  words: ['(habambi|hanani)'],
   category: 'misc',
-  cooldown: 180000,
+  cooldown: 1800,
+  globalCooldown: 1800,
   priority: 0,
   run(bot, message, meta) {
     meta.respond(

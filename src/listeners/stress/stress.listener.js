@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['{me}', '(have|having)', 'stress'],
   category: 'stress',
   cooldown: 15,
+  globalCooldown: 5400,
   priority: 0,
   async run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

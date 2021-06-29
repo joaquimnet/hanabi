@@ -10,6 +10,7 @@ module.exports = new Listener({
   words: ['{me}', '(like|love|enjoy)', 'roblox'],
   category: 'games',
   cooldown: 10800,
+  globalCooldown: 1800,
   priority: 0,
 
   async run(bot, message, meta) {

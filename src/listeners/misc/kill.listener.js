@@ -6,6 +6,7 @@ module.exports = new Listener({
   words: ['{me}', 'kill(ing)*', '(you|u)'],
   category: 'misc',
   cooldown: 10,
+  globalCooldown: 5400,
   priority: 0,
   run(bot, message, meta) {
     // If the message is kinda happy ignore it.

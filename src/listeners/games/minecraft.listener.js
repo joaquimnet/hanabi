@@ -11,7 +11,8 @@ It is called a sandbox, because you can do anything you want to do with the game
 module.exports = new Listener({
   words: ['{me}', '(like|love|enjoy)', 'minecraft'],
   category: 'games',
-  cooldown: 10800,
+  cooldown: 5080,
+  globalCooldown: 1800,
   priority: 0,
 
   async run(bot, message, meta) {

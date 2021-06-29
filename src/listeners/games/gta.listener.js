@@ -12,7 +12,8 @@ I just like to drive fast :D and racing the cops is just so... adrenaline! so mu
 module.exports = new Listener({
   words: ['{me}', '(like|love)', '(grand theft auto|gta)'],
   category: 'games',
-  cooldown: 10800,
+  cooldown: 5400,
+  globalCooldown: 1800,
   priority: 0,
 
   async run(bot, message, meta) {

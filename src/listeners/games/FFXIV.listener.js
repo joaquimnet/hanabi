@@ -19,8 +19,8 @@ const msg = [
 module.exports = new Listener({
   words: ['{me}', '(love|enjoy|like)', '(ffxiv|final fantasy 14)'],
   category: 'games', // 🎮🕹😹
-  cooldown: 5400, // 5400 = 90 minutes <=
-  // globalCooldown: 20,
+  cooldown: 1800, // 5400 = 90 minutes <=
+  globalCooldown: 1800,
   priority: 0,
   // maxMessageLength: 100,
   init() {

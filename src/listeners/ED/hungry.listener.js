@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['{me}', '(starving|famished|hungry)'],
   category: 'ED',
   cooldown: 6000,
+  globalCooldown: 1800,
   priority: 0,
   run(bot, message, meta) {
     meta.respond(

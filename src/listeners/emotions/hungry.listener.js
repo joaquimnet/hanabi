@@ -5,6 +5,7 @@ module.exports = new Listener({
   words: ['{me}', 'hungry'],
   category: 'emotions',
   cooldown: 10,
+  globalCooldown: 1800,
   priority: 0,
   delete: false,
   async run(bot, message, meta) {

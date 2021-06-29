@@ -9,6 +9,7 @@ module.exports = new Listener({
   ],
   category: 'ED',
   cooldown: 6000,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

@@ -11,6 +11,7 @@ module.exports = new Listener({
   category: 'games',
   cooldown: 5400, // 5400 = 90 minutes <=
   priority: 0,
+  globalCooldown: 1800,
 
   run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

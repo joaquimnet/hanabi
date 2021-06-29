@@ -5,6 +5,7 @@ module.exports = new Listener({
   words: ['{me}', 'sad'],
   category: 'emotions',
   cooldown: 10,
+  globalCooldown: 1800,
   priority: 0,
   run(bot, message, meta) {
     Prompter.message({

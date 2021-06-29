@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['{me}', '(love|like|favorite)', 'summer'],
   category: 'seasons',
   cooldown: 5400,
+  globalCooldown: 5400,
   priority: 0,
 
   async run(bot, message, meta) {

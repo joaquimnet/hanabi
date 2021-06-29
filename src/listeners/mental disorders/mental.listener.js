@@ -5,6 +5,7 @@ module.exports = new Listener({
   // fuck english. Amen.
   category: 'mental awareness',
   cooldown: 15,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     message.channel.startTyping().catch(() => {});

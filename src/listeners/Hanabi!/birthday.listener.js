@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ["(when|when's)", 'birthday', 'hanabi'],
   category: 'hanabi',
   cooldown: 600,
+  globalCooldown: 1800,
   priority: 0,
   // happy birfday habambi ! 🎁❤
   run(bot, message, meta) {

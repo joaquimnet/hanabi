@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['{me}', 'happy'],
   category: 'emotions',
   cooldown: 10,
+  globalCooldown: 1800,
   priority: 0,
   async run(bot, message, meta) {
     const prefix = meta.settings.prefix ?? bot.config.defaultSettings.prefix;

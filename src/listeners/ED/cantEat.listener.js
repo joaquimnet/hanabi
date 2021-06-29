@@ -4,6 +4,7 @@ module.exports = new Listener({
   words: ['(what|how|why)', '{me}', "(can't|cannot|don't)", 'eat'],
   category: 'ED',
   cooldown: 6000,
+  globalCooldown: 1800,
   priority: 0,
   run(bot, message, meta) {
     meta.respond(
