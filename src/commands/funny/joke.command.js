@@ -18,7 +18,9 @@ module.exports = new Command({
     }) // okay, so removing it completely or just "//"
       .then((userResponse) => {
         // if (listen(userResponse.first(), ['{yes}'])) {
-        if (userResponse.first().content.includes('yes')) {
+        if (
+          userResponse.first().content.match(/(yes| ye|sure|ofc|ok|yeah|mhm)/gi)
+        ) {
           request('https://icanhazdadjoke.com/', {
             headers: {
               Accept: 'application/json',
