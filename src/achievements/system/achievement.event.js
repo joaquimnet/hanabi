@@ -10,6 +10,7 @@ module.exports = new EventHandler({
         bot.users.cache.get(profile._id)?.tag ?? `(${profile._id})`
       } earned the ${achievement.displayName} achievement.`,
     );
+    // TODO: consider moving this into the achievements manager since it contains internals
     await Profile.updateOne(
       { _id: profile._id, 'achievements._id': achievement.flag },
       { 'achievements.$.completedAt': new Date() },
@@ -29,10 +30,38 @@ module.exports = new EventHandler({
           },
         })
         .catch(() => {
-          // TODO: Add achievement notification to the user.
+          return bot.notifications
+            .create(
+              new Notification({
+                title: achievement.displayName,
+                description: bot.lines(
+                  "You've unlocked an achievement!",
+                  '',
+                  '**Description**',
+                  achievement.description,
+                ),
+                thumbnail: 'https://i.imgur.com/Jj4obT3.png',
+                color: bot.colorInt('#debd18'),
+              }),
+            )
+            .catch((err) => bot.emit('error', err));
         });
     } else {
-      // TODO: Add achievement notification to the user.
+      bot.notifications
+        .create(
+          new Notification({
+            title: achievement.displayName,
+            description: bot.lines(
+              "You've unlocked an achievement!",
+              '',
+              '**Description**',
+              achievement.description,
+            ),
+            thumbnail: 'https://i.imgur.com/Jj4obT3.png',
+            color: bot.colorInt('#debd18'),
+          }),
+        )
+        .catch((err) => bot.emit('error', err));
     }
   },
 });

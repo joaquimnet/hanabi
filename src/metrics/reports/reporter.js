@@ -56,7 +56,7 @@ class Reporter {
       ),
     );
 
-    return result.map(row => row[0]);
+    return result.map((row) => row[0]);
   }
 }
 

@@ -79,14 +79,14 @@ module.exports = new Command({
       ].getByDate(timeRange);
 
       const isUser = type === 'user';
+      const cache = bot[isUser ? 'users' : 'guilds'].cache;
+      const nameField = isUser ? 'tag' : 'name';
 
       const info = {};
 
       commandAggregation.forEach((a) => {
         const name = bot.config.owners.includes(message.author.id)
-          ? bot[isUser ? 'users' : 'guilds'].cache.get(a._id)?.[
-              isUser ? 'tag' : 'name'
-            ] ?? '[not cached]'
+          ? cache.get(a._id)?.[nameField] ?? '[not cached]'
           : '[redacted]';
 
         info[a._id] = {
@@ -98,9 +98,7 @@ module.exports = new Command({
       });
       listenerAggregation.forEach((a) => {
         const name = bot.config.owners.includes(message.author.id)
-          ? bot[isUser ? 'users' : 'guilds'].cache.get(a._id)?.[
-              isUser ? 'tag' : 'name'
-            ] ?? '[not cached]'
+          ? cache.get(a._id)?.[nameField] ?? '[not cached]'
           : '[redacted]';
 
         if (info[a._id]) {

@@ -111,6 +111,15 @@ function attachUtilityToMeta(meta) {
   }
 }
 
+function sendNotifications(meta) {
+  const channel = meta.message.channel;
+  if (!channel) return;
+  if (!meta.commandName) return;
+  channel.client.notifications
+    .send(channel, meta.userId)
+    .catch((err) => channel.client.emit('error', err));
+}
+
 async function prefixChecker(bot, message) {
   const guildId = message.guild?.id;
   const settings = guildId ? await bot.getSettings(guildId) : undefined;
@@ -167,5 +176,6 @@ module.exports = {
   attachProfileToMeta,
   attachSettingsToMeta,
   attachUtilityToMeta,
+  sendNotifications,
   prefixChecker,
 };
