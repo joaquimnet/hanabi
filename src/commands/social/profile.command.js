@@ -14,7 +14,7 @@ module.exports = new Command({
     target: { type: 'string', optional: true },
   },
   delete: false,
-  hidden: false,
+  hidden: true,
   init(bot) {
     bot.buttons.set('follow_button', async (button) => {
       const idToFollow = button.message.embeds?.[0].footer.text;
