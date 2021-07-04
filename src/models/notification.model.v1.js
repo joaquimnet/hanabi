@@ -25,6 +25,7 @@ const schema = new Schema(
     },
     tags: { type: [String], default: [] },
     deleteAt: { type: Date },
+    ttl: { type: Date },
   },
   { timestamps: true },
 );

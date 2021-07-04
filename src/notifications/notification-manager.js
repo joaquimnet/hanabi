@@ -28,6 +28,7 @@ class NotificationManager {
       await NotificationModelV1.find({ userId }),
       GlobalNotificationModelV1.find({
         readBy: { $nin: userId },
+        ttl: { $gt: new Date() },
       }),
     ]);
 
@@ -71,13 +72,11 @@ class NotificationManager {
     for (const notification of notifications) {
       try {
         if (notification.thumbnail || notification.color) {
-          console.log('notification: ', notification);
           const embed = {
             ...notification.toObject(),
             thumbnail: { url: notification.thumbnail },
             image: { url: notification.image },
           };
-          console.log('embed: ', embed);
           await channel.send({ embed });
         } else {
           await channel.send(

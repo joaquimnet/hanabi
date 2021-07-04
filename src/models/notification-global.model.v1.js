@@ -25,6 +25,7 @@ const schema = new Schema(
     tags: { type: [String], default: [] },
     readBy: [{ type: String, ref: 'profile' }],
     deleteAt: { type: Date },
+    ttl: { type: Date, required: true },
   },
   { timestamps: true },
 );
