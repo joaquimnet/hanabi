@@ -36,6 +36,8 @@ const PHRASES = [
   "I'm as sharp as a ping pong ball.",
 ];
 
+const jackpots = new Map();
+
 module.exports = new Command({
   name: 'bet',
   description: 'Bet monies to get monies. Easy like that!',
@@ -44,9 +46,7 @@ module.exports = new Command({
   init(bot) {
     Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
       bot.buttons.set(betAmountType, async (button) => {
-        // console.log('button: ', button);
         await button.reply.send({
-          // ephemeral: true,
           embed: {
             title: `You're betting ¥${BET_AMOUNTS[betAmountType]}`,
             description: bot.lines(
@@ -90,14 +90,9 @@ module.exports = new Command({
         const reward = betAmount + Math.floor((2 - roll) * 20 * (i + 1));
         const jackpotReward = Math.floor((2 - roll) * 20 * (i + 1) * 69 * 0.8);
 
-        await button.message.channel.send(
-          giveReward
-            ? `Wooooooo! You won **¥${reward}**!`
-            : "You didn't win anything this time, maybe try again...? ;-;",
-        );
         await button.clicker.fetch();
         if (giveJackpot) {
-          button.message.channel.send({
+          const msg = await button.message.channel.send({
             embed: {
               title: 'YOU HIT THE JACKPOT!',
               author: {
@@ -121,12 +116,21 @@ module.exports = new Command({
               },
               color: bot.colorInt('#debd18'),
             },
+            component: new MessageButton()
+              .setStyle('green')
+              .setEmoji('👋')
+              .setLabel('YOINK')
+              .setID('JACKPOT_YOINK'),
           });
+          jackpots.set(msg.id, button.clicker.user.id);
         }
-        await Promise.all([
-          button.message.delete().catch(() => {}),
-          button.defer(),
-        ]);
+        await button.defer().catch(() => {});
+        await button.message.delete().catch(() => {});
+        await button.message.channel.send(
+          giveReward
+            ? `🎇 Wooooooo! You won **¥${reward}**!`
+            : "You didn't win anything this time, maybe try again...? ;-;",
+        );
         // TODO: Add generic metric.
       });
     });
@@ -150,6 +154,26 @@ module.exports = new Command({
           },
         });
       });
+    });
+
+    bot.buttons.set('JACKPOT_YOINK', async (button) => {
+      await button.clicker.fetch();
+
+      if (jackpots.get(button.message.id) === button.clicker.user.id) {
+        await button.reply.send("You can't yoink on your own jackpot!", true);
+        return;
+      }
+
+      await button.message.channel.send(
+        `✨ Niiiice! **${button.clicker.user.tag}** you yoinked **¥100** from that jackpot! :3`,
+      );
+
+      await button.message.edit(button.message.content, {
+        component: null,
+        embed: button.message.embeds?.[0],
+      });
+      jackpots.delete(button.message.id);
+      await button.defer();
     });
   },
   run(bot, message, ctx) {
@@ -187,7 +211,7 @@ module.exports = new Command({
           '',
           'You can bet [TO BE DECIDED] times per hour, choose wisely.',
           '',
-          "**BY THE WAY:** There is a chance for you to hit the jackpot and win 10x the reward (if you're lucky).",
+          "**BY THE WAY:** There is a chance for you to hit the jackpot and win 20x the reward (if you're lucky).",
           '',
           'Tip: You can use the **~remind** command to set a remind for when you next want to play. ;) [TODO: change ~ to the actual prefix]',
           '',
