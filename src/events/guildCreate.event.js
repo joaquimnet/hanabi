@@ -1,7 +1,6 @@
 const { EventHandler } = require('sensum');
 
 const { logger } = require('../modules');
-const { Alert } = require('../services');
 
 module.exports = new EventHandler({
   name: 'guildCreate',
@@ -17,9 +16,8 @@ module.exports = new EventHandler({
     // TODO: '' feel free to join my support server where you can interact with TBD
     // TODO: others & get real life updates in the server on Hana <33 @link goes here. TBD twitter/support links (dono page etcetera)
     // TODO: @hanani @hanabibot @hanabot @habambi @hibana @hanabi
-    Alert.send({
-      type: Alert.types.invited,
-      bot,
+    bot.alerts.sendSuccess({
+      type: 'Hanabi has been invited to a server!',
       message: `Hanabi joined a new server!\n**${guild.name}** (${guild.id})`,
       thumbnail: guild.iconURL(),
     });
