@@ -8,17 +8,17 @@ module.exports = new Command({
   hidden: true,
   runIn: ['guild', 'text', 'dm'],
   permission: Permission.BOT_ADMIN,
-  init(bot) {
-    bot.buttons.set('metric_yes', async (button) => {
-      await button.message.edit(button.message.content, {
-        component: null,
-        embed: button.message.embeds?.[0],
-      });
-    });
-    bot.buttons.set('metric_delete', async (button) => {
-      await button.message.delete();
-    });
-  },
+  // init(bot) {
+  //   bot.buttons.set('metric_yes', async (button) => {
+  //     await button.message.edit(button.message.content, {
+  //       component: null,
+  //       embed: button.message.embeds?.[0],
+  //     });
+  //   });
+  //   bot.buttons.set('metric_delete', async (button) => {
+  //     await button.message.delete();
+  //   });
+  // },
   async run(bot, message, ctx) {
     const button = new MessageButton()
       .setID(`metric_yes`)
