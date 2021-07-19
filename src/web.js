@@ -19,6 +19,7 @@ fastify.post('/vote', (req, res) => {
     return res.status(401).send({ error: 'unauthorized' });
   }
   bot.emit('vote', req.body);
+  res.status(200).send({ message: 'Done!' });
 });
 
 fastify.get('/bot/counts', (req, res) => {
