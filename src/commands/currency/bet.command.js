@@ -43,6 +43,7 @@ module.exports = new Command({
   description: 'Bet monies to get monies. Easy like that!',
   category: 'currency',
   aliases: ['gamble'],
+  hidden: true,
   init(bot) {
     Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
       bot.buttons.set(betAmountType, async (button) => {
