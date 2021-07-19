@@ -24,7 +24,7 @@ module.exports = new EventHandler({
     // nothing? 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
     try {
       const channel = guild.systemChannel;
-      await channel.send(message);
+      await channel.send(bot.lines(message));
     } catch (err) {
       // Couldn't message guild.
       logger.error(err);
