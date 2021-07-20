@@ -3,7 +3,7 @@ const { EventHandler } = require('sensum');
 module.exports = new EventHandler({
   name: 'messageDelete',
   run(bot, message) {
-    if (message.guild.id !== '750718685282566229') {
+    if (message.guild?.id !== '750718685282566229') {
       return;
     }
 
