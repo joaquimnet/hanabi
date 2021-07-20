@@ -1,5 +1,17 @@
 const { Command, TextHelpers } = require('sensum');
 const { MessageActionRow, MessageButton } = require('discord-buttons');
+const Time = require('../../services/time.service');
+
+const description = TextHelpers.lines(
+  'Welcome to the Flower Casino!',
+  "Bet your monies and try to get more monies. It's easy like that.",
+  '',
+  'You can only bet once an hour, choose wisely.',
+  '',
+  "**BY THE WAY:** There is a chance for you to hit the jackpot and win 20x the reward (if you're lucky).",
+  '',
+  'Tip: You can use the **~remind** if you have goldfish memory like me. 🐟',
+);
 
 const BET_AMOUNTS = {
   BET_10: 10,
@@ -43,10 +55,29 @@ module.exports = new Command({
   description: 'Bet monies to get monies. Easy like that!',
   category: 'currency',
   aliases: ['gamble'],
-  hidden: true,
   init(bot) {
     Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
       bot.buttons.set(betAmountType, async (button) => {
+        await button.clicker.fetch();
+        const profile = await getProfile(bot, button.clicker.user.id);
+        if (!profile) {
+          return;
+        }
+        const timeToNext = Time.moment(profile.bets.time)
+          .startOf('hour')
+          .add(1, 'hour');
+        const canBetAgain = Time.moment().isAfter(timeToNext);
+
+        if (!canBetAgain) {
+          await button.message.channel.send(
+            `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
+              `You'll be able to bet again **${Time.fromNow(
+                Math.abs(Time.moment().diff(timeToNext) / 1000),
+              )}**`,
+          );
+          await button.defer().catch(() => {});
+          return;
+        }
         await button.reply.send({
           embed: {
             title: `You're betting ¥${BET_AMOUNTS[betAmountType]}`,
@@ -80,6 +111,27 @@ module.exports = new Command({
 
     Object.keys(BET_AMOUNTS).forEach((betAmountType, i) => {
       bot.buttons.set('FINISH_' + betAmountType, async (button) => {
+        await button.clicker.fetch();
+        const profile = await getProfile(bot, button.clicker.user.id);
+        if (!profile) {
+          return;
+        }
+        const timeToNext = Time.moment(profile.bets.time)
+          .startOf('hour')
+          .add(1, 'hour');
+        const canBetAgain = Time.moment().isAfter(timeToNext);
+
+        if (!canBetAgain) {
+          await button.message.channel.send(
+            `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
+              `You'll be able to bet again **${Time.fromNow(
+                Math.abs(Time.moment().diff(timeToNext) / 1000),
+              )}**`,
+          );
+          await button.defer().catch(() => {});
+          return;
+        }
+
         const betAmount = BET_AMOUNTS[betAmountType];
 
         const jackpotRoll = Math.random() + Math.random();
@@ -91,7 +143,6 @@ module.exports = new Command({
         const reward = betAmount + Math.floor((2 - roll) * 20 * (i + 1));
         const jackpotReward = Math.floor((2 - roll) * 20 * (i + 1) * 69 * 0.8);
 
-        await button.clicker.fetch();
         if (giveJackpot) {
           const msg = await button.message.channel.send({
             embed: {
@@ -123,15 +174,24 @@ module.exports = new Command({
               .setLabel('YOINK')
               .setID('JACKPOT_YOINK'),
           });
+          await giveMoney(bot, button.clicker.user.id, jackpotReward);
           jackpots.set(msg.id, button.clicker.user.id);
         }
         await button.defer().catch(() => {});
         await button.message.delete().catch(() => {});
-        await button.message.channel.send(
-          giveReward
-            ? `🎇 Wooooooo! You won **¥${reward}**!`
-            : "You didn't win anything this time, maybe try again...? ;-;",
-        );
+        if (giveReward) {
+          await button.message.channel.send(
+            `🎇 Wooooooo! You won **¥${reward}**!`,
+          );
+          await giveMoney(bot, button.clicker.user.id, reward);
+        } else {
+          await giveMoney(bot, button.clicker.user.id, -betAmount);
+          await button.message.channel.send(
+            "You didn't win anything this time, maybe try again...? ;-;",
+          );
+        }
+        profile.bets.time = new Date();
+        await profile.save();
         // TODO: Add generic metric.
       });
     });
@@ -165,15 +225,21 @@ module.exports = new Command({
         return;
       }
 
-      await button.message.channel.send(
-        `✨ Niiiice! **${button.clicker.user.tag}** you yoinked **¥100** from that jackpot! :3`,
-      );
+      await button.message
+        .edit(button.message.content, {
+          component: null,
+          embed: button.message.embeds?.[0],
+        })
+        .catch(() => {});
 
-      await button.message.edit(button.message.content, {
-        component: null,
-        embed: button.message.embeds?.[0],
-      });
+      await button.message.channel
+        .send(
+          `✨ Niiiice! **${button.clicker.user.tag}** you yoinked **¥100** from that jackpot! :3`,
+        )
+        .catch(() => {});
+
       jackpots.delete(button.message.id);
+      await giveMoney(bot, button.clicker.user.id, 100);
       await button.defer();
     });
   },
@@ -191,33 +257,22 @@ module.exports = new Command({
         .setLabel(label)
         .setStyle('blurple'),
     );
-    const buttonRow2 = [
-      { emoji: '📃', label: 'See Rules', id: 'BET_RULES' },
-      { emoji: '📄', label: 'See My History', id: 'BET_HISTORY' },
-      { emoji: '🥇', label: 'See My Stats', id: 'BET_STATS' },
-    ].map(({ emoji, label, id }) =>
-      new MessageButton()
-        .setEmoji(emoji)
-        .setID(id)
-        .setLabel(label)
-        .setStyle('gray'),
-    );
+    // const buttonRow2 = [
+    //   { emoji: '📃', label: 'See Rules', id: 'BET_RULES' },
+    //   { emoji: '📄', label: 'See My History', id: 'BET_HISTORY' },
+    //   { emoji: '🥇', label: 'See My Stats', id: 'BET_STATS' },
+    // ].map(({ emoji, label, id }) =>
+    //   new MessageButton()
+    //     .setEmoji(emoji)
+    //     .setID(id)
+    //     .setLabel(label)
+    //     .setStyle('gray'),
+    // );
 
     this.send({
       embed: {
         title: 'Flower Casino',
-        description: bot.lines(
-          'Welcome to the Flower Casino!',
-          "Bet your monies and try to get more monies. It's easy like that.",
-          '',
-          'You can bet [TO BE DECIDED] times per hour, choose wisely.',
-          '',
-          "**BY THE WAY:** There is a chance for you to hit the jackpot and win 20x the reward (if you're lucky).",
-          '',
-          'Tip: You can use the **~remind** command to set a remind for when you next want to play. ;) [TODO: change ~ to the actual prefix]',
-          '',
-          '**ATTENTION:** This command is not yet functional.',
-        ),
+        description,
         thumbnail: {
           url: 'https://i.imgur.com/3y7lKq8.png',
         },
@@ -225,8 +280,19 @@ module.exports = new Command({
       },
       components: [
         new MessageActionRow().addComponents(buttonRow1),
-        new MessageActionRow().addComponents(buttonRow2),
+        // new MessageActionRow().addComponents(buttonRow2),
       ],
     });
   },
 });
+
+async function giveMoney(bot, userId, amount) {
+  const profile = await bot.getProfile(userId).catch(() => {});
+  if (profile) {
+    await profile.giveMoney(bot, amount).catch(() => {});
+  }
+}
+
+function getProfile(bot, userId) {
+  return bot.getProfile(userId).catch(() => {});
+}

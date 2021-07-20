@@ -16,6 +16,10 @@ const profileSchema = new Schema(
       count: { type: Number, default: 0 },
       time: { type: Date, default: new Date('1970-01-01') },
     },
+    bets: {
+      // count: { type: Number, default: 0 },
+      time: { type: Date, default: new Date('1970-01-01') },
+    },
     money: {
       type: Number,
       required: true,
@@ -86,7 +90,7 @@ profileSchema.methods.setMoney = async function (bot, amount) {
 };
 
 profileSchema.methods.giveMoney = async function (bot, amount) {
-  const newAmount = this.money + Math.floor(Math.abs(amount));
+  const newAmount = this.money + Math.floor(amount);
   await mongoose
     .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: newAmount });
@@ -94,7 +98,7 @@ profileSchema.methods.giveMoney = async function (bot, amount) {
 };
 
 profileSchema.methods.takeMoney = async function (bot, amount) {
-  const newAmount = this.money - Math.floor(Math.abs(amount));
+  const newAmount = this.money - Math.floor(amount);
   await mongoose
     .model('profile', profileSchema)
     .updateOne({ _id: this._id }, { money: newAmount < 0 ? 0 : newAmount });
