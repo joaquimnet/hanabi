@@ -55,10 +55,12 @@ module.exports = new Command({
             fields: [
               { name: 'Command Usages', ...commandAggregation },
               { name: 'Listener Usages', ...listenerAggregation },
-            ].map(({ name, count }) => ({
-              name,
-              value: count,
-            })),
+            ]
+              .map(({ name, count }) => ({
+                name,
+                value: count,
+              }))
+              .slice(0, 10),
             color: bot.colorInt('#f0b7d3'),
             thumbnail: {
               url: 'https://i.imgur.com/3y7lKq8.png',
@@ -120,13 +122,15 @@ module.exports = new Command({
               ? 'today'
               : 'this ' + ctx.args.timeRange
           }.`,
-          fields: Object.values(info).map((stats) => ({
-            name: stats.name,
-            value: bot.lines(
-              `Interacted with Hanabi ${stats.commandUses} times.`,
-              `Talked to Hanabi ${stats.listenerUses} times.`,
-            ),
-          })),
+          fields: Object.values(info)
+            .map((stats) => ({
+              name: stats.name,
+              value: bot.lines(
+                `Interacted with Hanabi ${stats.commandUses} times.`,
+                `Talked to Hanabi ${stats.listenerUses} times.`,
+              ),
+            }))
+            .slice(0, 10),
           color: bot.colorInt('#f0b7d3'),
           thumbnail: {
             url: 'https://i.imgur.com/3y7lKq8.png',
