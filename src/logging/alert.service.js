@@ -28,6 +28,10 @@ class Alert {
     return this._sendAlert(title, message, thumbnail, 'danger');
   }
 
+  sendError(...args) {
+    return this.sendDanger(...args);
+  }
+
   async _sendAlert(title, message, thumbnail, level) {
     const alert = new AlertModelV1({
       title,

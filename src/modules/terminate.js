@@ -15,9 +15,9 @@ const terminate = (type, bot) => {
           .sendError({
             title: 'Fatal error! Hanabi is restarting...',
             message:
-              '```' +
-              JSON.stringify({ err, env: process.env.NODE_ENV }, null, 2) +
-              '```',
+              `**${err.message ?? err}**\n\nenv: ${process.env.NODE_ENV}\n\n` +
+                '```\n' +
+                err.stack ?? null + '```',
             thumbnail:
               'https://img.freepik.com/free-vector/warning-sign-black-background_97458-374.jpg?size=626&ext=jpg',
           })
