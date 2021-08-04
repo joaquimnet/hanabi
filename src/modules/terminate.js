@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const logger = require('./logger');
 
+// TODO: remove "Invalid MessageComponentType"
+
 const terminate = (type, bot) => {
   const exit = (code = 0) => {
     process.exit(code);
@@ -9,10 +11,13 @@ const terminate = (type, bot) => {
   switch (type) {
     case 'exception':
       return (err) => {
+        if (err.message?.test(/Invalid MessageComponentType/)) {
+          return;
+        }
         logger.error('An uncaught exception ocurred. Terminating...');
         logger.error(err);
         bot.alerts
-          .sendError({
+          .sendDanger({
             title: 'Fatal error! Hanabi is restarting...',
             message:
               `**${err.message ?? err}**\n\nenv: ${process.env.NODE_ENV}\n\n` +
@@ -26,17 +31,21 @@ const terminate = (type, bot) => {
             mongoose.disconnect();
             exit(1);
           })
-          .catch(() => {
+          .catch((err) => {
+            logger.error(err);
             exit(1);
           });
       };
     case 'rejection':
       return (reason, promise) => {
+        if (reason.test?.(/Invalid MessageComponentType/)) {
+          return;
+        }
         logger.error('A promise rejected without a catch.');
         logger.error(reason);
         logger.error(promise);
         bot.alerts
-          .sendError({
+          .sendDanger({
             title: 'Fatal error! Hanabi is restarting...',
             message:
               '```' +
@@ -54,7 +63,8 @@ const terminate = (type, bot) => {
             mongoose.disconnect();
             exit(1);
           })
-          .catch(() => {
+          .catch((err) => {
+            logger.error(err);
             exit(1);
           });
       };
@@ -63,7 +73,7 @@ const terminate = (type, bot) => {
         logger.error('Failed to connect to database. Terminating...');
         logger.error(err);
         bot.alerts
-          .sendError({
+          .sendDanger({
             title: 'Could not connect to database...',
             message:
               '```' +
