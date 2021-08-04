@@ -39,6 +39,7 @@
     "human-to-cron": "^0.3.1",
     "humanize-duration": "^3.27.0",
     "lodash.merge": "^4.6.2",
+    "long": "^4.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.14",
