@@ -1,4 +1,5 @@
 const { EventHandler } = require('sensum');
+const Long = require('long');
 
 const { logger } = require('../modules');
 
@@ -23,8 +24,10 @@ module.exports = new EventHandler({
     });
     // nothing? 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
     try {
-      const channel = guild.systemChannel;
-      await channel.send(bot.lines(message));
+      const channel = getDefaultChannel(guild);
+      if (channel) {
+        await channel.send(bot.lines(message));
+      }
     } catch (err) {
       // Couldn't message guild.
       logger.error(err);
@@ -32,3 +35,29 @@ module.exports = new EventHandler({
   },
 });
 // testing time!
+
+function getDefaultChannel(guild) {
+  // get "original" default channel
+  if (guild.channels.cache.has(guild.id))
+    return guild.channels.cache.get(guild.id);
+
+  // Check for a "general" channel, which is often default chat
+  const generalChannel = guild.channels.cache.find(
+    (channel) => channel.name === 'general',
+  );
+  if (generalChannel) return generalChannel;
+  // Now we get into the heavy stuff: first channel in order where the bot can speak
+  // hold on to your hats!
+  return guild.channels.cache
+    .filter(
+      (c) =>
+        c.type === 'text' &&
+        c.permissionsFor(guild.client.user).has('SEND_MESSAGES'),
+    )
+    .sort(
+      (a, b) =>
+        a.position - b.position ||
+        Long.fromString(a.id).sub(Long.fromString(b.id)).toNumber(),
+    )
+    .first();
+}
