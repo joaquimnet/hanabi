@@ -75,7 +75,7 @@ module.exports = new Command({
                 Math.abs(Time.moment().diff(timeToNext) / 1000),
               )}**`,
           );
-          await button.defer().catch(() => {});
+          await button.reply.defer().catch(() => {});
           return;
         }
         await button.reply.send({
@@ -128,7 +128,7 @@ module.exports = new Command({
                 Math.abs(Time.moment().diff(timeToNext) / 1000),
               )}**`,
           );
-          await button.defer().catch(() => {});
+          await button.reply.defer().catch(() => {});
           return;
         }
 
@@ -177,7 +177,7 @@ module.exports = new Command({
           await giveMoney(bot, button.clicker.user.id, jackpotReward);
           jackpots.set(msg.id, button.clicker.user.id);
         }
-        await button.defer().catch(() => {});
+        await button.reply.defer().catch(() => {});
         await button.message.delete().catch(() => {});
         if (giveReward) {
           await button.message.channel.send(
@@ -240,7 +240,7 @@ module.exports = new Command({
 
       jackpots.delete(button.message.id);
       await giveMoney(bot, button.clicker.user.id, 100);
-      await button.defer();
+      await button.reply.defer();
     });
   },
   run(bot, message, ctx) {

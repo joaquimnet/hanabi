@@ -31,7 +31,7 @@
     "chop-prompter": "github:Chop-Bot/chop-prompter",
     "chrono-node": "^2.3.0",
     "cronstrue": "^1.114.0",
-    "discord-buttons": "^3.2.1",
+    "discord-buttons": "^4.0.0",
     "discord.js": "^12.5.3",
     "fastify": "^3.18.0",
     "glob": "^7.1.7",
