@@ -11,7 +11,7 @@ const terminate = (type, bot) => {
   switch (type) {
     case 'exception':
       return (err) => {
-        if (err.message?.test(/Invalid MessageComponentType/)) {
+        if (err.message?.test?.(/Invalid MessageComponentType/)) {
           return;
         }
         logger.error('An uncaught exception ocurred. Terminating...');
