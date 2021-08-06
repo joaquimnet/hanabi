@@ -7,7 +7,7 @@ module.exports = new Listener({
   globalCooldown: 6000,
   priority: 0,
   run(bot, message, meta) {
-    meta.respond('Take a nap then, silly.:sleeping::orange_heart:');
+    this.send(bot.brain.think('Sleepy'));
     return true;
   },
 });
