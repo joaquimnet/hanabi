@@ -56,194 +56,194 @@ module.exports = new Command({
   description: 'Bet monies to get monies. Easy like that!',
   category: 'currency',
   aliases: ['gamble'],
-  init(bot) {
-    Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
-      bot.buttons.set(betAmountType, async (button) => {
-        await button.clicker.fetch();
-        const profile = await getProfile(bot, button.clicker.user.id);
-        if (!profile) {
-          return;
-        }
-        const timeToNext = Time.moment(profile.bets.time)
-          .startOf('hour')
-          .add(1, 'hour');
-        const canBetAgain = Time.moment().isAfter(timeToNext);
+  // init(bot) {
+  //   Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
+  //     bot.buttons.set(betAmountType, async (button) => {
+  //       await button.clicker.fetch();
+  //       const profile = await getProfile(bot, button.clicker.user.id);
+  //       if (!profile) {
+  //         return;
+  //       }
+  //       const timeToNext = Time.moment(profile.bets.time)
+  //         .startOf('hour')
+  //         .add(1, 'hour');
+  //       const canBetAgain = Time.moment().isAfter(timeToNext);
 
-        if (!canBetAgain) {
-          await button.message.channel.send(
-            `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
-              `You'll be able to bet again **${Time.fromNow(
-                Math.abs(Time.moment().diff(timeToNext) / 1000),
-              )}**`,
-          );
-          await button.reply.defer().catch(() => {});
-          return;
-        }
-        await button.reply.send({
-          embed: {
-            title: `You're betting ¥${BET_AMOUNTS[betAmountType]}`,
-            description: bot.lines(
-              PHRASES[Math.floor(Math.random() * PHRASES.length)],
-              '',
-              'What will you choose?',
-            ),
-            color: bot.colorInt('#f0b7d3'),
-            thumbnail: {
-              url: 'https://i.imgur.com/3y7lKq8.png',
-            },
-          },
-          component: new MessageActionRow().addComponents([
-            new MessageButton()
-              .setStyle('blurple')
-              .setEmoji('💮')
-              .setID('FINISH_' + betAmountType),
-            new MessageButton()
-              .setStyle('blurple')
-              .setEmoji('🎆')
-              .setID('FINISH_' + betAmountType),
-            new MessageButton()
-              .setStyle('blurple')
-              .setEmoji('⏱️')
-              .setID('FINISH_' + betAmountType),
-          ]),
-        });
-      });
-    });
+  //       if (!canBetAgain) {
+  //         await button.message.channel.send(
+  //           `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
+  //             `You'll be able to bet again **${Time.fromNow(
+  //               Math.abs(Time.moment().diff(timeToNext) / 1000),
+  //             )}**`,
+  //         );
+  //         await button.reply.defer().catch(() => {});
+  //         return;
+  //       }
+  //       await button.reply.send({
+  //         embed: {
+  //           title: `You're betting ¥${BET_AMOUNTS[betAmountType]}`,
+  //           description: bot.lines(
+  //             PHRASES[Math.floor(Math.random() * PHRASES.length)],
+  //             '',
+  //             'What will you choose?',
+  //           ),
+  //           color: bot.colorInt('#f0b7d3'),
+  //           thumbnail: {
+  //             url: 'https://i.imgur.com/3y7lKq8.png',
+  //           },
+  //         },
+  //         component: new MessageActionRow().addComponents([
+  //           new MessageButton()
+  //             .setStyle('blurple')
+  //             .setEmoji('💮')
+  //             .setID('FINISH_' + betAmountType),
+  //           new MessageButton()
+  //             .setStyle('blurple')
+  //             .setEmoji('🎆')
+  //             .setID('FINISH_' + betAmountType),
+  //           new MessageButton()
+  //             .setStyle('blurple')
+  //             .setEmoji('⏱️')
+  //             .setID('FINISH_' + betAmountType),
+  //         ]),
+  //       });
+  //     });
+  //   });
 
-    Object.keys(BET_AMOUNTS).forEach((betAmountType, i) => {
-      bot.buttons.set('FINISH_' + betAmountType, async (button) => {
-        await button.clicker.fetch();
-        const profile = await getProfile(bot, button.clicker.user.id);
-        if (!profile) {
-          return;
-        }
-        const timeToNext = Time.moment(profile.bets.time)
-          .startOf('hour')
-          .add(1, 'hour');
-        const canBetAgain = Time.moment().isAfter(timeToNext);
+  //   Object.keys(BET_AMOUNTS).forEach((betAmountType, i) => {
+  //     bot.buttons.set('FINISH_' + betAmountType, async (button) => {
+  //       await button.clicker.fetch();
+  //       const profile = await getProfile(bot, button.clicker.user.id);
+  //       if (!profile) {
+  //         return;
+  //       }
+  //       const timeToNext = Time.moment(profile.bets.time)
+  //         .startOf('hour')
+  //         .add(1, 'hour');
+  //       const canBetAgain = Time.moment().isAfter(timeToNext);
 
-        if (!canBetAgain) {
-          await button.message.channel.send(
-            `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
-              `You'll be able to bet again **${Time.fromNow(
-                Math.abs(Time.moment().diff(timeToNext) / 1000),
-              )}**`,
-          );
-          await button.reply.defer().catch(() => {});
-          return;
-        }
+  //       if (!canBetAgain) {
+  //         await button.message.channel.send(
+  //           `${button.clicker.user.username}, you can only bet once an hour. :c\n` +
+  //             `You'll be able to bet again **${Time.fromNow(
+  //               Math.abs(Time.moment().diff(timeToNext) / 1000),
+  //             )}**`,
+  //         );
+  //         await button.reply.defer().catch(() => {});
+  //         return;
+  //       }
 
-        const betAmount = BET_AMOUNTS[betAmountType];
+  //       const betAmount = BET_AMOUNTS[betAmountType];
 
-        const jackpotRoll = Math.random() + Math.random();
-        const roll = Math.random() - i / 20;
+  //       const jackpotRoll = Math.random() + Math.random();
+  //       const roll = Math.random() - i / 20;
 
-        const giveReward = roll >= 0.3;
-        const giveJackpot = jackpotRoll >= 1.6;
+  //       const giveReward = roll >= 0.3;
+  //       const giveJackpot = jackpotRoll >= 1.6;
 
-        const reward = betAmount + Math.floor((2 - roll) * 20 * (i + 1));
-        const jackpotReward = Math.floor((2 - roll) * 20 * (i + 1) * 69 * 0.8);
+  //       const reward = betAmount + Math.floor((2 - roll) * 20 * (i + 1));
+  //       const jackpotReward = Math.floor((2 - roll) * 20 * (i + 1) * 69 * 0.8);
 
-        if (giveJackpot) {
-          const msg = await button.message.channel.send({
-            embed: {
-              title: 'YOU HIT THE JACKPOT!',
-              author: {
-                name: button.clicker.user.tag,
-                iconURL: button.clicker.user.avatarURL(),
-              },
-              description: `Congratulations, ${button.clicker.user.tag}! You hit the jackpot, so lucky!`,
-              fields: [
-                { name: 'You Bet', value: `¥${betAmount}`, inline: true },
-                {
-                  name: 'Your Prize',
-                  value: `¥${jackpotReward}`,
-                  inline: true,
-                },
-              ],
-              thumbnail: {
-                url: 'https://i.imgur.com/3y7lKq8.png',
-              },
-              image: {
-                url: 'https://media1.tenor.com/images/7b2c11edf651bb1329f4555642545d00/tenor.gif?itemid=11773610',
-              },
-              color: bot.colorInt('#debd18'),
-            },
-            component: new MessageButton()
-              .setStyle('green')
-              .setEmoji('👋')
-              .setLabel('YOINK')
-              .setID('JACKPOT_YOINK'),
-          });
-          await giveMoney(bot, button.clicker.user.id, jackpotReward);
-          jackpots.set(msg.id, button.clicker.user.id);
-        }
-        await button.reply.defer().catch(() => {});
-        await button.message.delete().catch(() => {});
-        if (giveReward) {
-          await button.message.channel.send(
-            `🎇 Wooooooo! You won **¥${reward}**!`,
-          );
-          await giveMoney(bot, button.clicker.user.id, reward);
-        } else {
-          await giveMoney(bot, button.clicker.user.id, -betAmount);
-          await button.message.channel.send(
-            "You didn't win anything this time, maybe try again...? ;-;",
-          );
-        }
-        profile.bets.time = new Date();
-        await profile.save();
-        // TODO: Add generic metric.
-      });
-    });
+  //       if (giveJackpot) {
+  //         const msg = await button.message.channel.send({
+  //           embed: {
+  //             title: 'YOU HIT THE JACKPOT!',
+  //             author: {
+  //               name: button.clicker.user.tag,
+  //               iconURL: button.clicker.user.avatarURL(),
+  //             },
+  //             description: `Congratulations, ${button.clicker.user.tag}! You hit the jackpot, so lucky!`,
+  //             fields: [
+  //               { name: 'You Bet', value: `¥${betAmount}`, inline: true },
+  //               {
+  //                 name: 'Your Prize',
+  //                 value: `¥${jackpotReward}`,
+  //                 inline: true,
+  //               },
+  //             ],
+  //             thumbnail: {
+  //               url: 'https://i.imgur.com/3y7lKq8.png',
+  //             },
+  //             image: {
+  //               url: 'https://media1.tenor.com/images/7b2c11edf651bb1329f4555642545d00/tenor.gif?itemid=11773610',
+  //             },
+  //             color: bot.colorInt('#debd18'),
+  //           },
+  //           component: new MessageButton()
+  //             .setStyle('green')
+  //             .setEmoji('👋')
+  //             .setLabel('YOINK')
+  //             .setID('JACKPOT_YOINK'),
+  //         });
+  //         await giveMoney(bot, button.clicker.user.id, jackpotReward);
+  //         jackpots.set(msg.id, button.clicker.user.id);
+  //       }
+  //       await button.reply.defer().catch(() => {});
+  //       await button.message.delete().catch(() => {});
+  //       if (giveReward) {
+  //         await button.message.channel.send(
+  //           `🎇 Wooooooo! You won **¥${reward}**!`,
+  //         );
+  //         await giveMoney(bot, button.clicker.user.id, reward);
+  //       } else {
+  //         await giveMoney(bot, button.clicker.user.id, -betAmount);
+  //         await button.message.channel.send(
+  //           "You didn't win anything this time, maybe try again...? ;-;",
+  //         );
+  //       }
+  //       profile.bets.time = new Date();
+  //       await profile.save();
+  //       // TODO: Add generic metric.
+  //     });
+  //   });
 
-    Object.keys(BET_MESSAGES).forEach((messageType) => {
-      bot.buttons.set(messageType, async (button) => {
-        await button.clicker.fetch();
+  //   Object.keys(BET_MESSAGES).forEach((messageType) => {
+  //     bot.buttons.set(messageType, async (button) => {
+  //       await button.clicker.fetch();
 
-        await button.reply.send({
-          ephemeral: true,
-          embed: {
-            description: BET_MESSAGES[messageType],
-            author: {
-              name: button.clicker.nickname ?? button.clicker.user.tag,
-              iconURL: button.clicker.user.avatarURL(),
-            },
-            thumbnail: {
-              url: 'https://i.imgur.com/3y7lKq8.png',
-            },
-            color: bot.colorInt('#f0b7d3'),
-          },
-        });
-      });
-    });
+  //       await button.reply.send({
+  //         ephemeral: true,
+  //         embed: {
+  //           description: BET_MESSAGES[messageType],
+  //           author: {
+  //             name: button.clicker.nickname ?? button.clicker.user.tag,
+  //             iconURL: button.clicker.user.avatarURL(),
+  //           },
+  //           thumbnail: {
+  //             url: 'https://i.imgur.com/3y7lKq8.png',
+  //           },
+  //           color: bot.colorInt('#f0b7d3'),
+  //         },
+  //       });
+  //     });
+  //   });
 
-    bot.buttons.set('JACKPOT_YOINK', async (button) => {
-      await button.clicker.fetch();
+  //   bot.buttons.set('JACKPOT_YOINK', async (button) => {
+  //     await button.clicker.fetch();
 
-      if (jackpots.get(button.message.id) === button.clicker.user.id) {
-        await button.reply.send("You can't yoink on your own jackpot!", true);
-        return;
-      }
+  //     if (jackpots.get(button.message.id) === button.clicker.user.id) {
+  //       await button.reply.send("You can't yoink on your own jackpot!", true);
+  //       return;
+  //     }
 
-      await button.message
-        .edit(button.message.content, {
-          component: null,
-          embed: button.message.embeds?.[0],
-        })
-        .catch(() => {});
+  //     await button.message
+  //       .edit(button.message.content, {
+  //         component: null,
+  //         embed: button.message.embeds?.[0],
+  //       })
+  //       .catch(() => {});
 
-      await button.message.channel
-        .send(
-          `✨ Niiiice! **${button.clicker.user.tag}** you yoinked **¥100** from that jackpot! :3`,
-        )
-        .catch(() => {});
+  //     await button.message.channel
+  //       .send(
+  //         `✨ Niiiice! **${button.clicker.user.tag}** you yoinked **¥100** from that jackpot! :3`,
+  //       )
+  //       .catch(() => {});
 
-      jackpots.delete(button.message.id);
-      await giveMoney(bot, button.clicker.user.id, 100);
-      await button.reply.defer();
-    });
-  },
+  //     jackpots.delete(button.message.id);
+  //     await giveMoney(bot, button.clicker.user.id, 100);
+  //     await button.reply.defer();
+  //   });
+  // },
   run(bot, message, ctx) {
     this.send('Bet machine broke, trying to fix it... :sob:');
     return;
