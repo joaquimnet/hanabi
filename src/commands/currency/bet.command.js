@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 const { Command, TextHelpers } = require('sensum');
 const { MessageActionRow, MessageButton } = require('discord-buttons');
 const Time = require('../../services/time.service');
@@ -244,6 +245,8 @@ module.exports = new Command({
     });
   },
   run(bot, message, ctx) {
+    this.send('Bet machine broke, trying to fix it... :sob:');
+    return;
     const buttonRow1 = [
       { emoji: '🪙', label: 'Bet ¥10', id: 'BET_10' },
       { emoji: '💵', label: 'Bet ¥50', id: 'BET_50' },
