@@ -29,39 +29,40 @@ module.exports = new EventHandler({
             color: bot.colorInt('#debd18'),
           },
         })
-        .catch(() => {
-          return bot.notifications
-            .create(
-              new Notification({
-                title: achievement.displayName,
-                description: bot.lines(
-                  "You've unlocked an achievement!",
-                  '',
-                  '**Description**',
-                  achievement.description,
-                ),
-                thumbnail: 'https://i.imgur.com/Jj4obT3.png',
-                color: bot.colorInt('#debd18'),
-              }),
-            )
-            .catch((err) => bot.emit('error', err));
+        .catch((err) => {
+          bot.emit('error', err);
+          // return bot.notifications
+          //   .create(
+          //     new Notification({
+          //       title: achievement.displayName,
+          //       description: bot.lines(
+          //         "You've unlocked an achievement!",
+          //         '',
+          //         '**Description**',
+          //         achievement.description,
+          //       ),
+          //       thumbnail: 'https://i.imgur.com/Jj4obT3.png',
+          //       color: bot.colorInt('#debd18'),
+          //     }),
+          //   )
+          //   .catch((err) => bot.emit('error', err));
         });
     } else {
-      bot.notifications
-        .create(
-          new Notification({
-            title: achievement.displayName,
-            description: bot.lines(
-              "You've unlocked an achievement!",
-              '',
-              '**Description**',
-              achievement.description,
-            ),
-            thumbnail: 'https://i.imgur.com/Jj4obT3.png',
-            color: bot.colorInt('#debd18'),
-          }),
-        )
-        .catch((err) => bot.emit('error', err));
+      // bot.notifications
+      //   // .create(
+      //   //   new Notification({
+      //   //     title: achievement.displayName,
+      //   //     description: bot.lines(
+      //   //       "You've unlocked an achievement!",
+      //   //       '',
+      //   //       '**Description**',
+      //   //       achievement.description,
+      //   //     ),
+      //   //     thumbnail: 'https://i.imgur.com/Jj4obT3.png',
+      //   //     color: bot.colorInt('#debd18'),
+      //   //   }),
+      //   // )
+      //   // .catch((err) => bot.emit('error', err));
     }
   },
 });

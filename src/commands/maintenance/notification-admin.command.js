@@ -4,13 +4,15 @@ const Notification = require('../../notifications/notification');
 
 module.exports = new Command({
   name: 'notification-admin',
-  description: 'COmmand to test notifications.',
+  description: 'Command to test notifications.',
   category: 'maintenance',
   aliases: ['nadmin'],
   args: {
     operation: 'string',
     userId: 'string',
-    color: { type: 'string', optional: true },
+    image: { type: 'string', optional: true },
+    sendAt: { type: 'date', convert: true, optional: true },
+    expireAt: { type: 'date', convert: true, optional: true },
   },
   delete: false,
   hidden: true,
@@ -27,7 +29,7 @@ module.exports = new Command({
     if (ctx.args.operation === 'consume') {
       const notification = await bot.notifications.consume(ctx.args.userId);
       this.send(
-        bot.lines('```json', JSON.stringify(notification, null, 2), '```'),
+        bot.lines('```json\n', JSON.stringify(notification, null, 2), '```'),
       );
       return;
     }
@@ -36,13 +38,12 @@ module.exports = new Command({
       const notification = await bot.notifications.create(
         new Notification({
           userId: ctx.args.userId,
-          title: 'Test notification',
-          description: ctx.content,
-          color: ctx.args.color ? bot.colorInt(ctx.args.color) : undefined,
-          tags: ['test'],
+          image: ctx.args.image,
+          sendAt: ctx.args.sendAt,
+          expireAt: ctx.args.expireAt,
         }),
       );
-      this.send(
+      await this.send(
         bot.lines('```json', JSON.stringify(notification, null, 2), '```'),
       );
       return;

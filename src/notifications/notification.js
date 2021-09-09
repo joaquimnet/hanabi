@@ -1,25 +1,11 @@
 class Notification {
-  constructor({
-    userId,
-    title = 'New Notification',
-    description = 'This is a new notification.',
-    thumbnail = undefined,
-    image = undefined,
-    color,
-    tags = [],
-    deleteAt,
-  }) {
+  constructor({ userId, image, expireAt, sendAt }) {
     if (!userId) throw new Error('Notifications require a userId.');
-    if (!title) throw new Error('Notifications require a title.');
-    if (!description) throw new Error('Notifications require a description.');
+    if (!image) throw new Error('Notifications require a image.');
     this.userId = userId;
-    this.title = title;
-    this.description = description;
-    this.thumbnail = thumbnail;
     this.image = image;
-    this.color = color;
-    this.tags = tags;
-    this.deleteAt = deleteAt;
+    this.expireAt = expireAt;
+    this.sendAt = sendAt;
   }
 }
 
