@@ -56,7 +56,7 @@ fastify.get('/bot/usage', async (req, res) => {
     ListenerUsageMetricV1Model,
   ]);
   const [commandAggregation, listenerAggregation] =
-    await reporter.countTotalEvents();
+    await reporter.countTotalEvents('month');
 
   res.send({
     commands: commandAggregation.count,
