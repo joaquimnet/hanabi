@@ -57,4 +57,6 @@ class Time {
   }
 }
 
+Time.moment = moment;
+
 module.exports = Time;
