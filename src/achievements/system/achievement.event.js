@@ -5,16 +5,21 @@ const Profile = require('../../models/profile');
 module.exports = new EventHandler({
   name: 'achievement',
   async run(bot, { profile, achievement, channel }) {
+    const user = bot.users.cache.get(profile._id);
     bot.logger.info(
-      `${
-        bot.users.cache.get(profile._id)?.tag ?? `(${profile._id})`
-      } earned the ${achievement.displayName} achievement.`,
+      `${user?.tag ?? `(${profile._id})`} earned the ${
+        achievement.displayName
+      } achievement.`,
     );
     // TODO: consider moving this into the achievements manager since it contains internals
     await Profile.updateOne(
       { _id: profile._id, 'achievements._id': achievement.flag },
       { 'achievements.$.completedAt': new Date() },
     );
+    bot.saveMetric('achievement', {
+      userId: profile._id,
+      achievement: achievement.flag,
+    });
 
     if (channel) {
       await channel
@@ -25,6 +30,10 @@ module.exports = new EventHandler({
             fields: [{ name: 'Description', value: achievement.description }],
             thumbnail: {
               url: 'https://i.imgur.com/Jj4obT3.png',
+            },
+            author: {
+              iconURL: user?.avatarURL(),
+              name: 'Achievement Unlocked',
             },
             color: bot.colorInt('#debd18'),
           },
