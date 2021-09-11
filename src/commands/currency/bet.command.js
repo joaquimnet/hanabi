@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 const { Command, TextHelpers } = require('sensum');
 const { MessageActionRow, MessageButton } = require('discord-buttons');
-const Time = require('../../services/time.service');
+const Time = require('../../framework/time/time.service');
 
 const description = TextHelpers.lines(
   'Welcome to the Flower Casino!',

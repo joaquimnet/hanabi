@@ -1,6 +1,6 @@
 const { Command, Permission } = require('sensum');
 
-const Time = require('../../services/time.service');
+const Time = require('../../framework/time/time.service');
 const guildReporter = require('../../framework/metrics/reports/guild-reports');
 const userReporter = require('../../framework/metrics/reports/user-reports');
 const ListenerUsageMetricV1 = require('../../framework/metrics/listeners/listener-usage-metric.v1.model');

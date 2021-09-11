@@ -1,7 +1,7 @@
 const { Command, Permission } = require('sensum');
 const { MessageEmbed } = require('discord.js');
 
-const Time = require('../../services/time.service');
+const Time = require('../../framework/time/time.service');
 
 module.exports = new Command({
   name: 'time',

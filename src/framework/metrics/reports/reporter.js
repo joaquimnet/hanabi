@@ -1,4 +1,4 @@
-const Time = require('../../../services/time.service');
+const Time = require('../../../framework/time/time.service');
 
 class Reporter {
   constructor(models) {

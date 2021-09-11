@@ -1,5 +1,5 @@
 const { Listener } = require('sensum');
-const Time = require('../../services/time.service.js');
+const Time = require('../../framework/time/time.service.js');
 const now = Time.moment();
 
 module.exports = new Listener({
