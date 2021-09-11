@@ -2,6 +2,7 @@ const { FileLoader } = require('sensum');
 const { Collection } = require('discord.js');
 
 const { Achievement } = require('./achievement');
+const Profile = require('../../models/profile');
 
 class AchievementManager {
   constructor(bot) {
@@ -52,8 +53,10 @@ class AchievementManager {
     this.cache = new Collection(achievements.map((a) => [a.flag, a]));
   }
 
-  async progress({ achievementGroup, progressAmount, profile, channel }) {
+  async progress({ achievementGroup, progressAmount, profile: p, channel }) {
     const achievements = this.cache.filter((a) => a.group === achievementGroup);
+
+    const profile = await Profile.getOrCreate(p._id);
 
     if (!achievements.size) {
       this.bot.emit(
