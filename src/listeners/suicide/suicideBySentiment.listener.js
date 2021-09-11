@@ -1,6 +1,6 @@
 const { Listener } = require('sensum');
 
-const sentiment = require('../../services/sentiment');
+const sentiment = require('../../framework/sentiment/sentiment');
 
 const MSG = require('./suicide-message');
 
