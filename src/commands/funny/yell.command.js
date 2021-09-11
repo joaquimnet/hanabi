@@ -9,20 +9,21 @@ module.exports = new Command({
     yourMessage: 'string',
   },
   delete: true,
+  examples: ['hello', 'i am angy', 'hydrate yourself!'],
   run(bot, message, meta) {
     const content = clearContent(meta);
     if (content.length < 1) {
-      meta.respond('That message is too short or invalid...');
+      meta.respond('I can\'t yell that... It\'s too short.');
       return;
     }
 
     const theYELL = replaceLettersWithEmotes(content);
 
     if (theYELL.length > 1999) {
-      return meta.respond('That is too long to yell. :c');
+      return meta.respond('That\'s too long... My voice... pls');
     }
 
-    meta.respond(theYELL);
+    this.send(theYELL);
   },
 });
 
