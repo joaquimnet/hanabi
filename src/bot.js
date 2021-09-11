@@ -10,7 +10,7 @@ const extensions = require('./client-extensions');
 const Alert = require('./framework/alerts/alert.service');
 const AchievementManager = require('./framework/achievements/achievement-manager');
 const NotificationManager = require('./notifications/notification-manager');
-const Brain = require('./services/grammar.service');
+const Brain = require('./framework/grammar/grammar.service');
 
 const bot = new BotClient(config);
 extensions.extendClient(bot);
