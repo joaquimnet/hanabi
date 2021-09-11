@@ -41,8 +41,8 @@ function clearContent(meta) {
       // remove user ids
       .replace(userRegex, (id) => {
         id = id.replace('!', '');
-        const member = meta.message.guild.members.get(id);
-        return (member.nickname || member.user.username).toLowerCase();
+        const member = meta.message.guild?.members?.get(id);
+        return (member.nickname || member.user.username || '').toLowerCase();
       })
       // remove double spaces
       .replace(/\s+/, ' ')
