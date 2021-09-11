@@ -1,6 +1,6 @@
 const { Command, Permission } = require('sensum');
 
-const Notification = require('../../notifications/notification');
+const Notification = require('../../framework/notifications/notification');
 
 module.exports = new Command({
   name: 'notification-admin',
