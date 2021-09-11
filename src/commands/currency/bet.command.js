@@ -47,6 +47,7 @@ const PHRASES = [
   'Tis a free and connected world, seek thee knowledge and thou shall find thy answers.',
   "Purple doesn't exist.",
   "I'm as sharp as a ping pong ball.",
+  'If I have seen further it is by standing on the shoulders of Giants.',
 ];
 
 const jackpots = new Map();
