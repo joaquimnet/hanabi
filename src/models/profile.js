@@ -74,7 +74,7 @@ const profileSchema = new Schema(
       },
     ],
   },
-  { timestamps: true, optimisticConcurrency: true },
+  { timestamps: true },
 );
 
 /**
