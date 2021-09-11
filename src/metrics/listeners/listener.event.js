@@ -4,7 +4,7 @@ const listenerMetricQueue = require('./listener-metric-queue');
 
 module.exports = new EventHandler({
   name: 'listener',
-  run(bot, listener, ctx) {
+  async run(bot, listener, ctx) {
     listenerMetricQueue.enqueue({
       userId: ctx.userId,
       channelId: ctx.message.channel.id,
@@ -14,5 +14,15 @@ module.exports = new EventHandler({
       message: ctx.message.content,
       time: new Date(),
     });
+    try {
+      await bot.achievements.progress({
+        achievementGroup: require('../../achievements/any-listener/group'),
+        progressAmount: 1,
+        profile: ctx.profile,
+        channel: ctx.message.channel,
+      });
+    } catch (err) {
+      bot.emit('error', err);
+    }
   },
 });

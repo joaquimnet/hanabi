@@ -4,7 +4,7 @@ const commandMetricQueue = require('./command-metric-queue');
 
 module.exports = new EventHandler({
   name: 'command',
-  run(bot, ctx) {
+  async run(bot, ctx) {
     commandMetricQueue.enqueue({
       userId: ctx.userId,
       channelId: ctx.message.channel.id,
@@ -13,5 +13,15 @@ module.exports = new EventHandler({
       args: ctx.cliArgs._,
       time: new Date(),
     });
+    try {
+      await bot.achievements.progress({
+        achievementGroup: require('../../achievements/any-command/group'),
+        progressAmount: 1,
+        profile: ctx.profile,
+        channel: ctx.message.channel,
+      });
+    } catch (err) {
+      bot.emit('error', err);
+    }
   },
 });
