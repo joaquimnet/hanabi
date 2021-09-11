@@ -2,6 +2,7 @@ const { Command } = require('sensum');
 const moment = require('moment');
 
 const Profile = require('../../models/profile');
+const genericMetricQueue = require('../../metrics/general/generic-metric-queue');
 
 const timeToNextDelivery = (lastFlower) => {
   const now = new moment();
@@ -53,6 +54,11 @@ module.exports = new Command({
         { _id: mention.user.id },
         { $inc: { 'flower.count': 1 } },
       );
+      bot.saveMetric('flower', {
+        from: meta.userId,
+        to: mention.user.id,
+        guild: meta.message.guild?.id,
+      });
     } else {
       this.send(
         `:timer: **|** Oh no **${

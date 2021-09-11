@@ -1,6 +1,8 @@
 const { logger } = require('./modules');
 const { Profile, Settings } = require('./models');
 
+const genericMetricQueue = require('./metrics/general/generic-metric-queue');
+
 function isObject(value) {
   return value && typeof value === 'object' && value.constructor === Object;
 }
@@ -31,6 +33,12 @@ function extendClient(bot) {
     const settings = await Settings.getOrCreate(guildId);
     return settings;
   };
+
+  /*
+  Utility to save generic metrics to the database.
+  */
+  bot.saveMetric = (subject, payload) =>
+    genericMetricQueue.enqueue({ subject, value: payload });
 }
 
 async function attachProfileToMeta(meta) {
