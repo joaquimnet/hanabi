@@ -35,7 +35,7 @@ module.exports = new Command({
       // if !u this user does not share a server with Hanabi.
       // TODO: Check profiles database for this user.
       const u = bot.users.cache.get(p._id);
-      return `${medals['' + i]}**${u ? u.tag : 'Anonymous Hana Flower'}:** ${
+      return `${medals['' + i]}**${u ? u.username : 'Anonymous Hana Flower'}:** ${
         p.money
       }`;
     });
