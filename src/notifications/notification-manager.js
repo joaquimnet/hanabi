@@ -34,7 +34,7 @@ class NotificationManager {
 
   async consume(userId) {
     const notifications = await this.touch(userId);
-    this.bot.logger.info(
+    this.bot.logger.debug(
       `Consuming ${notifications.length} notifications for user ${userId}`,
     );
 
