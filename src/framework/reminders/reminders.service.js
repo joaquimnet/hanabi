@@ -3,8 +3,6 @@ const { Task } = require('sensum');
 const m = require('moment');
 const moment = (...args) => m(...args).utc();
 
-const Reminder = require('../models/reminder');
-
 module.exports = class Reminders {
   static scheduleSavedReminders(bot, reminders) {
     for (const reminder of reminders) {

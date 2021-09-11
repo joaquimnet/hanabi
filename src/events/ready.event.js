@@ -3,7 +3,7 @@ const { Settings } = require('../models');
 
 const Reminder = require('../models/reminder');
 const config = require('../db');
-const Reminders = require('../services/reminders.service');
+const Reminders = require('../framework/reminders/reminders.service');
 const { waitingForDb } = require('../db');
 
 module.exports = new EventHandler({

@@ -1,9 +1,9 @@
-const { Command, Task } = require('sensum');
+const { Command } = require('sensum');
 const moment = require('moment');
 
 const Time = require('../../services/time.service');
 const Reminder = require('../../models/reminder');
-const Reminders = require('../../services/reminders.service');
+const Reminders = require('../../framework/reminders/reminders.service');
 
 module.exports = new Command({
   name: 'remind',
