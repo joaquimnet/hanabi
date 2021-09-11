@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 
-const Hanabi = require('../models/hanabi');
+const Hanabi = require('../../models/hanabi');
 const AlertModelV1 = require('./alert.model.v1');
 
 class Alert {
