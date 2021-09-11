@@ -31,8 +31,8 @@ const terminate = (type, bot) => {
             mongoose.disconnect();
             exit(1);
           })
-          .catch((err) => {
-            logger.error(err);
+          .catch((error) => {
+            logger.error(error);
             exit(1);
           });
       };

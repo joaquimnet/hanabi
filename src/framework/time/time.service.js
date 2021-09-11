@@ -4,9 +4,9 @@ const toHuman = require('cronstrue').toString;
 const chrono = require('chrono-node');
 const parseDuration = require('parse-duration');
 
-class Time {
-  static moment = (...args) => m(...args).utc();
+const moment = (...args) => m(...args).utc();
 
+class Time {
   static parse(content) {
     let cron = null;
     let human = null;
@@ -34,6 +34,7 @@ class Time {
           human = moment(relative).calendar();
         }
       }
+    // eslint-disable-next-line no-empty
     } catch {}
 
     duration = parseDuration(content);
@@ -55,7 +56,5 @@ class Time {
     return moment().add(seconds, 'second').calendar();
   }
 }
-
-var moment = Time.moment;
 
 module.exports = Time;

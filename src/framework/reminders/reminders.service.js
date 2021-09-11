@@ -19,6 +19,7 @@ module.exports = class Reminders {
         new Task({
           name: `Reminder-${reminder.userId}-${reminder._id}`,
           time: reminder.fireDate,
+          // eslint-disable-next-line no-shadow
           async run(bot) {
             Reminders.sendReminder(bot, reminder);
           },

@@ -111,7 +111,7 @@ module.exports = new Command({
       });
     });
 
-    Object.keys(BET_AMOUNTS).forEach((betAmountType, i) => {
+    Object.keys(BET_AMOUNTS).forEach((betAmountType) => {
       for (let i = 1; i <= 3; i++) {
         bot.buttons.set(`FINISH${i}_` + betAmountType, async (button) => {
           await button.clicker.fetch();
