@@ -6,7 +6,8 @@ module.exports = new Task({
   name: 'Save Generic Metrics To Database',
   // runs every 5 minutes
   time: '0 */5 * * * *',
-  run() {
+  run(bot) {
+    bot.logger.debug('Sending generic metrics to DB.');
     genericMetricQueue.processQueue();
   },
 });
