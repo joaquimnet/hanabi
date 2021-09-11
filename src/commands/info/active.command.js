@@ -1,11 +1,11 @@
 const { Command, Permission } = require('sensum');
 
 const Time = require('../../services/time.service');
-const guildReporter = require('../../metrics/reports/guild-reports');
-const userReporter = require('../../metrics/reports/user-reports');
-const ListenerUsageMetricV1 = require('../../metrics/listeners/listener-usage-metric.v1.model');
-const CommandUsageMetricV1Model = require('../../metrics/commands/command-usage-metric.v1.model');
-const Reporter = require('../../metrics/reports/reporter');
+const guildReporter = require('../../framework/metrics/reports/guild-reports');
+const userReporter = require('../../framework/metrics/reports/user-reports');
+const ListenerUsageMetricV1 = require('../../framework/metrics/listeners/listener-usage-metric.v1.model');
+const CommandUsageMetricV1Model = require('../../framework/metrics/commands/command-usage-metric.v1.model');
+const Reporter = require('../../framework/metrics/reports/reporter');
 
 module.exports = new Command({
   name: 'active',

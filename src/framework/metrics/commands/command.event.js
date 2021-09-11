@@ -15,7 +15,7 @@ module.exports = new EventHandler({
     });
     try {
       await bot.achievements.progress({
-        achievementGroup: require('../../achievements/any-command/group'),
+        achievementGroup: require('../../../achievements/any-command/group'),
         progressAmount: 1,
         profile: ctx.profile,
         channel: ctx.message.channel,

@@ -2,7 +2,6 @@ const { Command } = require('sensum');
 const moment = require('moment');
 
 const Profile = require('../../models/profile');
-const genericMetricQueue = require('../../metrics/general/generic-metric-queue');
 
 const timeToNextDelivery = (lastFlower) => {
   const now = new moment();

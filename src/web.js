@@ -1,7 +1,7 @@
 const logger = require('./modules/logger');
-const CommandUsageMetricV1Model = require('./metrics/commands/command-usage-metric.v1.model');
-const ListenerUsageMetricV1Model = require('./metrics/listeners/listener-usage-metric.v1.model');
-const Reporter = require('./metrics/reports/reporter');
+const CommandUsageMetricV1Model = require('./framework/metrics/commands/command-usage-metric.v1.model');
+const ListenerUsageMetricV1Model = require('./framework/metrics/listeners/listener-usage-metric.v1.model');
+const Reporter = require('./framework/metrics/reports/reporter');
 
 let bot;
 

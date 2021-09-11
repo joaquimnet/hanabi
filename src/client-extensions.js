@@ -1,7 +1,7 @@
 const { logger } = require('./modules');
 const { Profile, Settings } = require('./models');
 
-const genericMetricQueue = require('./metrics/general/generic-metric-queue');
+const genericMetricQueue = require('./framework/metrics/general/generic-metric-queue');
 
 function isObject(value) {
   return value && typeof value === 'object' && value.constructor === Object;
