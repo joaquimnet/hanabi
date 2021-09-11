@@ -1,4 +1,4 @@
-const { Achievement } = require('../system/achievement');
+const { Achievement } = require('../../framework/achievements/achievement');
 
 const group = require('./group');
 

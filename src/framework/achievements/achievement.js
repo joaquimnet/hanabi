@@ -1,24 +1,7 @@
-/*
-profile
-{
-  ...
-  achievements: [{
-    achievement: 'SOME_FLAG_ID',
-    achievementGroup: 'SOME_GROUP_FLAG_ID',
-    progress: Number,
-    completedAt: Date,
-    claimedReward: Boolean,
-  }],
-  updatedAt,
-  createdAt,
-}
-
-*/
-
 // An Achievement is an individual achievement. e.g: Receive 100 flowers.
 // It will belong to a group to minimize the number of evaluate() functions
 // triggered for bot events.
-// For example, if a flower is sent only achievements in the FLOWER_GIVE and
+// For example, if a flower is sent, only achievements in the FLOWER_GIVE and
 // FLOWER_RECEIVE group have their evaluation functions called.
 
 /**

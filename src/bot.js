@@ -8,7 +8,7 @@ const fs = require('fs');
 const config = require('./config');
 const extensions = require('./client-extensions');
 const Alert = require('./logging/alert.service');
-const AchievementManager = require('./achievements/system/achievement-manager');
+const AchievementManager = require('./framework/achievements/achievement-manager');
 const NotificationManager = require('./notifications/notification-manager');
 const Brain = require('./services/grammar.service');
 
